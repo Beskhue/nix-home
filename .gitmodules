@@ -1,0 +1,3 @@
+[submodule "my-programs/thingshare"]
+	path = my-programs/thingshare
+	url = https://github.com/Beskhue/thingshare
