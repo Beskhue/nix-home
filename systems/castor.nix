@@ -1,8 +1,9 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   imports = [
-    ../cfg/dunst.nix
+    ../common.nix
+    ((import ../cfg/xmonad) ["DP-4" "DVI-D-0"])
   ];
 
   home.packages = with pkgs; [
@@ -10,4 +11,3 @@
     steam
   ];
 }
-

@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../cfg/dunst.nix
+    ../common.nix
+    ((import ../cfg/xmonad) ["eDP1"])
   ];
 }
-
