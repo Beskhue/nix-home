@@ -1,3 +1,6 @@
 [submodule "my-programs/thingshare"]
 	path = my-programs/thingshare
 	url = https://github.com/Beskhue/thingshare
+[submodule "nixpkgs-mozilla"]
+	path = nixpkgs-mozilla
+	url = https://github.com/mozilla/nixpkgs-mozilla.git
