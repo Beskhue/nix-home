@@ -46,6 +46,7 @@ in
     ];
 
     imports = [
+      ./cfg/xresources.nix
       (./systems + "/${system_name}.nix")
     ];
   }
