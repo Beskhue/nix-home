@@ -22,7 +22,7 @@ notify() {
         --dest org.freedesktop.Notifications \
         --object-path /org/freedesktop/Notifications \
         --method org.freedesktop.Notifications.Notify -- \
-        "volume_control" 28593163 "${icon}" "Volume" "${message}" [] {} -1    
+        "volume_control" 28593163 "${icon}" "Volume" "${message}" [] "{\"urgency\": <byte 0>}" -1
 }
 
 case $1 in
