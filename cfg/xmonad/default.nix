@@ -9,5 +9,5 @@ in
 
       monitors = [${monitorsStr}]
     '';
-    xsession.windowManager.xmonad.config = lib.readFile ./xmonad.hs;
+    home.file.".xmonad/xmonad.hs".text = lib.readFile ./xmonad.hs;
   }
