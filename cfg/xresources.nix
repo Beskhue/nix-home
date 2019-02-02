@@ -9,6 +9,13 @@
     "URxvt*italicFont" = "xft:Source Code Pro:style=Italic:size=11:antialias=true";
     "URxvt*boldItalicFont" = "xft:Source Code Pro:style=Bold Italic:size=11:antialias=true";
     "URxvt*letterSpace" = 0;
+    # Better rendering.
+    "Xft.antialias" = true;
+    "Xft.hinting" = true;
+    "Xft.rgba" = "rgb";
+    "Xft.autohint" = false;
+    "Xft.hintstyle" = "hintslight";
+    "Xft.lcdfilter" = "lcddefault";
   };
 
   # Monokai Dark.
