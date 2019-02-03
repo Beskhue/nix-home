@@ -21,8 +21,6 @@ import qualified DBus.Client as D
 import Control.Monad (when, join)
 import Data.Maybe (maybeToList)
 
-import MyMonitors
-
 myModMask = mod4Mask
 
 barActive = "#c0333333"
@@ -35,8 +33,6 @@ barRedUnderline = "#992618"
 myStartupHook =
   -- Set background image.
   spawn "feh --bg-scale /home/thomas/Backgrounds/wallpaper-pixelart1.png" >>
-  -- Start status bars.
-  mapM (\m -> spawnOnce $ "MONITOR=" ++ m ++ " polybar top") monitors >>
   -- Autostart .desktop
   spawnOnce "dex -a" >>
   spawnOnce "thingshare_init" >>

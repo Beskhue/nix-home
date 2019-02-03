@@ -43,5 +43,6 @@
   imports = [
     ./cfg/xresources.nix
     ./cfg/dunst.nix
+    ./cfg/polybar
   ];
 }
