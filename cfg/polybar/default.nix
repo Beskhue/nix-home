@@ -30,6 +30,7 @@ in
           font-1 = "Siji:pixelsize=10;0";
           font-2 = "Unifont:size=9:antialias=false;0";
           font-3 = "Twitter Color Emoji:size=10;0";
+          font-4 = "Font Awesome 5 Free:style=solid:size=10;0";
           modules-left = "xmonad";
 	  modules-center = "xwindow";
 	  # modules-right = "volume wlan cpu memory date";
