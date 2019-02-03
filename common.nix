@@ -3,6 +3,7 @@
 {
   # Common packages.
   home.packages = with pkgs; [
+    (import ./my-programs/brightness-control)
     (import ./my-programs/volume-control)
     (import ./my-programs/thingshare)
     # Dotfiles manager.
