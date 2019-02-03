@@ -115,7 +115,9 @@ in
 	  adapter = "ADP1";
           poll-interval = 5;
 	  time-format = "%H:%M";
-	  format-charging = "<animation-charging> <label-charging>";
+          format-charging-underline = yellow;
+          format-discharging-underline = yellow;
+          format-charging = "<animation-charging> <label-charging>";
 	  format-discharging = "<ramp-capacity> <label-discharging>";
 	  label-charging = "Charging %percentage%%";
 	  label-discharging = "%percentage%% (%time%)";
