@@ -85,7 +85,7 @@ dbusOutput dbus str = do
     interfaceName = D.interfaceName_ "org.xmonad.Log"
     memberName = D.memberName_ "Update"
 
-polybarLogHook dbus = def 
+polybarLogHook dbus = def
     {  ppOutput = dbusOutput dbus
      , ppCurrent = wrap ("%{B" ++ barActive ++ "}%{u" ++ barYellow ++  "}<") ">%{-u}%{B-}"
      , ppVisible = wrap ("%{B" ++ barActive ++ "}%{u" ++ barPurple ++ "} ") " %{-u}%{B-}"
@@ -106,12 +106,13 @@ main = do
 defaults dbus = defaultConfig {
       modMask = myModMask
     , terminal = "urxvt"
+    , workspaces = ["1:dev", "2", "3", "4", "5", "6", "7", "8", "9"]
     , focusedBorderColor = "#FF6600"
-    , layoutHook = 
+    , layoutHook =
         avoidStruts $
             lessBorders Screen (
                 spacingRaw True (Border 0 0 0 0) False (Border 8 8 8 8) True $ layoutHook def
-            ) 
+            )
     , startupHook = myStartupHook
     , logHook = dynamicLogWithPP $ polybarLogHook dbus
     , manageHook = isFullscreen --> doFullFloat
