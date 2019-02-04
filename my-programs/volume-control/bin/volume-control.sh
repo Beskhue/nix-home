@@ -14,7 +14,10 @@ notify() {
         message=""
     else
         icon="audio-volume-high"
-        message="|$(seq -s "─" $(($1 / 5)) | sed 's/[0-9]//g')|"
+	bar_size=20
+	pre_bar=$(($1 * $bar_size / 100))
+	post_bar=$(($bar_size - $pre_bar))
+        message="$(seq -s "─" 0 $pre_bar | sed 's/[0-9]//g')|$(seq -s "─" 0 $post_bar | sed 's/[0-9]//g')"
     fi
     
     gdbus call \
@@ -30,6 +33,7 @@ case $1 in
         # Calculate new volume.
         vol=$(amixer sget Master | grep -oP "\[\d*%\]" | head -n 1 | tr -d "[]%")
         new_vol=$((vol+step_size))
+	new_vol=$((new_vol < 100 ? new_vol : 100))
 
         # Ensure we're unmuted.
         amixer set Master on > /dev/null
@@ -41,6 +45,7 @@ case $1 in
     down)
         vol=$(amixer sget Master | grep -oP "\[\d*%\]" | head -n 1 | tr -d "[]%")
         new_vol=$((vol-step_size))
+	new_vol=$((new_vol > 0 ? new_vol : 0))
         
         amixer sset Master ${new_vol}% > /dev/null
 
