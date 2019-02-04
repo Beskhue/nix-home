@@ -8,6 +8,31 @@
     (import ./my-programs/thingshare)
     # Dotfiles manager.
     yadm
+    # Editor.
+    ((emacsPackagesNgGen (emacs.override {
+      withGTK3 = true;
+      withGTK2 = false;
+    })).emacsWithPackages (epkgs:
+        (with epkgs.melpaStablePackages; [
+          use-package
+          evil
+          evil-collection
+          magit
+          smart-mode-line
+          monokai-theme
+          neotree
+          markdown-mode
+          rust-mode
+          nix-mode
+          cargo
+          haskell-mode
+        ]) ++ (with epkgs.elpaPackages; [
+          beacon
+          auctex
+          ivy
+        ])
+      )
+    )
     # The basics.
     firefox
     thunderbird
