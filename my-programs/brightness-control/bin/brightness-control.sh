@@ -37,7 +37,7 @@ case $1 in
     down)
         brightness=$(floatToInt $(xbacklight -get))
         new_brightness=$((brightness-step_size))
-	new_brightness=$((new_brightness < 0 ? new_brightness : 0))
+	new_brightness=$((new_brightness > 0 ? new_brightness : 0))
         xbacklight -set ${new_brightness}%
         notify $new_brightness
         ;;
