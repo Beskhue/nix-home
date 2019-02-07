@@ -126,12 +126,14 @@ in
         ramp-capacity-2 = "";
         ramp-capacity-3 = "";
         ramp-capacity-4 = "";
+        ramp-capcity-foreground = foreground-alt;
         animation-charging-0 = "";
         animation-charging-1 = "";
         animation-charging-2 = "";
         animation-charging-3 = "";
         animation-charging-4 = "";
         animation-charging-framerate = 750;
+        animation-charging-foreground = foreground-alt;
       };
       "module/xmonad" = {
         type = "custom/script";
