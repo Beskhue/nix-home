@@ -26,6 +26,7 @@
           nix-mode
           cargo
           haskell-mode
+          ess # R
         ]) ++ (with epkgs.elpaPackages; [
           beacon
           auctex
@@ -67,6 +68,7 @@
   ];
 
   imports = [
+    ./cfg/gtk.nix
     ./cfg/xresources.nix
     ./cfg/dunst.nix
     ./cfg/polybar
