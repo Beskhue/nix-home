@@ -115,6 +115,9 @@ defaults dbus = defaultConfig {
             )
     , startupHook = myStartupHook
     , logHook = dynamicLogWithPP $ polybarLogHook dbus
-    , manageHook = isFullscreen --> doFullFloat
+    , manageHook = composeOne [
+        --  isFullscreen -?> doFullFloat
+        isDialog -?> doFloat
+      ]
     , handleEventHook = fullscreenEventHook
 } `additionalKeys` myKeys
