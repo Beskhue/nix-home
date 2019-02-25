@@ -6,6 +6,7 @@
     (import ./my-programs/brightness-control)
     (import ./my-programs/volume-control)
     (import ./my-programs/thingshare)
+    (import ./my-programs/extract)
     # Dotfiles manager.
     yadm
     # Editor.
@@ -13,24 +14,38 @@
       withGTK3 = true;
       withGTK2 = false;
     })).emacsWithPackages (epkgs:
-        (with epkgs.melpaStablePackages; [
+        (with epkgs.melpaPackages; [
           use-package
           evil
-          evil-collection
+          general
+          which-key
+          projectile
+          flycheck
+          flycheck-inline
+          flycheck-rust
+          zenburn-theme
+          rust-mode
+          cargo
+          racer
+        ]) ++ (with epkgs.melpaStablePackages; [
+          fill-column-indicator
           magit
           smart-mode-line
           monokai-theme
           neotree
           markdown-mode
-          rust-mode
           nix-mode
-          cargo
           haskell-mode
           ess # R
+          ess-R-data-view
+          ivy
+          swiper
+          counsel
+          avy
         ]) ++ (with epkgs.elpaPackages; [
           beacon
           auctex
-          ivy
+          company
         ])
       )
     )
@@ -42,6 +57,9 @@
     # Tools.
     direnv
     libnotify
+    gnome3.gnome-system-monitor
+    filelight
+    ark
     # Documents.
     nomacs
     okular
