@@ -27,6 +27,7 @@
           rust-mode
           cargo
           racer
+          magma-mode
         ]) ++ (with epkgs.melpaStablePackages; [
           fill-column-indicator
           magit
