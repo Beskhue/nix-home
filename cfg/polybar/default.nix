@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{ config, pkgs, ... }:
 
 let
   background = "#b0000000";
@@ -8,8 +8,11 @@ let
   yellow = "#f9d300";
   purple = "#9f78e1";
   cyan = "#4bffdc";
+  redshift-info = import ./scripts/redshift-info.nix;
+  redshift-toggle = import ./scripts/redshift-toggle.nix;
 in 
   {
+    config.home.packages = [ redshift-info ];
     config.services.polybar = {
     enable = true;
     config = {
@@ -139,6 +142,14 @@ in
         type = "custom/script";
         exec = "${pkgs.xmonad-log}/bin/xmonad-log";
         tail = true;
+      };
+      "module/redshift" = {
+        type = "custom/script";
+        exec = "${redshift-info}/bin/redshift-info";
+        click-left = "${redshift-toggle}/bin/redshift-toggle";
+        interval = 5;
+        format-prefix = " ";
+        format-underline = "#f9d300";
       };
     };
   };

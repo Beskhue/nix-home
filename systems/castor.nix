@@ -12,7 +12,7 @@
       MONITOR=DVI-D-0 polybar top &
     '';
     config."module/wlan".interface = "wlp3s0";
-    config."bar/top".modules-right = "volume wlan cpu memory date";
+    config."bar/top".modules-right = "volume redshift wlan cpu memory date";
   };
 
   home.packages = with pkgs; [

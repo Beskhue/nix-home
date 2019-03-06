@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   # Common packages.
@@ -91,5 +91,6 @@
     ./cfg/xresources.nix
     ./cfg/dunst.nix
     ./cfg/polybar
+    ./cfg/redshift
   ];
 }
