@@ -62,6 +62,8 @@
     gnome3.gnome-system-monitor
     filelight
     ark
+    # Font tools.
+    gnome3.gucharmap
     # Documents.
     nomacs
     okular
