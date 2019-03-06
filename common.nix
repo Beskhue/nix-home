@@ -44,6 +44,7 @@
           counsel
           avy
         ]) ++ (with epkgs.elpaPackages; [
+          org
           beacon
           auctex
           company
