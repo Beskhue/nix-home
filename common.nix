@@ -77,11 +77,17 @@
     (
       texlive.combine {
         inherit (pkgs.texlive)
+          amsmath # Math
+          amsfonts # Math
+          # psfonts # textcomp
+          cm-super
           scheme-small
           apacite
           floatflt wrapfig # Figures
           enumitem
           courier # Font
+          hyperref
+          capt-of
         ;
       }
     )
