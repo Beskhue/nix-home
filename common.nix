@@ -54,6 +54,8 @@
     # The basics.
     firefox
     thunderbird
+    # Chat.
+    mydiscord
     # Cloud.
     seafile-client
     # Tools.
