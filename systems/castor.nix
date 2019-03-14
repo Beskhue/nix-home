@@ -18,7 +18,5 @@
   home.packages = with pkgs; [
     # Games.
     steam
-    # Windows translation.
-    wineWowPackages.staging
   ];
 }
