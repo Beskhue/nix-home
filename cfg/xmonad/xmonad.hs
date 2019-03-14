@@ -5,6 +5,7 @@ import XMonad.Layout.NoBorders
 --import XMonad.Layout.Fullscreen
 import XMonad.Layout.Tabbed
 import XMonad.Layout.IndependentScreens
+import XMonad.Operations (sendMessage)
 import XMonad.Util.Run
 import XMonad.Util.SessionStart
 import XMonad.Util.SpawnOnce
@@ -41,6 +42,7 @@ myStartupHook =
 
 myKeys = [ ((myModMask, xK_f), spawn "firefox" )
          , ((myModMask, xK_p), spawn "rofi -combi-modi run,drun -show combi -modi combi" )
+         , ((myModMask .|. shiftMask, xK_f), sendMessage ToggleStruts)
          , ((controlMask .|. shiftMask, xK_1), spawn "thingshare_screenshot full")
          , ((controlMask .|. shiftMask, xK_2), spawn "thingshare_screenshot display")
          , ((controlMask .|. shiftMask, xK_3), spawn "thingshare_screenshot window")
