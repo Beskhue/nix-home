@@ -4,7 +4,8 @@ import XMonad.Layout.Spacing
 import XMonad.Layout.NoBorders
 --import XMonad.Layout.Fullscreen
 import XMonad.Layout.Tabbed
-import XMonad.Layout.IndependentScreens
+import XMonad.Layout.IndependentScreens (countScreens)
+import XMonad.Layout.PerWorkspace (onWorkspace)
 import XMonad.Operations (sendMessage)
 import XMonad.Util.Run
 import XMonad.Util.SessionStart
@@ -110,11 +111,11 @@ defaults dbus = defaultConfig {
     , terminal = "urxvt"
     , workspaces = ["1:dev", "2", "3", "4", "5", "6", "7", "8", "9"]
     , focusedBorderColor = "#FF6600"
-    , layoutHook =
-        avoidStruts $
-            lessBorders Screen (
-                spacingRaw True (Border 0 0 0 0) False (Border 8 8 8 8) True $ layoutHook def
-            )
+    , layoutHook = avoidStruts
+                    $ lessBorders Screen
+                    $ spacingRaw True (Border 0 0 0 0) False (Border 8 8 8 8) True
+                    $ onWorkspace "9" simpleTabbed
+                    $ layoutHook def
     , startupHook = myStartupHook
     , logHook = dynamicLogWithPP $ polybarLogHook dbus
     , manageHook = composeOne [
