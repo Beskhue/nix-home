@@ -4,6 +4,7 @@ import XMonad.Layout.NoBorders (lessBorders, Ambiguity( Screen ))
 import XMonad.Layout.Tabbed (simpleTabbed)
 import XMonad.Layout.IndependentScreens (countScreens)
 import XMonad.Layout.PerWorkspace (onWorkspace)
+import XMonad.Layout.Fullscreen (fullscreenSupport)
 import XMonad.Operations (sendMessage)
 import XMonad.Util.SessionStart (doOnce)
 import XMonad.Util.SpawnOnce (spawnOnce)
@@ -11,7 +12,7 @@ import XMonad.Util.EZConfig (additionalKeys)
 import XMonad.Hooks.DynamicLog (dynamicLogWithPP, PP(..), wrap)
 import XMonad.Hooks.ManageDocks (docks, avoidStruts, ToggleStruts(..))
 import XMonad.Hooks.ManageHelpers
-import XMonad.Hooks.EwmhDesktops (ewmh, fullscreenEventHook)
+import XMonad.Hooks.EwmhDesktops (ewmh)
 import XMonad.Hooks.UrgencyHook (withUrgencyHook, NoUrgencyHook(..))
 
 import qualified DBus as D
@@ -101,7 +102,12 @@ main = do
     dbus <- D.connectSession
     D.requestName dbus (D.busName_ "org.xmonad.Log")
         [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
-    xmonad $ ewmh $ docks $ withUrgencyHook NoUrgencyHook $ defaults dbus
+    xmonad
+        $ ewmh
+        $ docks
+        $ withUrgencyHook NoUrgencyHook
+        $ fullscreenSupport
+        $ defaults dbus
 
 defaults dbus = def {
       modMask = myModMask
@@ -119,5 +125,4 @@ defaults dbus = def {
     , manageHook = composeOne [
         isDialog -?> doFloat
       ]
-    , handleEventHook = fullscreenEventHook
 } `additionalKeys` myKeys
