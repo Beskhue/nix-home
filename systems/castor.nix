@@ -18,5 +18,6 @@
   home.packages = with pkgs; [
     # Games.
     steam
+    steam-run
   ];
 }
