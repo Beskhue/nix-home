@@ -103,7 +103,7 @@ main = do
         [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
     xmonad $ ewmh $ docks $ withUrgencyHook NoUrgencyHook $ defaults dbus
 
-defaults dbus = defaultConfig {
+defaults dbus = def {
       modMask = myModMask
     , terminal = "urxvt"
     , workspaces = ["1:dev", "2", "3", "4", "5", "6", "7", "8", "9"]
