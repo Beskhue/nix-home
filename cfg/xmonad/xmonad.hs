@@ -36,7 +36,7 @@ myStartupHook =
   spawnOnce "dex -a" >>
   spawnOnce "thingshare_init" >>
   -- Patch in fullscreen support.
-  doOnce addEWMHFullscreen
+  addEWMHFullscreen
 
 myKeys = [ ((myModMask, xK_f), spawn "firefox" )
          , ((myModMask, xK_p), spawn "rofi -combi-modi run,drun -show combi -modi combi" )
