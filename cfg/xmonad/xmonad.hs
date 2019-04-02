@@ -110,7 +110,7 @@ defaults dbus = defaultConfig {
     , focusedBorderColor = "#FF6600"
     , layoutHook = avoidStruts
                     $ lessBorders Screen
-                    $ spacingRaw True (Border 0 0 0 0) False (Border 8 8 8 8) True
+                    $ spacingRaw True (Border 0 0 0 0) False (Border 8 8 8 8) False
                     $ onWorkspace "9" simpleTabbed
                     $ layoutHook def
     , startupHook = myStartupHook
