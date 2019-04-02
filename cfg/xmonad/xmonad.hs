@@ -1,21 +1,18 @@
 import XMonad
-import XMonad.Layout.Gaps
-import XMonad.Layout.Spacing
-import XMonad.Layout.NoBorders
---import XMonad.Layout.Fullscreen
-import XMonad.Layout.Tabbed
+import XMonad.Layout.Spacing (spacingRaw, Border(..))
+import XMonad.Layout.NoBorders (lessBorders, Ambiguity( Screen ))
+import XMonad.Layout.Tabbed (simpleTabbed)
 import XMonad.Layout.IndependentScreens (countScreens)
 import XMonad.Layout.PerWorkspace (onWorkspace)
 import XMonad.Operations (sendMessage)
-import XMonad.Util.Run
-import XMonad.Util.SessionStart
-import XMonad.Util.SpawnOnce
+import XMonad.Util.SessionStart (doOnce)
+import XMonad.Util.SpawnOnce (spawnOnce)
 import XMonad.Util.EZConfig (additionalKeys)
-import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.DynamicLog (dynamicLogWithPP, PP(..), wrap)
+import XMonad.Hooks.ManageDocks (docks, avoidStruts, ToggleStruts(..))
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.EwmhDesktops (ewmh, fullscreenEventHook)
-import XMonad.Hooks.UrgencyHook
+import XMonad.Hooks.UrgencyHook (withUrgencyHook, NoUrgencyHook(..))
 
 import qualified DBus as D
 import qualified DBus.Client as D
@@ -119,7 +116,6 @@ defaults dbus = defaultConfig {
     , startupHook = myStartupHook
     , logHook = dynamicLogWithPP $ polybarLogHook dbus
     , manageHook = composeOne [
-        --  isFullscreen -?> doFullFloat
         isDialog -?> doFloat
       ]
     , handleEventHook = fullscreenEventHook
