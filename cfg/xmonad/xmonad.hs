@@ -107,6 +107,7 @@ defaults dbus = def {
       modMask = myModMask
     , terminal = "urxvt"
     , workspaces = ["1:dev", "2", "3", "4", "5", "6", "7", "8", "9"]
+    , normalBorderColor = "#BBBBBB"
     , focusedBorderColor = "#FF6600"
     , layoutHook = avoidStruts
                     $ lessBorders Screen
