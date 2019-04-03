@@ -14,6 +14,7 @@ import XMonad.Hooks.ManageDocks (docks, avoidStruts, ToggleStruts(..))
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.EwmhDesktops (ewmh)
 import XMonad.Hooks.UrgencyHook (withUrgencyHook, NoUrgencyHook(..))
+import XMonad.Actions.CycleWS (swapNextScreen)
 
 import qualified DBus as D
 import qualified DBus.Client as D
@@ -41,6 +42,7 @@ myStartupHook =
 
 myKeys = [ ((myModMask, xK_f), spawn "firefox" )
          , ((myModMask, xK_p), spawn "rofi -combi-modi run,drun -show combi -modi combi" )
+         , ((myModMask, xK_s), swapNextScreen)
          , ((myModMask .|. shiftMask, xK_f), sendMessage ToggleStruts)
          , ((controlMask .|. shiftMask, xK_1), spawn "thingshare_screenshot full")
          , ((controlMask .|. shiftMask, xK_2), spawn "thingshare_screenshot display")
