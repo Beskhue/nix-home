@@ -1,7 +1,7 @@
 import XMonad
 import XMonad.Layout.Spacing (spacingRaw, Border(..))
 import XMonad.Layout.NoBorders (lessBorders, Ambiguity( Screen ))
-import XMonad.Layout.Tabbed (simpleTabbed)
+import XMonad.Layout.Tabbed (simpleTabbedBottom)
 import XMonad.Layout.IndependentScreens (countScreens)
 import XMonad.Layout.PerWorkspace (onWorkspace)
 import XMonad.Layout.Fullscreen (fullscreenSupport)
@@ -120,7 +120,7 @@ defaults dbus = def {
     , layoutHook = avoidStruts
                     $ lessBorders Screen
                     $ spacingRaw True (Border 0 0 0 0) False (Border 8 8 8 8) False
-                    $ onWorkspace "9" simpleTabbed
+                    $ onWorkspace "9" simpleTabbedBottom
                     $ layoutHook def
     , startupHook = myStartupHook
     , logHook = dynamicLogWithPP $ polybarLogHook dbus
