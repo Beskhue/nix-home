@@ -71,6 +71,8 @@
     okular
     zathura
     libreoffice
+    # Databases
+    dbeaver # Database GUI.
     (
       python3.withPackages (
         python-packages: with python-packages; [
