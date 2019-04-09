@@ -28,6 +28,7 @@
           cargo
           racer
           magma-mode
+          column-enforce-mode
         ]) ++ (with epkgs.melpaStablePackages; [
           fill-column-indicator
           magit
