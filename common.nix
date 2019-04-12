@@ -1,6 +1,9 @@
 { pkgs, ... }:
 
 {
+  # Allow unfree software.
+  nixpkgs.config.allowUnfree = true;
+
   # Common packages.
   home.packages = with pkgs; [
     (import ./my-programs/brightness-control)
