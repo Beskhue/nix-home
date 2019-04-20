@@ -2,13 +2,14 @@
 
 let
   unstable = import <unstable> {};
+  master = import ./nixpkgs {};
 in
   {
     # Allow unfree software.
     nixpkgs.config.allowUnfree = true;
 
     # Common packages.
-    home.packages = with unstable.pkgs; [
+    home.packages = (with unstable.pkgs; [
       (import ./my-programs/brightness-control)
       (import ./my-programs/volume-control)
       (import ./my-programs/thingshare)
@@ -61,8 +62,6 @@ in
       # The basics.
       firefox
       thunderbird
-      # Chat.
-      mydiscord
       # Cloud.
       seafile-client
       # Tools.
@@ -104,7 +103,10 @@ in
           ;
         }
       )
-    ];
+    ]) ++ (with master.pkgs; [
+      # Chat.
+      discord
+    ]);
 
     imports = [
       ./cfg/gtk.nix
