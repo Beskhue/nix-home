@@ -110,7 +110,7 @@ in
 
     imports = [
       ./cfg/gtk.nix
-      ./cfg/xresources.nix
+      ./cfg/xresources
       ./cfg/dunst.nix
       ./cfg/polybar
       ./cfg/redshift

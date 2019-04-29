@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   xresources.properties = {
     "URxvt.depth" = 32;
@@ -9,6 +10,10 @@
     "URxvt*italicFont" = "xft:Source Code Pro:style=Italic:size=11:antialias=true";
     "URxvt*boldItalicFont" = "xft:Source Code Pro:style=Bold Italic:size=11:antialias=true";
     "URxvt*letterSpace" = 0;
+    "URxvt.iso14755" = false;
+    "URxvt.iso14755_52" = false;
+    "URxvt.perl-ext-common" = "new-window";
+    "URxvt.keysym.C-n" = "perl:new-window";
     # Better rendering.
     "Xft.antialias" = true;
     "Xft.hinting" = true;
@@ -57,4 +62,7 @@
     *.color7:       #f8f8f2
     *.color15:      #f9f8f5
   '';
+
+  # URxvt module to allow opening a new terminal window.
+  home.file.".urxvt/ext/new-window".text = lib.readFile ./urxvt-new-window;
 }
