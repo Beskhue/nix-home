@@ -18,7 +18,9 @@ in
     };
 
     home.packages = (with pkgs;
-        []
+        [
+          deluge
+        ]
       ) ++ (with master.pkgs;
         [
           # Games.
