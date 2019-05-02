@@ -77,6 +77,8 @@ in
       okular
       zathura
       libreoffice
+      # Password manager.
+      keepassxc
       # Databases
       dbeaver # Database GUI.
       (
