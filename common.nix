@@ -39,7 +39,8 @@ in
           ]) ++ (with epkgs.melpaStablePackages; [
             fill-column-indicator
             magit
-            smart-mode-line
+            moody
+            minions
             monokai-theme
             neotree
             markdown-mode
