@@ -42,7 +42,6 @@ in
             magma-mode
             column-enforce-mode
           ]) ++ (with epkgs.melpaStablePackages; [
-            fill-column-indicator
             magit
             moody
             minions
@@ -60,7 +59,6 @@ in
             avy
           ]) ++ (with epkgs.elpaPackages; [
             org
-            beacon
             auctex
             company
           ])
