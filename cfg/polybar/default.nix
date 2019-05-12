@@ -10,7 +10,7 @@ let
   cyan = "#4bffdc";
   redshift-info = import ./scripts/redshift-info.nix;
   redshift-toggle = import ./scripts/redshift-toggle.nix;
-in 
+in
   {
     config.home.packages = [ redshift-info ];
     config.services.polybar = {

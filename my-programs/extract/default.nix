@@ -38,4 +38,4 @@ writeScriptBin "extract" ''
     *.7z)      ${p7zip}/bin/7z x "$ARC"      ;;
     *)         echo "'$ARC' cannot be extracted by $SCRIPTNAME" ;;
   esac
-''  
+''
