@@ -12,14 +12,17 @@ notify() {
     bar_size=20
     pre_bar=$(($1 * $bar_size / 100))
     post_bar=$(($bar_size - $pre_bar))
-    message="$(seq -s "─" 0 $pre_bar | sed 's/[0-9]//g')|$(seq -s "─" 0 $post_bar | sed 's/[0-9]//g')"
-    
+    pre_bar_str="$(seq -s "─" 0 $pre_bar | sed 's/[0-9]//g')"
+    post_bar_str="$(seq -s "─" 0 $post_bar | sed 's/[0-9]//g')"
+    message="${pre_bar_str}|${post_bar_str}"
+
     gdbus call \
         --session \
         --dest org.freedesktop.Notifications \
         --object-path /org/freedesktop/Notifications \
         --method org.freedesktop.Notifications.Notify -- \
-        "brightness_control" 28593163 "${icon}" "Brightness" "${message}" [] "{\"urgency\": <byte 0>}" -1
+        "brightness_control" 28593163 "${icon}" "Brightness" \
+        "${message}" [] "{\"urgency\": <byte 0>}" -1
 }
 
 floatToInt() {
@@ -28,17 +31,15 @@ floatToInt() {
 
 case $1 in
     up)
-        brightness=$(floatToInt $(xbacklight -get))
-        new_brightness=$((brightness+step_size))
-	new_brightness=$((new_brightness < 100 ? new_brightness : 100))
-        xbacklight -set ${new_brightness}%
+        out=$(brightnessctl -m s ${step_size}%+)
+        arr=(${out//,/ })
+        new_brightness=${arr[3]::-1}
         notify $new_brightness
         ;;
     down)
-        brightness=$(floatToInt $(xbacklight -get))
-        new_brightness=$((brightness-step_size))
-	new_brightness=$((new_brightness > 0 ? new_brightness : 0))
-        xbacklight -set ${new_brightness}%
+        out=$(brightnessctl -m s ${step_size}%-)
+        arr=(${out//,/ })
+        new_brightness=${arr[3]::-1}
         notify $new_brightness
         ;;
 esac
