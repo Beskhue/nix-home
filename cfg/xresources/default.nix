@@ -5,10 +5,10 @@
     "URxvt.background" = "[95]#272822";
     "URxvt.scrollBar" = false;
     "URxvt*urgentOnBell" = true;
-    "URxvt*font" = "xft:Source Code Pro:style=Regular:size=11:antialias=true";
-    "URxvt*boldFont" = "xft:Source Code Pro:style=Bold:size=11:antialias=true";
-    "URxvt*italicFont" = "xft:Source Code Pro:style=Italic:size=11:antialias=true";
-    "URxvt*boldItalicFont" = "xft:Source Code Pro:style=Bold Italic:size=11:antialias=true";
+    "URxvt*font" = "xft:monospace:style=Regular:size=10:antialias=true";
+    "URxvt*boldFont" = "xft:monospace:style=Bold:size=10:antialias=true";
+    "URxvt*italicFont" = "xft:monospace:style=Italic:size=10:antialias=true";
+    "URxvt*boldItalicFont" = "xft:monospace:style=Bold Italic:size=10:antialias=true";
     "URxvt*letterSpace" = 0;
     "URxvt.iso14755" = false;
     "URxvt.iso14755_52" = false;
