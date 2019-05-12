@@ -8,8 +8,6 @@ in
     # Allow unfree software.
     nixpkgs.config.allowUnfree = true;
 
-    fonts.fontconfig.enable = true;
-
     # Common packages.
     home.packages = (with unstable.pkgs; [
       (import ./my-programs/brightness-control)
@@ -18,8 +16,6 @@ in
       (import ./my-programs/extract)
       # Dotfiles manager.
       yadm
-      # Fonts.
-      emacs-all-the-icons-fonts
       # Editor.
       ((emacsPackagesNgGen (emacs.override {
         withGTK3 = true;
