@@ -17,15 +17,18 @@ notify() {
 	bar_size=20
 	pre_bar=$(($1 * $bar_size / 100))
 	post_bar=$(($bar_size - $pre_bar))
-        message="$(seq -s "─" 0 $pre_bar | sed 's/[0-9]//g')|$(seq -s "─" 0 $post_bar | sed 's/[0-9]//g')"
+        pre_bar_str="$(seq -s "─" 0 $pre_bar | sed 's/[0-9]//g')"
+        post_bar_str="$(seq -s "─" 0 $post_bar | sed 's/[0-9]//g')"
+        message="${pre_bar_str}|${post_bar_str}"
     fi
-    
+
     gdbus call \
         --session \
         --dest org.freedesktop.Notifications \
         --object-path /org/freedesktop/Notifications \
         --method org.freedesktop.Notifications.Notify -- \
-        "volume_control" 28593163 "${icon}" "Volume" "${message}" [] "{\"urgency\": <byte 0>}" -1
+        "volume_control" 28593163 "${icon}" "Volume" \
+        "${message}" [] "{\"urgency\": <byte 0>}" -1
 }
 
 case $1 in
@@ -46,7 +49,7 @@ case $1 in
         vol=$(amixer sget Master | grep -oP "\[\d*%\]" | head -n 1 | tr -d "[]%")
         new_vol=$((vol-step_size))
 	new_vol=$((new_vol > 0 ? new_vol : 0))
-        
+
         amixer sset Master ${new_vol}% > /dev/null
 
         notify ${new_vol}
