@@ -22,19 +22,30 @@ in
         withGTK2 = false;
       })).emacsWithPackages (epkgs:
           (with epkgs.melpaPackages; [
-            use-package
+            # Vi layer.
             evil
+            # Package loading.
+            use-package
+            # Keybindings.
             general
             which-key
             projectile
+            # Error checking.
             flycheck
             flycheck-inline
             flycheck-rust
+            # Modes.
+            ## Rust.
             rust-mode
             cargo
             racer
+            ## Magma.
             magma-mode
+            # Highlight long columns.
             column-enforce-mode
+            # Files.
+            dired-rainbow
+            dired-subtree
           ]) ++ (with epkgs.melpaStablePackages; [
             magit
             # Modeline.
@@ -51,7 +62,8 @@ in
             markdown-mode
             nix-mode
             haskell-mode
-            ess # R
+            ## R.
+            ess
             ess-R-data-view
             # Movement.
             drag-stuff
