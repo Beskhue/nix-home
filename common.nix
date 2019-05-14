@@ -30,8 +30,6 @@ in
             flycheck
             flycheck-inline
             flycheck-rust
-            zenburn-theme
-            solarized-theme
             rust-mode
             cargo
             racer
@@ -39,16 +37,25 @@ in
             column-enforce-mode
           ]) ++ (with epkgs.melpaStablePackages; [
             magit
+            # Modeline.
             moody
             minions
+            # Themes.
+            zenburn-theme
+            solarized-theme
             monokai-theme
             all-the-icons
+            # Files.
             neotree
+            # Modes.
             markdown-mode
             nix-mode
             haskell-mode
             ess # R
             ess-R-data-view
+            # Movement.
+            drag-stuff
+            # Search and completion.
             ivy
             swiper
             counsel
