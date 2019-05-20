@@ -72,6 +72,8 @@ in
             swiper
             counsel
             avy
+            # Scheduling.
+            org-super-agenda
           ]) ++ (with epkgs.elpaPackages; [
             org
             auctex
