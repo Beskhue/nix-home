@@ -5,7 +5,7 @@ in
   {
     imports = [
       ../common.nix
-      ../cfg/xmonad
+      ../cfg/xmonad/castor.nix
     ];
 
     services.polybar = {

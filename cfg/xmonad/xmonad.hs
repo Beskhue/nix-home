@@ -7,7 +7,7 @@ import XMonad.Layout.PerWorkspace (onWorkspace)
 import XMonad.Layout.Fullscreen (fullscreenSupport)
 import XMonad.Operations (sendMessage)
 import XMonad.Util.SessionStart (doOnce)
-import XMonad.Util.SpawnOnce (spawnOnce)
+import XMonad.Util.SpawnOnce (spawnOnce, spawnOnOnce)
 import XMonad.Util.EZConfig (additionalKeys)
 import XMonad.Hooks.DynamicLog (dynamicLogWithPP, PP(..), wrap)
 import XMonad.Hooks.ManageDocks (docks, avoidStruts, ToggleStruts(..))
@@ -15,12 +15,15 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.EwmhDesktops (ewmh)
 import XMonad.Hooks.UrgencyHook (withUrgencyHook, NoUrgencyHook(..))
 import XMonad.Actions.CycleWS (swapNextScreen)
+import XMonad.Actions.SpawnOn (manageSpawn)
 
 import qualified DBus as D
 import qualified DBus.Client as D
 
 import Control.Monad (when, join)
 import Data.Maybe (maybeToList)
+
+import MySystem (system)
 
 myModMask = mod4Mask
 
@@ -31,12 +34,20 @@ barRed = "#fb4934"
 barRedUnderline = "#992618"
 
 
-myStartupHook =
+myStartupHook = do
   -- Set background image.
-  spawn "feh --bg-scale /home/thomas/Backgrounds/wallpaper-pixelart1.png" >>
-  -- Autostart .desktop
-  spawnOnce "dex -a" >>
-  spawnOnce "thingshare_init" >>
+  spawn "feh --bg-scale /home/thomas/Backgrounds/wallpaper-pixelart1.png"
+  -- Initialize thingshare.
+  spawnOnce "thingshare_init"
+  -- Perform system-specific hooks.
+  case system of
+    "castor" -> do
+      spawnOnOnce "6" "Discord"
+      spawnOnOnce "9" "thunderbird"
+      spawnOnOnce "9" "spotify"
+      spawnOnOnce "9" "keepassxc"
+      spawnOnOnce "9" "seafile-applet"
+      spawnOnOnce "9" "deluge"
   -- Patch in fullscreen support.
   addEWMHFullscreen
 
@@ -124,7 +135,7 @@ defaults dbus = def {
                     $ layoutHook def
     , startupHook = myStartupHook
     , logHook = dynamicLogWithPP $ polybarLogHook dbus
-    , manageHook = composeOne [
+    , manageHook = manageSpawn <+> composeOne [
         isDialog -?> doFloat
       ]
 } `additionalKeys` myKeys

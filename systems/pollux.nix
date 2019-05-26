@@ -3,7 +3,7 @@
 {
   imports = [
     ../common.nix
-    ../cfg/xmonad
+    ../cfg/xmonad/pollux.nix
   ];
 
   services.polybar = {
