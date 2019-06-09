@@ -17,6 +17,12 @@ in
       config."bar/top".modules-right = "volume redshift wlan cpu memory date";
     };
 
+    services.mpd = {
+      enable = true;
+      network.listenAddress = "any";
+      network.port = 6600;
+    };
+
     home.packages = (with pkgs;
         [
           deluge
