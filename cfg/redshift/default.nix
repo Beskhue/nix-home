@@ -6,7 +6,7 @@
     temp-day=6500
     temp-night=3400
     brightness-day=1.0
-    brightness-night=0.85
+    brightness-night=0.75
     location-provider=manual
 
     [manual]
