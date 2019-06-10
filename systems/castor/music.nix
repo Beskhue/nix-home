@@ -56,6 +56,11 @@
       ]
     );
 
+  home.file.".ncmpcpp/config".text = ''
+    playlist_separate_albums = yes
+    media_library_primary_tag = album_artist
+  '';
+
   home.file.".config/vis/config".text = ''
     visualizer.fps=20
     mpd.fifo.path=/tmp/mpd.fifo
