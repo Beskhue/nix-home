@@ -18,6 +18,33 @@
     '';
   };
 
+  systemd.user.services.mpdris2 = {
+    Unit = {
+      After = [ "sound.target" ];
+      Description = "MPRIS V2.1 support for mpd ";
+    };
+
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
+
+    Service = let
+        mpdConf = pkgs.writeText "mpdris2.conf" ''
+          [connection]
+          host = localhost
+          port = 6600
+          music_dir = /home/thomas/music/
+
+          [Bling]
+          notify = True
+          mmkeys = True
+        '';
+      in
+        {
+          ExecStart = "${pkgs.mpdris2}/bin/mpDris2 --config=${mpdConf}";
+        };
+  };
+
   home.packages = (with pkgs;
       [
         # MPD controller.
