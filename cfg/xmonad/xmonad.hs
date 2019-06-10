@@ -1,11 +1,13 @@
 import XMonad
+import XMonad.Layout (Tall, Mirror)
 import XMonad.Layout.Spacing (spacingRaw, Border(..))
-import XMonad.Layout.NoBorders (lessBorders, Ambiguity( Screen ))
+import XMonad.Layout.NoBorders (lessBorders, noBorders, Ambiguity( Screen ))
 import XMonad.Layout.Tabbed (simpleTabbedBottom)
 import XMonad.Layout.IndependentScreens (countScreens)
 import XMonad.Layout.PerWorkspace (onWorkspace)
 import XMonad.Layout.Fullscreen (fullscreenSupport)
-import XMonad.Operations (sendMessage)
+import XMonad.Operations (sendMessage, windows)
+import XMonad.StackSet (greedyView, shift)
 import XMonad.Util.SessionStart (doOnce)
 import XMonad.Util.SpawnOnce (spawnOnce, spawnOnOnce)
 import XMonad.Util.EZConfig (additionalKeys)
@@ -44,14 +46,17 @@ myStartupHook = do
     "castor" -> do
       spawnOnOnce "6" "Discord"
       spawnOnOnce "9" "thunderbird"
-      spawnOnOnce "9" "spotify"
       spawnOnOnce "9" "keepassxc"
       spawnOnOnce "9" "seafile-applet"
       spawnOnOnce "9" "deluge"
+      spawnOnOnce "m" "urxvt -e ncmpcpp"
+      spawnOnOnce "m" "cool-retro-term -e vis"
   -- Patch in fullscreen support.
   addEWMHFullscreen
 
-myKeys = [ ((myModMask, xK_f), spawn "firefox" )
+myKeys = [ ((myModMask, xK_m), windows $ greedyView "m")
+         , ((myModMask .|. shiftMask, xK_m), windows $ shift "m")
+         , ((myModMask, xK_f), spawn "firefox" )
          , ((myModMask, xK_p), spawn "rofi -combi-modi run,drun -show combi -modi combi" )
          , ((myModMask, xK_s), swapNextScreen)
          , ((myModMask .|. shiftMask, xK_f), sendMessage ToggleStruts)
@@ -125,13 +130,18 @@ main = do
 defaults dbus = def {
       modMask = myModMask
     , terminal = "urxvt"
-    , workspaces = ["1:dev", "2", "3", "4", "5", "6", "7", "8", "9"]
+    , workspaces = ["1:dev", "2", "3", "4", "5", "6", "7", "8", "9", "m"]
     , normalBorderColor = "#BBBBBB"
     , focusedBorderColor = "#FF6600"
     , layoutHook = avoidStruts
                     $ lessBorders Screen
-                    $ spacingRaw True (Border 0 0 0 0) False (Border 8 8 8 8) False
+                    $ spacingRaw True (Border 0 0 0 0) False (Border 0 0 0 0) False
                     $ onWorkspace "9" simpleTabbedBottom
+                    $ onWorkspace "m" (
+                      noBorders
+                      $ Mirror
+                      $ Tall 1 (5/100) (70/100)
+                    )
                     $ layoutHook def
     , startupHook = myStartupHook
     , logHook = dynamicLogWithPP $ polybarLogHook dbus
