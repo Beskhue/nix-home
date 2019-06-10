@@ -9,6 +9,6 @@ in
     home.stateVersion = "18.09";
 
     imports = [
-      (./systems + "/${system_name}.nix")
+      (./systems + "/${system_name}")
     ];
   }

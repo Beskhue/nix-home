@@ -1,11 +1,12 @@
 { lib, pkgs, ... }:
 let
-  master = import ./../nixpkgs {};
+  master = import ./../../nixpkgs {};
 in
   {
     imports = [
-      ../common.nix
-      ../cfg/xmonad/castor.nix
+      ../../common.nix
+      ../../cfg/xmonad/castor.nix
+      ./music.nix
     ];
 
     services.polybar = {
@@ -15,12 +16,6 @@ in
       '';
       config."module/wlan".interface = "wlp3s0";
       config."bar/top".modules-right = "volume redshift wlan cpu memory date";
-    };
-
-    services.mpd = {
-      enable = true;
-      network.listenAddress = "any";
-      network.port = 6600;
     };
 
     home.packages = (with pkgs;
