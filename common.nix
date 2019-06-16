@@ -33,12 +33,12 @@ in
             # Error checking.
             flycheck
             flycheck-inline
-            flycheck-rust
+            lsp-mode
+            lsp-ui
+            company-lsp
             # Modes.
             ## Rust.
             rust-mode
-            cargo
-            racer
             ## Magma.
             magma-mode
             # Highlight long columns.
