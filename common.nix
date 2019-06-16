@@ -132,6 +132,22 @@ in
       discord
     ]);
 
+    programs.mpv = {
+      enable = true;
+      config = {
+        # OSD.
+        "--osd-on-seek" = "msg-bar";
+        # Fuzzy sub name matching for autoload.
+        sub-auto = "fuzzy";
+      };
+
+      bindings = {
+        MBTN_LEFT = "cycle pause";
+        WHEEL_UP = "add volume 2";
+        WHEEL_DOWN = "add volume -2";
+      };
+    };
+
     imports = [
       ./cfg/gtk.nix
       ./cfg/xresources
