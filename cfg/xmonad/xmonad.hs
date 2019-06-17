@@ -1,6 +1,7 @@
 import XMonad
+import qualified XMonad.StackSet as S
 import XMonad.Layout (Tall, Mirror)
-import XMonad.Layout.Spacing (spacingRaw, Border(..))
+import XMonad.Layout.Spacing (spacingRaw, Border(..), incWindowSpacing, decWindowSpacing)
 import XMonad.Layout.NoBorders (lessBorders, noBorders, Ambiguity( Screen ))
 import XMonad.Layout.Tabbed (simpleTabbedBottom)
 import XMonad.Layout.IndependentScreens (countScreens)
@@ -11,6 +12,7 @@ import XMonad.Layout.SimpleDecoration (shrinkText, decoWidth)
 import XMonad.Layout.MagicFocus (followOnlyIf, disableFollowOnWS)
 import XMonad.Layout.BorderResize (borderResize)
 import XMonad.Layout.Fullscreen (fullscreenSupport)
+import qualified XMonad.Layout.Renamed as R
 import XMonad.Operations (sendMessage, windows)
 import XMonad.StackSet (greedyView, shift)
 import XMonad.Util.SessionStart (doOnce)
@@ -22,7 +24,6 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.EwmhDesktops (ewmh)
 import XMonad.Hooks.UrgencyHook (withUrgencyHook, NoUrgencyHook(..))
 import XMonad.Actions.CycleWS (swapNextScreen)
-import XMonad.Actions.Navigation2D (navigation2D, windowGo, windowSwap)
 import XMonad.Actions.SpawnOn (manageSpawn)
 
 import qualified DBus as D
@@ -42,7 +43,6 @@ barYellow = "#f9d300"
 barPurple = "#9f78e1"
 barRed = "#fb4934"
 barRedUnderline = "#992618"
-
 
 myStartupHook = do
   -- Set background image.
@@ -83,11 +83,26 @@ myKeys = [ ((modM, xK_m), windows $ greedyView "m")
          , ((0, 0x1008FF15), spawn "playerctl stop")
          , ((0, 0x1008FF16), spawn "playerctl previous")
          , ((0, 0x1008FF17), spawn "playerctl next")
+         -- Fun:
+         , ((modM, xK_equal), incWindowSpacing 1)
+         , ((modM, xK_minus), decWindowSpacing 1)
          -- BSP:
-         , ((modM .|. shiftMask, xK_l), sendMessage $ ExpandTowards R)
-         , ((modM .|. shiftMask, xK_h), sendMessage $ ExpandTowards L)
+         , ((modM .|. shiftMask, xK_l), do
+            layout <- getActiveLayoutDescription
+            case layout of
+                "BSP" -> sendMessage $ ExpandTowards R
+                _     -> sendMessage Expand
+           )
+         , ((modM .|. shiftMask, xK_h), do
+            layout <- getActiveLayoutDescription
+            case layout of
+                "BSP" -> sendMessage $ ExpandTowards L
+                _     -> sendMessage Shrink
+           )
          , ((modM .|. shiftMask, xK_j), sendMessage $ ExpandTowards D)
          , ((modM .|. shiftMask, xK_k), sendMessage $ ExpandTowards U)
+         , ((modM .|. ctrlMask,  xK_j), windows S.swapDown)
+         , ((modM .|. ctrlMask,  xK_k), windows S.swapUp)
          , ((modM,               xK_r), sendMessage Rotate)
          , ((modM,               xK_s), sendMessage Swap)
          , ((modM,               xK_n), sendMessage FocusParent)
@@ -96,6 +111,12 @@ myKeys = [ ((modM, xK_m), windows $ greedyView "m")
          , ((modM,               xK_a), sendMessage Balance)
          , ((modM .|. shiftMask, xK_a), sendMessage Equalize)
          ]
+
+-- Get the name of the active layout.
+getActiveLayoutDescription :: X String
+getActiveLayoutDescription = do
+    workspaces <- gets windowset
+    return $ description . S.layout . S.workspace . S.current $ workspaces
 
 -- Patch in fullscreen support.
 addNETSupported :: Atom -> X ()
@@ -147,12 +168,6 @@ main = do
         $ docks
         $ withUrgencyHook NoUrgencyHook
         $ fullscreenSupport
-        $ navigation2D def
-            (xK_k, xK_h, xK_j, xK_l)
-            [  (modM, windowGo)
-             , (modM .|. altMask, windowSwap)
-            ]
-            False
         $ defaults dbus
 
 defaults dbus = def {
@@ -163,13 +178,18 @@ defaults dbus = def {
     , focusedBorderColor = "#FF6600"
     , layoutHook = avoidStruts
                     $ lessBorders Screen
-                    $ spacingRaw True (Border 0 0 0 0) False (Border 0 0 0 0) False
+                      -- Remove "Spacing" from layout names.
+                    $ R.renamed [R.CutWordsLeft 1]
+                    $ (spacingRaw True (Border 0 0 0 0) False (Border 0 0 0 0) True)
+                      -- Tabbed-only workspace.
                     $ onWorkspace "9" simpleTabbedBottom
-                    $ onWorkspace "d" ( -- Dynamic (floating) workspace.
+                      -- Dynamic-only (floating) workspace.
+                    $ onWorkspace "d" (
                         borderResize
                         $ simpleFloat' shrinkText (def {decoWidth = 10000})
                     )
-                    $ onWorkspace "m" ( -- Music workspace.
+                      -- Music workspace.
+                    $ onWorkspace "m" (
                       noBorders
                       $ Mirror
                       $ Tall 1 (5/100) (70/100)
