@@ -5,6 +5,11 @@ import XMonad.Layout.NoBorders (lessBorders, noBorders, Ambiguity( Screen ))
 import XMonad.Layout.Tabbed (simpleTabbedBottom)
 import XMonad.Layout.IndependentScreens (countScreens)
 import XMonad.Layout.PerWorkspace (onWorkspace)
+import XMonad.Layout.BinarySpacePartition
+import XMonad.Layout.SimpleFloat (simpleFloat')
+import XMonad.Layout.SimpleDecoration (shrinkText, decoWidth)
+import XMonad.Layout.MagicFocus (followOnlyIf, disableFollowOnWS)
+import XMonad.Layout.BorderResize (borderResize)
 import XMonad.Layout.Fullscreen (fullscreenSupport)
 import XMonad.Operations (sendMessage, windows)
 import XMonad.StackSet (greedyView, shift)
@@ -17,6 +22,7 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.EwmhDesktops (ewmh)
 import XMonad.Hooks.UrgencyHook (withUrgencyHook, NoUrgencyHook(..))
 import XMonad.Actions.CycleWS (swapNextScreen)
+import XMonad.Actions.Navigation2D (navigation2D, windowGo, windowSwap)
 import XMonad.Actions.SpawnOn (manageSpawn)
 
 import qualified DBus as D
@@ -27,7 +33,9 @@ import Data.Maybe (maybeToList)
 
 import MySystem (system)
 
-myModMask = mod4Mask
+modM = mod4Mask
+altMask = mod1Mask
+ctrlMask = controlMask
 
 barActive = "#c0333333"
 barYellow = "#f9d300"
@@ -54,12 +62,14 @@ myStartupHook = do
   -- Patch in fullscreen support.
   addEWMHFullscreen
 
-myKeys = [ ((myModMask, xK_m), windows $ greedyView "m")
-         , ((myModMask .|. shiftMask, xK_m), windows $ shift "m")
-         , ((myModMask, xK_f), spawn "firefox" )
-         , ((myModMask, xK_p), spawn "rofi -combi-modi run,drun -show combi -modi combi" )
-         , ((myModMask, xK_s), swapNextScreen)
-         , ((myModMask .|. shiftMask, xK_f), sendMessage ToggleStruts)
+myKeys = [ ((modM, xK_m), windows $ greedyView "m")
+         , ((modM .|. shiftMask, xK_m), windows $ shift "m")
+         , ((modM, xK_d), windows $ greedyView "d")
+         , ((modM .|. shiftMask, xK_d), windows $ shift "d")
+         , ((modM, xK_f), spawn "firefox" )
+         , ((modM, xK_p), spawn "rofi -combi-modi run,drun -show combi -modi combi" )
+         , ((modM .|. shiftMask, xK_s), swapNextScreen)
+         , ((modM .|. shiftMask, xK_f), sendMessage ToggleStruts)
          , ((controlMask .|. shiftMask, xK_1), spawn "thingshare_screenshot full")
          , ((controlMask .|. shiftMask, xK_2), spawn "thingshare_screenshot display")
          , ((controlMask .|. shiftMask, xK_3), spawn "thingshare_screenshot window")
@@ -73,6 +83,18 @@ myKeys = [ ((myModMask, xK_m), windows $ greedyView "m")
          , ((0, 0x1008FF15), spawn "playerctl stop")
          , ((0, 0x1008FF16), spawn "playerctl previous")
          , ((0, 0x1008FF17), spawn "playerctl next")
+         -- BSP:
+         , ((modM .|. shiftMask, xK_l), sendMessage $ ExpandTowards R)
+         , ((modM .|. shiftMask, xK_h), sendMessage $ ExpandTowards L)
+         , ((modM .|. shiftMask, xK_j), sendMessage $ ExpandTowards D)
+         , ((modM .|. shiftMask, xK_k), sendMessage $ ExpandTowards U)
+         , ((modM,               xK_r), sendMessage Rotate)
+         , ((modM,               xK_s), sendMessage Swap)
+         , ((modM,               xK_n), sendMessage FocusParent)
+         , ((modM .|. shiftMask, xK_n), sendMessage SelectNode)
+         , ((modM .|. shiftMask, xK_m), sendMessage MoveNode)
+         , ((modM,               xK_a), sendMessage Balance)
+         , ((modM .|. shiftMask, xK_a), sendMessage Equalize)
          ]
 
 -- Patch in fullscreen support.
@@ -125,24 +147,35 @@ main = do
         $ docks
         $ withUrgencyHook NoUrgencyHook
         $ fullscreenSupport
+        $ navigation2D def
+            (xK_k, xK_h, xK_j, xK_l)
+            [  (modM, windowGo)
+             , (modM .|. altMask, windowSwap)
+            ]
+            False
         $ defaults dbus
 
 defaults dbus = def {
-      modMask = myModMask
+      modMask = modM
     , terminal = "urxvt"
-    , workspaces = ["1:dev", "2", "3", "4", "5", "6", "7", "8", "9", "m"]
+    , workspaces = ["1:dev", "2", "3", "4", "5", "6", "7", "8", "9", "m", "d"]
     , normalBorderColor = "#BBBBBB"
     , focusedBorderColor = "#FF6600"
     , layoutHook = avoidStruts
                     $ lessBorders Screen
                     $ spacingRaw True (Border 0 0 0 0) False (Border 0 0 0 0) False
                     $ onWorkspace "9" simpleTabbedBottom
-                    $ onWorkspace "m" (
+                    $ onWorkspace "d" ( -- Dynamic (floating) workspace.
+                        borderResize
+                        $ simpleFloat' shrinkText (def {decoWidth = 10000})
+                    )
+                    $ onWorkspace "m" ( -- Music workspace.
                       noBorders
                       $ Mirror
                       $ Tall 1 (5/100) (70/100)
                     )
-                    $ layoutHook def
+                    $ (borderResize emptyBSP) ||| layoutHook def
+    , handleEventHook = followOnlyIf (disableFollowOnWS ["d"])
     , startupHook = myStartupHook
     , logHook = dynamicLogWithPP $ polybarLogHook dbus
     , manageHook = manageSpawn <+> composeOne [
