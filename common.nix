@@ -72,6 +72,7 @@ in
             swiper
             counsel
             avy
+            yasnippet
             # Scheduling.
             org-super-agenda
           ]) ++ (with epkgs.elpaPackages; [
