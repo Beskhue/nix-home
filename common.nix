@@ -149,6 +149,15 @@ in
       };
     };
 
+    # A systemd target to hook other units onto.
+    # This is supposed to run when the window manager has started.
+    systemd.user.targets.window-manager = {
+      Unit = {
+        PartOf = [ "graphical-session.target" ];
+        Description = "window manager";
+      };
+    };
+
     imports = [
       ./cfg/gtk.nix
       ./cfg/xresources

@@ -45,6 +45,9 @@ barRed = "#fb4934"
 barRedUnderline = "#992618"
 
 myStartupHook = do
+  -- Trigger window-manager systemd target.
+  spawnOnce "systemctl --user import-environment PATH DBUS_SESSION_BUS_ADDRESS && \
+             \ systemctl --no-block --user start window-manager.target"
   -- Set background image.
   spawn "feh --bg-scale /home/thomas/Backgrounds/wallpaper-pixelart1.png"
   -- Initialize thingshare.
