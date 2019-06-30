@@ -1,8 +1,9 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   services.mpd = {
     enable = true;
-    network.listenAddress = "any";
+    musicDirectory = "${config.home.homeDirectory}/music";
+    network.listenAddress = "127.0.0.1";
     network.port = 6600;
     extraConfig = ''
       audio_output {
@@ -18,9 +19,21 @@
     '';
   };
 
+  #services.mpdris2 = {
+  #  enable = true;
+  #  mpd = {
+  #    host = "127.0.0.1";
+  #    port = 6600;
+  #    musicDirectory = "${config.home.homeDirectory}/music";
+  #  };
+  #  notifications = true;
+  #  multimediaKeys = false;
+  #};
+
   systemd.user.services.mpdris2 = {
     Unit = {
-      After = [ "sound.target" ];
+      After = [ "graphical-session-pre.target" "mpd.service" ];
+      PartOf = [ "graphical-session.target" ];
       Description = "MPRIS V2.1 support for mpd ";
     };
 
@@ -33,14 +46,14 @@
           [connection]
           host = localhost
           port = 6600
-          music_dir = /home/thomas/music/
-
+          music_dir = /home/thomas/music
           [Bling]
           notify = True
-          mmkeys = True
+          mmkeys = False
         '';
       in
         {
+          ExecStartPre = "${pkgs.coreutils}/bin/sleep 2";
           ExecStart = "${pkgs.mpdris2}/bin/mpDris2 --config=${mpdConf}";
         };
   };
