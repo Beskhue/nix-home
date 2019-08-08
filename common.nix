@@ -62,6 +62,7 @@ in
             markdown-mode
             nix-mode
             haskell-mode
+            yaml-mode
             ## R.
             ess
             ess-R-data-view
