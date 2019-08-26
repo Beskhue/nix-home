@@ -41,6 +41,8 @@ in
             rust-mode
             ## Magma.
             magma-mode
+            ## Javascript.
+            prettier-js
             # Highlight long columns.
             column-enforce-mode
             # Files.
@@ -66,6 +68,8 @@ in
             ## R.
             ess
             ess-R-data-view
+            # Javascript.
+            rjsx-mode
             # Movement.
             drag-stuff
             # Search and completion.
