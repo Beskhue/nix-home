@@ -27,6 +27,9 @@ in
           # Games.
           steam
           steam-run
+          lutris
+          wineWowPackages.staging
+          # wineWowPackages.winetricks
         ]
       );
   }
