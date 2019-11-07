@@ -1,5 +1,6 @@
 { lib, pkgs, ... }:
 let
+  unstable = import <unstable> {};
   master = import ./../../nixpkgs {};
 in
   {
@@ -22,7 +23,7 @@ in
         [
           deluge
         ]
-      ) ++ (with master.pkgs;
+      ) ++ (with unstable.pkgs;
         [
           # Games.
           steam
@@ -30,6 +31,9 @@ in
           lutris
           wineWowPackages.staging
           # wineWowPackages.winetricks
+        ]
+      ) ++ (with master.pkgs;
+        [
         ]
       );
   }
