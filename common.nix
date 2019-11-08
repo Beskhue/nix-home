@@ -43,6 +43,8 @@ in
             magma-mode
             ## Javascript.
             prettier-js
+            ## Python.
+            blacken
             # Highlight long columns.
             column-enforce-mode
             # Files.
