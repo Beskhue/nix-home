@@ -145,6 +145,10 @@ in
       discord
     ]);
 
+    services.syncthing = {
+      enable = true;
+    };
+
     programs.mpv = {
       enable = true;
       config = {
