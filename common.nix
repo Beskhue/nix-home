@@ -149,6 +149,11 @@ in
       enable = true;
     };
 
+    # Nix direnv handler.
+    services.lorri = {
+      enable = true;
+    };
+
     programs.mpv = {
       enable = true;
       config = {
