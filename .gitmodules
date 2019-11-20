@@ -7,3 +7,6 @@
 [submodule "nixpkgs"]
 	path = nixpkgs
 	url = https://github.com/NixOS/nixpkgs.git
+[submodule "emacs-overlay"]
+	path = emacs-overlay
+	url = https://github.com/nix-community/emacs-overlay.git

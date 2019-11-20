@@ -1,8 +1,12 @@
 { ... }:
 
 let
-  unstable = import <unstable> {};
+  emacs-overlay = import ./emacs-overlay;
+  unstable = import <unstable> {overlays = [emacs-overlay];};
   master = import ./nixpkgs {};
+  emacs-overrides = self: super: rec {
+    seq = null;
+  };
 in
   {
     # Allow unfree software.
@@ -17,15 +21,11 @@ in
       # Dotfiles manager.
       yadm
       # Editor.
-      ((emacsPackagesNgGen (emacs.override {
-        withGTK3 = true;
-        withGTK2 = false;
-      })).emacsWithPackages (epkgs:
+      (((emacsPackagesGen emacsGit).overrideScope' emacs-overrides).emacsWithPackages
+        (epkgs:
           (with epkgs.melpaPackages; [
             # Vi layer.
             evil
-            # Package loading.
-            use-package
             # Keybindings.
             general
             which-key
@@ -36,6 +36,8 @@ in
             lsp-mode
             lsp-ui
             company-lsp
+            # Debugging.
+            dap-mode
             # Modes.
             ## Rust.
             rust-mode
@@ -51,7 +53,10 @@ in
             dired-rainbow
             dired-subtree
           ]) ++ (with epkgs.melpaStablePackages; [
+            # Vcs.
             magit
+            # Package loading.
+            use-package
             # Modeline.
             moody
             minions
