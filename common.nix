@@ -75,8 +75,6 @@ in
             ## R.
             ess
             ess-R-data-view
-            # Javascript.
-            rjsx-mode
             # Movement.
             drag-stuff
             # Search and completion.
