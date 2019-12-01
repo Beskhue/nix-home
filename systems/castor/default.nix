@@ -6,7 +6,7 @@ in
   {
     imports = [
       ../../common.nix
-      ../../cfg/xmonad/castor.nix
+      ../../cfg/bspwm/castor.nix
       ./music.nix
     ];
 
