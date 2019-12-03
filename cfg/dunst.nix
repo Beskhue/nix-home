@@ -29,7 +29,7 @@
         frame_color = "#585858";
         font = "Noto Sans 11";
         allow_markup = true;
-        format = ''%s\n%b'';
+        format = ''<b>%a</b>\n%s\n%b'';
         padding = 8;
         horizontal_padding = 8;
       };
