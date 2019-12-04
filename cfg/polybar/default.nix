@@ -33,7 +33,7 @@ in
           font-0 = "Source Code Pro:pixelsize=12;0";
           font-1 = "Siji:pixelsize=10;0";
           font-2 = "Unifont:size=9:antialias=false;0";
-          font-3 = "Twitter Color Emoji:size=10;0";
+          font-3 = "Twitter Color Emoji:scale=10;0";
           modules-left = "bspwm";
           modules-center = "xwindow";
           # modules-right is handled through system-specific configuration
