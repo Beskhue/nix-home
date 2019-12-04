@@ -9,26 +9,24 @@
 
     case $HOSTNAME in
       (castor)
-        bspc rule -a \* -o desktop=6
-        Discord &
-        bspc rule -a \* -o desktop=9
-        thunderbird &
-        bspc rule -a \* -o desktop=9
-        keepassxc &
-        bspc rule -a \* -o desktop=9
-        seafile-applet &
-        bspc rule -a \* -o desktop=m
-        urxvt -e ncmpcpp &
-        (sleep 5; bspc rule -a \* -o desktop=m; cool-retro-term -e vis) &
+        (bspc rule -a \* -o desktop=6 && Discord) &
+        (bspc rule -a \* -o desktop=0 && thunderbird) &
+        (bspc rule -a \* -o desktop=0 && keepassxc) &
+        (bspc rule -a \* -o desktop=0 && seafile-applet) &
+        (bspc rule -a \* -o desktop=m && urxvt -e ncmpcpp) &
+        (sleep 5 && bspc rule -a \* -o desktop=m && cool-retro-term -e vis) &
       ;;
       (pollux)
-        (bspc rule -a \* -o desktop=9 && thunderbird) &
-        (bspc rule -a \* -o desktop=9 && keepassxc) &
-        (bspc rule -a \* -o desktop=9 && seafile-applet) &
+        (bspc rule -a \* -o desktop=0 && thunderbird) &
+        (bspc rule -a \* -o desktop=0 && keepassxc) &
+        (bspc rule -a \* -o desktop=0 && seafile-applet) &
       ;;
-      (*)   echo "unknown host"
+        (*)   echo "unknown host"
       ;;
     esac
+
+    # Set desktop 0 to monocle.
+    bspc desktop 0 -l monocle
 
     # FIXME: loop through attached monitors, and create desktops 1, 2, ...,
     # to ensure monitors don't start with an anonymous desktop.
