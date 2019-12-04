@@ -39,11 +39,12 @@ in
           # modules-right is handled through system-specific configuration
           cursor-click = "pointer";
           cursor-scroll = "ns-resize";
+          wm-restack = "bspwm";
         };
         "module/bspwm" = {
           type = "internal/bspwm";
           pin-workspaces = true;
-          enableclick = true;
+          enable-click = true;
           format = "<label-monitor>: <label-state> <label-mode>";
           label-separator = "";
           label-focused = " %name% ";
