@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 let
   emacs-overlay = import ./emacs-overlay;
@@ -187,6 +187,8 @@ in
         Description = "window manager";
       };
     };
+
+    systemd.user.sessionVariables = config.home.sessionVariables;
 
     imports = [
       ./cfg/gtk.nix
