@@ -26,6 +26,7 @@ in
           (with epkgs.melpaPackages; [
             # Vi layer.
             evil
+            evil-collection
             # Keybindings.
             general
             which-key
