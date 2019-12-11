@@ -191,6 +191,7 @@ in
     systemd.user.sessionVariables = config.home.sessionVariables;
 
     imports = [
+      ./cfg/email
       ./cfg/gtk.nix
       ./cfg/xresources
       ./cfg/dunst.nix
