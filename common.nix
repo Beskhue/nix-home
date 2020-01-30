@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 let
   emacs-overlay = import ./emacs-overlay;
@@ -106,8 +106,6 @@ in
       # The basics.
       firefox
       thunderbird
-      # Cloud.
-      seafile-client
       # Tools.
       direnv
       libnotify
@@ -152,6 +150,9 @@ in
     ]) ++ (with master.pkgs; [
       # Chat.
       discord
+    ]) ++ (with pkgs; [
+      # Cloud.
+      seafile-client
     ]);
 
     services.syncthing = {
