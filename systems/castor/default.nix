@@ -7,6 +7,7 @@ in
     imports = [
       ../../common.nix
       ../../cfg/bspwm/castor.nix
+      ../../cfg/daw
       ./music.nix
     ];
 
