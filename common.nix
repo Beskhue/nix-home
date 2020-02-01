@@ -194,6 +194,7 @@ in
     systemd.user.sessionVariables = config.home.sessionVariables;
 
     imports = [
+      ./cfg/nvim
       ./cfg/email
       ./cfg/gtk.nix
       ./cfg/xresources
