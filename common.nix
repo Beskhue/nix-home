@@ -18,6 +18,8 @@ in
       (import ./my-programs/volume-control)
       (import ./my-programs/thingshare)
       (import ./my-programs/extract)
+      # Fuzzy finder.
+      fzf
       # Dotfiles manager.
       yadm
       # Editor.
