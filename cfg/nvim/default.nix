@@ -192,7 +192,13 @@ in
       set shiftwidth=2
     '';
   in {
+    ".config/nvim/ftplugin/nix.vim".text = ''
+      nmap <localleader>f :Neoformat<cr>
+    '';
     ".config/nvim/ftplugin/rust.vim".text = ''
+      nmap <localleader>f :Neoformat<cr>
+    '';
+    ".config/nvim/ftplugin/python.vim".text = ''
       nmap <localleader>f :Neoformat<cr>
     '';
     ".config/nvim/ftplugin/javascript.vim".text = ''
