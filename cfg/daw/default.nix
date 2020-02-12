@@ -10,8 +10,9 @@ in
     lilv
     # Plugin host
     carla
-    # Standalone synths
+    # Synths
     zynaddsubfx
+    helm
     qsynth
     ### Plugins
     # LV2
