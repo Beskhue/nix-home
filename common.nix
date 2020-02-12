@@ -125,6 +125,8 @@ in
       keepassxc
       # Databases
       dbeaver # Database GUI.
+      # File formatting.
+      nixfmt
       (
         python3.withPackages (
           python-packages: with python-packages; [
