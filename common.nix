@@ -155,6 +155,7 @@ in {
   systemd.user.sessionVariables = config.home.sessionVariables;
 
   imports = [
+    ./cfg/alacritty
     ./cfg/nvim
     ./cfg/email
     ./cfg/gtk.nix

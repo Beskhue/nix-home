@@ -12,7 +12,7 @@
         (bspc rule -a \* -o desktop=0 && thunderbird) &
         (bspc rule -a \* -o desktop=0 && keepassxc) &
         (bspc rule -a \* -o desktop=0 && seafile-applet) &
-        (bspc rule -a \* -o desktop=m && urxvt -e ncmpcpp) &
+        (bspc rule -a \* -o desktop=m && alacritty -e ncmpcpp) &
         (sleep 5 && bspc rule -a \* -o desktop=m && cool-retro-term -e vis) &
       ;;
       (pollux)
@@ -67,7 +67,7 @@
 
     # Terminal emulator.
     super + Return
-        urxvt
+        alacritty
 
     # Application launcher.
     super + p
