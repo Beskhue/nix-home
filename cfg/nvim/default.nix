@@ -21,6 +21,7 @@ in {
       typescript-vim
       # Buffer formatting.
       neoformat
+      NeoSolarized
     ];
     extraConfig = ''
       set mouse=a
@@ -28,6 +29,18 @@ in {
       set number
       highlight LineNr ctermfg=white
       set statusline=%f%=%l,%c
+
+      if !has('gui_running')
+        if $TERM == 'alacritty'
+          set guicursor=n-v-c:block-Cursor
+          set guicursor+=i:ver25-Cursor
+          set guicursor+=r-cr-o:hor20-Cursor
+          let g:neosolarized_vertSplitBgTrans = 1
+          set termguicolors
+          set background=light
+          colorscheme NeoSolarized
+        endif
+      endif
 
       " Input tab as space
       set shiftwidth=4
