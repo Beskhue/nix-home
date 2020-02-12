@@ -21,12 +21,8 @@
       PartOf = [ "graphical-session.target" ];
     };
 
-    Install = {
-      WantedBy = [ "graphical-session.target" ];
-    };
+    Install = { WantedBy = [ "graphical-session.target" ]; };
 
-    Service = {
-      ExecStart = "${pkgs.redshift}/bin/redshift";
-    };
+    Service = { ExecStart = "${pkgs.redshift}/bin/redshift"; };
   };
 }

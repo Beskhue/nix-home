@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   services.mpd = {
     enable = true;
     musicDirectory = "${config.home.homeDirectory}/music";
@@ -37,37 +36,32 @@
       Description = "MPRIS V2.1 support for mpd ";
     };
 
-    Install = {
-      WantedBy = [ "default.target" ];
-    };
+    Install = { WantedBy = [ "default.target" ]; };
 
     Service = let
-        mpdConf = pkgs.writeText "mpdris2.conf" ''
-          [connection]
-          host = localhost
-          port = 6600
-          music_dir = /home/thomas/music
-          [Bling]
-          notify = True
-          mmkeys = False
-        '';
-      in
-        {
-          ExecStartPre = "${pkgs.coreutils}/bin/sleep 2";
-          ExecStart = "${pkgs.mpdris2}/bin/mpDris2 --config=${mpdConf}";
-        };
+      mpdConf = pkgs.writeText "mpdris2.conf" ''
+        [connection]
+        host = localhost
+        port = 6600
+        music_dir = /home/thomas/music
+        [Bling]
+        notify = True
+        mmkeys = False
+      '';
+    in {
+      ExecStartPre = "${pkgs.coreutils}/bin/sleep 2";
+      ExecStart = "${pkgs.mpdris2}/bin/mpDris2 --config=${mpdConf}";
+    };
   };
 
-  home.packages = (with pkgs;
-      [
-        # MPD controller.
-        ncmpcpp
-        # Fancy terminal emulator for fun.
-        cool-retro-term
-        # Audio visualizer.
-        cli-visualizer
-      ]
-    );
+  home.packages = (with pkgs; [
+    # MPD controller.
+    ncmpcpp
+    # Fancy terminal emulator for fun.
+    cool-retro-term
+    # Audio visualizer.
+    cli-visualizer
+  ]);
 
   home.file.".ncmpcpp/config".text = ''
     playlist_separate_albums = yes

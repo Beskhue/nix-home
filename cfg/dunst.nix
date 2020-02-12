@@ -1,4 +1,4 @@
-{ pkgs, ...}:
+{ pkgs, ... }:
 
 {
   services.dunst = {
@@ -17,7 +17,7 @@
         geometry = "350x5-15+49";
         shrink = false;
         transparency = 5;
-        show_indicators=true;
+        show_indicators = true;
         line_height = 1;
         separator_height = 2;
         separator_color = "frame";
@@ -29,7 +29,7 @@
         frame_color = "#585858";
         font = "Noto Sans 11";
         allow_markup = true;
-        format = ''<b>%a</b>\n%s\n%b'';
+        format = "<b>%a</b>\\n%s\\n%b";
         padding = 8;
         horizontal_padding = 8;
       };

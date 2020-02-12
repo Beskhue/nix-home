@@ -1,6 +1,6 @@
 # Adapted from
 # https://askubuntu.com/questions/517891/
-with import <nixpkgs> {};
+with import <nixpkgs> { };
 
 writeScriptBin "extract" ''
   #!/usr/bin/env bash

@@ -1,9 +1,8 @@
 { pkgs, ... }:
 let
-  unstable = import <unstable> {};
-  master = import ../../nixpkgs {};
-in
-{
+  unstable = import <unstable> { };
+  master = import ../../nixpkgs { };
+in {
   home.packages = with pkgs; [
     # Generic LV2
     jalv

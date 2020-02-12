@@ -1,4 +1,4 @@
-with import <nixpkgs> {};
+with import <nixpkgs> { };
 
 stdenv.mkDerivation rec {
   name = "volume-control-${version}";
@@ -11,6 +11,8 @@ stdenv.mkDerivation rec {
     mkdir -p $out/bin
     cp ${src}/bin/volume-control.sh $out/bin/volume-control
     chmod +x $out/bin/*
-    wrapProgram $out/bin/volume-control --prefix PATH : ${lib.makeBinPath [ pkgs.alsaUtils.out pkgs.glib.bin ]}
+    wrapProgram $out/bin/volume-control --prefix PATH : ${
+      lib.makeBinPath [ pkgs.alsaUtils.out pkgs.glib.bin ]
+    }
   '';
 }

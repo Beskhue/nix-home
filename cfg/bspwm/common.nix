@@ -1,5 +1,4 @@
-{ lib, pkgs, ... }:
-{
+{ lib, pkgs, ... }: {
   home.file.".config/bspwm/bspwmrc".executable = true;
   home.file.".config/bspwm/bspwmrc".text = ''
     #!/usr/bin/env sh
@@ -60,7 +59,6 @@
     systemctl --user import-environment PATH DBUS_SESSION_BUS_ADDRESS && \
       systemctl --no-block --user start window-manager.target
   '';
-
 
   home.file.".config/sxhkd/sxhkdrc".text = ''
     ##########################
@@ -270,18 +268,11 @@
         [ "$FLOATING_DESKTOP_ID" = "$desk_id" ] && ${pkgs.bspwm}/bin/bspc node "$wid" -t floating
       done
     '';
-  in
-    {
-    Unit = {
-      Description = "BSPWM floating desktop";
-    };
+  in {
+    Unit = { Description = "BSPWM floating desktop"; };
 
-    Install = {
-      WantedBy = [ "window-manager.target" ];
-    };
+    Install = { WantedBy = [ "window-manager.target" ]; };
 
-    Service = {
-      ExecStart = "${start-script}";
-    };
+    Service = { ExecStart = "${start-script}"; };
   };
 }

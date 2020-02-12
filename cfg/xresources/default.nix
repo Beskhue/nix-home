@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   xresources.properties = {
     "URxvt.depth" = 32;
     "URxvt.background" = "[95]#272822";
@@ -8,7 +7,8 @@
     "URxvt*font" = "xft:monospace:style=Regular:size=10:antialias=true";
     "URxvt*boldFont" = "xft:monospace:style=Bold:size=10:antialias=true";
     "URxvt*italicFont" = "xft:monospace:style=Italic:size=10:antialias=true";
-    "URxvt*boldItalicFont" = "xft:monospace:style=Bold Italic:size=10:antialias=true";
+    "URxvt*boldItalicFont" =
+      "xft:monospace:style=Bold Italic:size=10:antialias=true";
     "URxvt*letterSpace" = 0;
     "URxvt.iso14755" = false;
     "URxvt.iso14755_52" = false;

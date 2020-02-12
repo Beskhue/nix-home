@@ -1,8 +1,6 @@
 { ... }:
-let
-  unstable = import <unstable> {};
-in
-{
+let unstable = import <unstable> { };
+in {
   programs.neovim = {
     enable = true;
     package = unstable.neovim-unwrapped;
@@ -208,5 +206,5 @@ in
       ${jsCommon}
     '';
   };
-  
+
 }
