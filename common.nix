@@ -90,21 +90,6 @@ in
           ])
         )
       )
-      (vscode-with-extensions.override {
-        vscodeExtensions = with vscode-extensions; [
-          bbenoist.Nix
-          ms-python.python
-          vscodevim.vim
-          llvm-org.lldb-vscode
-        ] ++ vscode-utils.extensionsFromVscodeMarketplace [
-          {
-            name = "rust";
-            publisher = "rust-lang";
-            version = "0.7.0";
-            sha256 = "16n787agjjfa68r6xv0lyqvx25nfwqw7bqbxf8x8mbb61qhbkws0";
-          }
-        ];
-      })
       # The basics.
       firefox
       thunderbird
