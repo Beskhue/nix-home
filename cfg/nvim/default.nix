@@ -51,7 +51,6 @@ in {
       filetype plugin on
 
       let mapleader="\<Space>"
-      let maplocalleader="z"
 
       nmap <leader>b :Buffers<cr>
       nmap <leader>fo :Files<cr>
@@ -148,11 +147,7 @@ in {
       autocmd CursorHold * silent call CocActionAsync('highlight')
 
       " Remap for rename current word
-      nmap <localleader>rn <Plug>(coc-rename)
-
-      " Remap for format selected region
-      " xmap <localleader>f  <Plug>(coc-format-selected)
-      " nmap <localleader>f  <Plug>(coc-format-selected)
+      nmap <leader>mr <Plug>(coc-rename)
 
       augroup mygroup
         autocmd!
@@ -162,14 +157,10 @@ in {
         autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
       augroup end
 
-      " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-      xmap <localleader>a  <Plug>(coc-codeaction-selected)
-      nmap <localleader>a  <Plug>(coc-codeaction-selected)
-
       " Remap for do codeAction of current line
-      nmap <localleader>ac  <Plug>(coc-codeaction)
+      nmap <leader>ma  <Plug>(coc-codeaction)
       " Fix autofix problem of current line
-      nmap <localleader>qf  <Plug>(coc-fix-current)
+      nmap <leader>mqf  <Plug>(coc-fix-current)
 
       " Create mappings for function text object, requires document symbols feature of languageserver.
       xmap if <Plug>(coc-funcobj-i)
@@ -181,58 +172,54 @@ in {
       nmap <silent> <C-d> <Plug>(coc-range-select)
       xmap <silent> <C-d> <Plug>(coc-range-select)
 
-      " Use `:Format` to format current buffer
-      " command! -nargs=0 Format :call CocAction('format')
-
-      " Use `:Fold` to fold current buffer
-      command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-      " use `:OR` for organize import of current buffer
-      command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
       " Add status line support, for integration with other plugin, checkout `:h coc-status`
       set statusline^=%{coc#status()}%{get(b:,'coc_current_function',''')}\ 
 
       " Using CocList
       " Show all diagnostics
-      " nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-      " Manage extensions
-      " nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-      " Show commands
-      " nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+      nmap <leader>me :<C-u>CocList diagnostics<cr>
       " Find symbol of current document
-      " nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-      " Search workspace symbols
-      " nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-      " Do default action for next item.
-      " nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-      " Do default action for previous item.
-      " nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+      nmap <leader>ms :<C-u>CocList outline<cr>
       " Resume latest coc list
-      " nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+      nmap <leader>mp  :<C-u>CocListResume<CR>
     '';
   };
 
   home.file = let
     jsCommon = ''
-      nmap <localleader>f :Neoformat<cr>
+      nmap <leader>mf :Neoformat<cr>
       set shiftwidth=2
     '';
   in {
     ".config/nvim/ftplugin/nix.vim".text = ''
-      nmap <localleader>f :Neoformat<cr>
+      nmap <leader>mf :Neoformat<cr>
     '';
     ".config/nvim/ftplugin/rust.vim".text = ''
-      nmap <localleader>f :Neoformat<cr>
+      nmap <leader>mf :Neoformat<cr>
     '';
     ".config/nvim/ftplugin/python.vim".text = ''
-      nmap <localleader>f :Neoformat<cr>
+      nmap <leader>mf :Neoformat<cr>
     '';
     ".config/nvim/ftplugin/javascript.vim".text = ''
       ${jsCommon}
     '';
     ".config/nvim/ftplugin/typescript.vim".text = ''
       ${jsCommon}
+    '';
+    ".config/nvim/ftplugin/css.vim".text = ''
+      nmap <leader>mf :Neoformat<cr>
+    '';
+    ".config/nvim/ftplugin/html.vim".text = ''
+      nmap <leader>mf :Neoformat<cr>
+    '';
+    ".config/nvim/ftplugin/htmldjango.vim".text = ''
+      let g:neoformat_htmldjango_htmlbeautify = {
+        \ 'exe': 'html-beautify',
+        \ 'args': ['--indent-size ' .shiftwidth()],
+        \ 'stdin': 1,
+        \ }
+      let g:neoformat_enabled_htmldjango = ['htmlbeautify']
+      nmap <leader>mf :Neoformat<cr>
     '';
   };
 
