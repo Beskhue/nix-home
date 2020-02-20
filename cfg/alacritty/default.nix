@@ -10,8 +10,12 @@ in {
     tabspaces: 8
     font:
       normal:
-        family: monospace
-      size: 10.0
+        family: iosevka
+        style: book
+      bold:
+        family: iosevka
+        style: bold
+      size: 10.5
     custom_cursor_colors: true
     schemes:
       monokai_dark: &monokai_dark
