@@ -41,6 +41,8 @@ in {
           set termguicolors
           set background=light
           colorscheme NeoSolarized
+          hi Type gui=bold
+          hi Statement gui=bold
         endif
       endif
 
