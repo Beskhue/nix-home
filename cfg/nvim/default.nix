@@ -10,6 +10,8 @@ in {
     plugins = with unstable.pkgs.vimPlugins; [
       # Fuzzy finding.
       fzf-vim
+      # Movement.
+      vim-easymotion
       # LSP.
       coc-nvim
       # Languages.
@@ -64,6 +66,20 @@ in {
       inoremap <A-k> <Esc>:m .-2<CR>==gi
       vnoremap <A-j> :m '>+1<CR>gv=gv
       vnoremap <A-k> :m '<-2<CR>gv=gv
+
+      " Easymotion
+      let g:EasyMotion_do_mapping = 0
+      let g:EasyMotion_smartcase = 1
+      map  / <Plug>(easymotion-sn)
+      omap / <Plug>(easymotion-tn)
+      map  n <Plug>(easymotion-next)
+      map  N <Plug>(easymotion-prev)
+      map  <leader>d <Plug>(easymotion-bd-f)
+      nmap <leader>d <Plug>(easymotion-overwin-f)
+      map  <leader>w <Plug>(easymotion-bd-w)
+      nmap <leader>w <Plug>(easymotion-overwin-w)
+      map  <leader>j <Plug>(easymotion-j)
+      map  <leader>k <Plug>(easymotion-k)
 
       " Coc:
       " if hidden is not set, TextEdit might fail.
