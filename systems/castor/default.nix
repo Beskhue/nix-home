@@ -3,8 +3,14 @@ let
   unstable = import <unstable> { };
   master = import ./../../nixpkgs { };
 in {
-  imports =
-    [ ../../common.nix ../../cfg/bspwm/castor.nix ../../cfg/daw ./music.nix ];
+  imports = [
+    ../../common.nix
+    ../../cfg/bspwm/castor.nix
+    ../../cfg/daw
+    ../../cfg/email
+    ../../cfg/emacs
+    ./music.nix
+  ];
 
   services.polybar = {
     script = ''
