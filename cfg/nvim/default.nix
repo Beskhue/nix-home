@@ -200,7 +200,7 @@ in {
       nmap <leader>mf :Neoformat<cr>
     '';
     ".config/nvim/ftplugin/python.vim".text = ''
-      nmap <leader>mf :Neoformat<cr>
+      nmap <leader>mf :Neoformat! python black<cr>
     '';
     ".config/nvim/ftplugin/javascript.vim".text = ''
       ${jsCommon}
