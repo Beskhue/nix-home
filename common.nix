@@ -51,6 +51,7 @@ in {
     thunderbird
     # Tools.
     direnv
+    nox
     # Password manager.
     keepassxc
     # File formatting.
