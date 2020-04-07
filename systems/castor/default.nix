@@ -21,12 +21,14 @@ in {
     config."bar/top".modules-right = "volume redshift wlan cpu memory date";
   };
 
-  home.packages = (with pkgs; [ deluge ]) ++ (with unstable.pkgs; [
-    # Games.
-    steam
-    steam-run
-    lutris
-    wineWowPackages.staging
-    # wineWowPackages.winetricks
-  ]) ++ (with master.pkgs; [ ]);
+  home.packages = (with pkgs; [ deluge ]) ++ (with unstable.pkgs;
+    [
+      wineWowPackages.staging
+      # wineWowPackages.winetricks
+    ]) ++ (with master.pkgs; [
+      # Games.
+      lutris
+      steam
+      steam-run
+    ]);
 }
