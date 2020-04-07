@@ -31,14 +31,17 @@ in {
     seafile-client
     # TeX.
     (texlive.combine {
-      inherit (pkgs.texlive)
-      amsmath # Math
-      amsfonts # Math
+      inherit (texlive)
+        amsmath # Math
+        amsfonts # Math
+        logreq # Automation, necessary for biblatex
+        biblatex biblatex-ieee # References
         # psfonts # textcomp
         cm-super scheme-small apacite floatflt wrapfig # Figures
         enumitem courier # Font
         hyperref capt-of;
       })
+    biber # For LaTeX.
   ]) ++ (with unstable.pkgs; [
     # Fuzzy finder.
     fzf
