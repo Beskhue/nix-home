@@ -25,8 +25,6 @@ in {
     okular
     zathura
     libreoffice
-    # Databases
-    dbeaver # Database GUI.
     # Cloud.
     seafile-client
     # TeX.
@@ -62,6 +60,8 @@ in {
     [
       # Chat.
       discord
+      # Databases.
+      dbeaver
     ]);
 
   services.syncthing = { enable = true; };
