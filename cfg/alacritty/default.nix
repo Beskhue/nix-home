@@ -6,8 +6,6 @@ in {
     scrolling:
       history: 50000
       multiplier: 3
-      auto_scroll: false
-    tabspaces: 8
     font:
       normal:
         family: iosevka
