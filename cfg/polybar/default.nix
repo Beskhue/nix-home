@@ -1,10 +1,12 @@
 { config, pkgs, ... }:
 
 let
-  background = "#002b36";
-  foreground = "#fdf6e3";
-  foreground-alt = "#93a1a1";
-  underline = "#c9a43c";
+  background = "#bb000000";
+  background-alt = "#424242";
+  foreground = "#eee";
+  foreground-alt = "#888";
+  border = "#333";
+  line = "#a0a0a0";
   red = "#dc322f";
   yellow = "#b58900";
   violet = "#6c71c5";
@@ -22,17 +24,21 @@ in {
         height = 30;
         background = background;
         foreground = foreground;
-        underline-size = 3;
-        underline-color = underline;
+        overline-size = 2;
+        underline-size = 0;
+        line-color = line;
+        border-bottom-size = 2;
+        border-bottom-color = border;
         spacing = 0;
         padding-left = 1;
         padding-right = 1;
         module-margin-left = 1;
         module-margin-right = 1;
-        font-0 = "Source Code Pro:pixelsize=12;0";
-        font-1 = "Siji:pixelsize=10;0";
-        font-2 = "Unifont:size=9:antialias=false;0";
-        font-3 = "Twitter Color Emoji:scale=10;0";
+        font-0 = "Source Code Pro:pixelsize=10;0";
+        font-1 = "DejaVu Sans:pixelsize=11;0";
+        font-2 = "Siji:pixelsize=10;0";
+        font-3 = "Unifont:size=9:antialias=false;0";
+        font-4 = "Twitter Color Emoji:scale=10;0";
         modules-left = "bspwm";
         modules-center = "xwindow";
         # modules-right is handled through system-specific configuration
@@ -47,15 +53,17 @@ in {
         format = "<label-monitor>: <label-state> <label-mode>";
         label-separator = "";
         label-focused = " %name% ";
-        label-focused-underline = underline;
+        label-focused-background = background-alt;
+        label-focused-overline = line;
         label-urgent = " %name% ";
         label-urgent-foreground = red;
+        label-urgent-overline = red;
         label-occupied = " %name% ";
         label-empty = "";
       };
       "module/xwindow" = {
         type = "internal/xwindow";
-        label = "%title:0:40:...%";
+        label = "%{T2}%title:0:40:...%%{T-}";
         label-padding = 2;
       };
       "module/date" = {
@@ -69,7 +77,7 @@ in {
         type = "internal/alsa";
         format-volume = "<label-volume> <bar-volume>";
         label-volume = "";
-        label-volume-foreground = foreground;
+        label-volume-foreground = foreground-alt;
         format-muted-prefix = " ";
         format-muted-foreground = foreground-alt;
         label-muted = "sound muted";
@@ -84,27 +92,25 @@ in {
         bar-volume-foreground-6 = "#ff5555";
         bar-volume-gradient = false;
         bar-volume-indicator = "|";
-        bar-volume-indicator-font = 2;
+        bar-volume-indicator-font = 0;
         bar-volume-fill = "─";
-        bar-volume-fill-font = 2;
+        bar-volume-fill-font = 0;
         bar-volume-empty = "─";
-        bar-volume-empty-font = 2;
+        bar-volume-empty-font = 0;
         bar-volume-empty-foreground = foreground-alt;
       };
       "module/cpu" = {
         type = "internal/cpu";
         interval = 2;
         format-prefix = " ";
-        format-prefix-foreground = foreground;
-        format-underline = underline;
+        format-prefix-foreground = foreground-alt;
         label = "%percentage:2%%";
       };
       "module/memory" = {
         type = "internal/memory";
         interval = 3;
         format-prefix = " ";
-        format-prefix-foreground = foreground;
-        format-underline = underline;
+        format-prefix-foreground = foreground-alt;
         label = "%percentage_used%%";
       };
       "module/wlan" = {
@@ -113,7 +119,6 @@ in {
         interval = "3.0";
 
         format-connected = "<ramp-signal> <label-connected>";
-        format-connected-underline = underline;
         label-connected = "%essid% %downspeed:8% %upspeed:8%";
 
         format-disconnected = "";
@@ -122,7 +127,7 @@ in {
         ramp-signal-2 = "";
         ramp-signal-3 = "";
         ramp-signal-4 = "";
-        ramp-signal-foreground = foreground;
+        ramp-signal-foreground = foreground-alt;
       };
       "module/battery" = {
         type = "internal/battery";
@@ -131,8 +136,8 @@ in {
         adapter = "ADP1";
         poll-interval = 5;
         time-format = "%H:%M";
-        format-charging-underline = underline;
-        format-discharging-underline = red;
+        format-charging-overline = line;
+        format-discharging-overline = red;
         format-charging = "<animation-charging> <label-charging>";
         format-discharging = "<ramp-capacity> <label-discharging>";
         label-charging = "Charging %percentage%%";
@@ -143,7 +148,7 @@ in {
         ramp-capacity-2 = "";
         ramp-capacity-3 = "";
         ramp-capacity-4 = "";
-        ramp-capcity-foreground = foreground;
+        ramp-capcity-foreground = foreground-alt;
         animation-charging-0 = "";
         animation-charging-1 = "";
         animation-charging-2 = "";
@@ -163,7 +168,7 @@ in {
         click-left = "${redshift-toggle}/bin/redshift-toggle";
         interval = 5;
         format-prefix = " ";
-        format-underline = underline;
+        format-prefix-foreground = foreground-alt;
       };
     };
   };
