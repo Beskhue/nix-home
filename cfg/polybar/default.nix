@@ -34,11 +34,11 @@ in {
         padding-right = 1;
         module-margin-left = 1;
         module-margin-right = 1;
-        font-0 = "Source Code Pro:pixelsize=10;0";
-        font-1 = "DejaVu Sans:pixelsize=11;0";
-        font-2 = "Siji:pixelsize=10;0";
-        font-3 = "Unifont:size=9:antialias=false;0";
-        font-4 = "Twitter Color Emoji:scale=10;0";
+        font-0 = "Source Code Pro:pixelsize=10;2";
+        font-1 = "DejaVu Sans:pixelsize=11;3";
+        font-2 = "Siji:pixelsize=10;2";
+        font-3 = "Unifont:size=9:antialias=false;3";
+        font-4 = "Twitter Color Emoji:scale=10;2";
         modules-left = "bspwm";
         modules-center = "xwindow";
         # modules-right is handled through system-specific configuration
@@ -92,11 +92,11 @@ in {
         bar-volume-foreground-6 = "#ff5555";
         bar-volume-gradient = false;
         bar-volume-indicator = "|";
-        bar-volume-indicator-font = 0;
+        bar-volume-indicator-font = 4;
         bar-volume-fill = "─";
-        bar-volume-fill-font = 0;
+        bar-volume-fill-font = 4;
         bar-volume-empty = "─";
-        bar-volume-empty-font = 0;
+        bar-volume-empty-font = 4;
         bar-volume-empty-foreground = foreground-alt;
       };
       "module/cpu" = {
