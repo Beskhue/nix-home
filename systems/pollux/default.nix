@@ -10,7 +10,7 @@
     '';
     config."module/wlan".interface = "wlp58s0";
     config."bar/top".modules-right =
-      "volume redshift wlan cpu memory battery date";
+      "wlan cpu memory battery date";
   };
 
   # Set some dpi scaling.

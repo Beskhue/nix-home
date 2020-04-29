@@ -18,7 +18,7 @@ in {
       MONITOR=DVI-D-0 polybar top &
     '';
     config."module/wlan".interface = "wlp3s0";
-    config."bar/top".modules-right = "volume redshift wlan cpu memory date";
+    config."bar/top".modules-right = "wlan cpu memory date";
   };
 
   home.packages = (with pkgs; [ deluge ]) ++ (with unstable.pkgs;

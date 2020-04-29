@@ -39,7 +39,7 @@ in {
         font-2 = "Siji:pixelsize=10;2";
         font-3 = "Unifont:size=9:antialias=false;3";
         font-4 = "Twitter Color Emoji:scale=10;2";
-        modules-left = "bspwm";
+        modules-left = "volume redshift bspwm";
         modules-center = "xwindow";
         # modules-right is handled through system-specific configuration
         cursor-click = "pointer";
@@ -69,7 +69,7 @@ in {
       "module/date" = {
         type = "internal/date";
         interval = "1.0";
-        date = "%a %b %d";
+        date = "%b %d";
         time = "%H:%M";
         label = "%date% %time%";
       };
