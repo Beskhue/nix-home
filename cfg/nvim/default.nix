@@ -13,7 +13,7 @@ in {
       # Movement.
       vim-easymotion
       # LSP.
-      coc-nvim
+      # coc-nvim
       # Languages.
       vim-nix
       vim-javascript
