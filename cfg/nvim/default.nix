@@ -1,191 +1,129 @@
 { ... }:
-let unstable = import <unstable> { };
+let
+  unstable = import <unstable> { };
+  master = import ../../nixpkgs { };
 in {
-  programs.neovim = {
-    enable = true;
-    package = unstable.neovim-unwrapped;
-    viAlias = true;
-    vimAlias = true;
-    withNodeJs = true;
-    plugins = with unstable.pkgs.vimPlugins; [
-      # Fuzzy finding.
-      fzf-vim
-      # Movement.
-      vim-easymotion
-      # LSP.
-      coc-nvim
-      # Languages.
-      vim-nix
-      vim-javascript
-      ### Currently not in repo:
-      # vim-jsx-typescript
-      vim-tsx
-      typescript-vim
-      # Buffer formatting.
-      neoformat
-      NeoSolarized
-    ];
-    extraConfig = ''
-      set mouse=a
-      syntax on
-      set number
-      highlight LineNr ctermfg=white
-      set statusline=%f%=%l,%c
+  home.packages = [
+    (master.neovim.override {
+      configure = {
+        packages.myPackages = with master.pkgs.vimPlugins; {
+          start = [
+            # Impure manager.
+            # vim-plug
+            # Fuzzy finding.
+            fzf-vim
+            # Movement.
+            vim-easymotion
+            # Languages.
+            vim-nix
+            vim-javascript
+            # Aid completion
+            supertab
+            # LSP.
+            nvim-lsp
+            ### Currently not in repo:
+            # vim-jsx-typescript
+            vim-tsx
+            typescript-vim
+            # Buffer formatting.
+            neoformat
+            NeoSolarized
+            awesome-vim-colorschemes
+          ];
 
-      if !has('gui_running')
-        if $TERM == 'alacritty'
-          set guicursor=n-v-c:block-Cursor
-          set guicursor+=i:ver25-Cursor
-          set guicursor+=r-cr-o:hor20-Cursor
-          let g:neosolarized_vertSplitBgTrans = 1
-          set termguicolors
-          set background=light
-          colorscheme NeoSolarized
-          hi Type gui=bold
-          hi Statement gui=bold
-        endif
-      endif
+        };
+        customRC = ''
+          set mouse=a
+          syntax on
+          set number
+          set signcolumn=yes
+          set cmdheight=2
+          highlight LineNr ctermfg=white
+          set statusline=%f%=%l,%c
 
-      " Input tab as space
-      set shiftwidth=4
-      set expandtab smarttab
+          if !has('gui_running')
+            if $TERM == 'alacritty' || $TERM == 'tmux-256color'
+              set guicursor=n-v-c:block-Cursor
+              set guicursor+=i:ver25-Cursor
+              set guicursor+=r-cr-o:hor20-Cursor
+              " let g:neosolarized_vertSplitBgTrans = 1
+              set termguicolors
+              " set background=light
+              colorscheme sierra
+              hi Type gui=bold
+              hi Statement gui=bold
+            endif
+          endif
 
-      filetype plugin on
+          " Input tab as space
+          set shiftwidth=4
+          set expandtab smarttab
 
-      let mapleader="\<Space>"
+          filetype plugin on
 
-      nmap <leader>b :Buffers<cr>
-      nmap <leader>fo :Files<cr>
-      nmap <leader>fd :Explore<cr>
+          let mapleader="\<Space>"
 
-      set wildignore+=*/tmp/*,*/target/*,*.obj,*.class,*.o,*.so
+          nmap <leader>b :Buffers<cr>
+          nmap <leader>fo :Files<cr>
+          nmap <leader>fd :Explore<cr>
 
-      " Moving lines
-      nnoremap <A-j> :m .+1<CR>==
-      nnoremap <A-k> :m .-2<CR>==
-      inoremap <A-j> <Esc>:m .+1<CR>==gi
-      inoremap <A-k> <Esc>:m .-2<CR>==gi
-      vnoremap <A-j> :m '>+1<CR>gv=gv
-      vnoremap <A-k> :m '<-2<CR>gv=gv
+          set wildignore+=*/tmp/*,*/target/*,*.obj,*.class,*.o,*.so
 
-      " Easymotion
-      let g:EasyMotion_do_mapping = 0
-      let g:EasyMotion_smartcase = 1
-      map  / <Plug>(easymotion-sn)
-      omap / <Plug>(easymotion-tn)
-      map  n <Plug>(easymotion-next)
-      map  N <Plug>(easymotion-prev)
-      map  <leader>d <Plug>(easymotion-bd-f)
-      nmap <leader>d <Plug>(easymotion-overwin-f)
-      map  <leader>w <Plug>(easymotion-bd-w)
-      nmap <leader>w <Plug>(easymotion-overwin-w)
-      map  <leader>j <Plug>(easymotion-j)
-      map  <leader>k <Plug>(easymotion-k)
+          " Moving lines
+          nnoremap <A-j> :m .+1<CR>==
+          nnoremap <A-k> :m .-2<CR>==
+          inoremap <A-j> <Esc>:m .+1<CR>==gi
+          inoremap <A-k> <Esc>:m .-2<CR>==gi
+          vnoremap <A-j> :m '>+1<CR>gv=gv
+          vnoremap <A-k> :m '<-2<CR>gv=gv
 
-      " Coc:
-      " if hidden is not set, TextEdit might fail.
-      set hidden
+          " Easymotion
+          let g:EasyMotion_do_mapping = 0
+          let g:EasyMotion_smartcase = 1
+          map  / <Plug>(easymotion-sn)
+          omap / <Plug>(easymotion-tn)
+          map  n <Plug>(easymotion-next)
+          map  N <Plug>(easymotion-prev)
+          map  <leader>d <Plug>(easymotion-bd-f)
+          nmap <leader>d <Plug>(easymotion-overwin-f)
+          map  <leader>w <Plug>(easymotion-bd-w)
+          nmap <leader>w <Plug>(easymotion-overwin-w)
+          map  <leader>j <Plug>(easymotion-j)
+          map  <leader>k <Plug>(easymotion-k)
 
-      " Some servers have issues with backup files, see #649
-      set nobackup
-      set nowritebackup
+          " Supertab
+          let g:SuperTabDefaultCompletionType = "context"
 
-      " Better display for messages
-      set cmdheight=2
+          " Default omnifunc
+          set omnifunc=syntaxcomplete#Complete
+          autocmd CompleteDone * pclose
 
-      " You will have bad experience for diagnostic messages when it's default 4000.
-      set updatetime=300
+          " LSP
+          nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+          nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+          nnoremap <silent> gy    <cmd>lua vim.lsp.buf.type_definition()<CR>
+          nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 
-      " don't give |ins-completion-menu| messages.
-      set shortmess+=c
+          "" Some LSP servers have issues with backup files, see #649
+          set nobackup
+          set nowritebackup
 
-      " always show signcolumns
-      set signcolumn=yes
+          " Faster update for diagnostic messages
+          set updatetime=300
 
-      " Use tab for trigger completion with characters ahead and navigate.
-      " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-      inoremap <silent><expr> <TAB>
-            \ pumvisible() ? "\<C-n>" :
-            \ <SID>check_back_space() ? "\<TAB>" :
-            \ coc#refresh()
-      inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+          " Use `[g` and `]g` to navigate diagnostics
+          " nmap <silent> [g <Plug>(coc-diagnostic-prev)
+          " nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-      function! s:check_back_space() abort
-        let col = col('.') - 1
-        return !col || getline('.')[col - 1]  =~# '\s'
-      endfunction
-
-      " Use <c-space> to trigger completion.
-      inoremap <silent><expr> <c-space> coc#refresh()
-
-      " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-      " Coc only does snippet and additional edit on confirm.
-      inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-      " Or use `complete_info` if your vim support it, like:
-      " inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-
-      " Use `[g` and `]g` to navigate diagnostics
-      nmap <silent> [g <Plug>(coc-diagnostic-prev)
-      nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-      " Remap keys for gotos
-      nmap <silent> gd <Plug>(coc-definition)
-      nmap <silent> gy <Plug>(coc-type-definition)
-      nmap <silent> gi <Plug>(coc-implementation)
-      nmap <silent> gr <Plug>(coc-references)
-
-      " Use K to show documentation in preview window
-      nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-      function! s:show_documentation()
-        if (index(['vim','help'], &filetype) >= 0)
-          execute 'h '.expand('<cword>')
-        else
-          call CocAction('doHover')
-        endif
-      endfunction
-
-      " Highlight symbol under cursor on CursorHold
-      autocmd CursorHold * silent call CocActionAsync('highlight')
-
-      " Remap for rename current word
-      nmap <leader>mr <Plug>(coc-rename)
-
-      augroup mygroup
-        autocmd!
-        " Setup formatexpr specified filetype(s).
-        autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-        " Update signature help on jump placeholder
-        autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-      augroup end
-
-      " Remap for do codeAction of current line
-      nmap <leader>ma  <Plug>(coc-codeaction)
-      " Fix autofix problem of current line
-      nmap <leader>mqf  <Plug>(coc-fix-current)
-
-      " Create mappings for function text object, requires document symbols feature of languageserver.
-      xmap if <Plug>(coc-funcobj-i)
-      xmap af <Plug>(coc-funcobj-a)
-      omap if <Plug>(coc-funcobj-i)
-      omap af <Plug>(coc-funcobj-a)
-
-      " Use <C-d> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-      nmap <silent> <C-d> <Plug>(coc-range-select)
-      xmap <silent> <C-d> <Plug>(coc-range-select)
-
-      " Add status line support, for integration with other plugin, checkout `:h coc-status`
-      set statusline^=%{coc#status()}%{get(b:,'coc_current_function',''')}\ 
-
-      " Using CocList
-      " Show all diagnostics
-      nmap <leader>me :<C-u>CocList diagnostics<cr>
-      " Find symbol of current document
-      nmap <leader>ms :<C-u>CocList outline<cr>
-      " Resume latest coc list
-      nmap <leader>mp  :<C-u>CocListResume<CR>
-    '';
-  };
+          " Remap keys for gotos
+          " nmap <silent> gd <Plug>(coc-definition)
+          " nmap <silent> gy <Plug>(coc-type-definition)
+          " nmap <silent> gi <Plug>(coc-implementation)
+          " nmap <silent> gr <Plug>(coc-references)
+        '';
+      };
+    })
+  ];
 
   home.file = let
     jsCommon = ''
@@ -198,6 +136,12 @@ in {
     '';
     ".config/nvim/ftplugin/rust.vim".text = ''
       nmap <leader>mf :Neoformat<cr>
+
+      lua << EOF
+      vim.cmd('packadd nvim-lsp')
+      require'nvim_lsp'.rls.setup{}
+      EOF
+      setlocal omnifunc=v:lua.vim.lsp.omnifunc
     '';
     ".config/nvim/ftplugin/python.vim".text = ''
       nmap <leader>mf :Neoformat! python black<cr>
