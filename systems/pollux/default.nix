@@ -9,8 +9,7 @@
       MONITOR=DP1 polybar top &
     '';
     config."module/wlan".interface = "wlp58s0";
-    config."bar/top".modules-right =
-      "wlan cpu memory battery date";
+    config."bar/top".modules-right = "wlan cpu memory battery date";
   };
 
   # Set some dpi scaling.
