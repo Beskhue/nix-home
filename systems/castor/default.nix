@@ -21,14 +21,17 @@ in {
     config."bar/top".modules-right = "wlan cpu memory date";
   };
 
-  home.packages = (with pkgs; [ deluge ]) ++ (with unstable.pkgs;
+  home.packages = (with pkgs; [ deluge ]) ++ (with unstable.pkgs; [
+    # Repositories are often offline. Install through nix-env as to not
+    # break this entire configuration's build.
+    # steam
+    # steam-run
+  ]) ++ (with master.pkgs;
     [
       wineWowPackages.staging
       # wineWowPackages.winetricks
     ]) ++ (with master.pkgs; [
       # Games.
       lutris
-      steam
-      steam-run
     ]);
 }
