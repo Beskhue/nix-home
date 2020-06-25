@@ -3,9 +3,6 @@ let
   unstable = import <unstable> { };
   master = import ./nixpkgs { };
 in {
-  # Allow unfree software.
-  nixpkgs.config.allowUnfree = true;
-
   # Common packages.
   home.packages = [
     (import ./my-programs/brightness-control)
