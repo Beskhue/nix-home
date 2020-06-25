@@ -8,7 +8,6 @@ in {
     ../../cfg/bspwm/castor.nix
     ../../cfg/daw
     ../../cfg/email
-    ../../cfg/emacs
     ./music.nix
   ];
 
