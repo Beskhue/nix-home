@@ -110,11 +110,11 @@ in {
             autocmd CompleteDone * pclose
 
             " LSP
-            lua << EOF
-            vim.cmd('packadd nvim-lsp')
             " Setting `root_dir` required until
             " https://github.com/neovim/nvim-lsp/commit/1e20c0b29e67e6cd87252cf8fd697906622bfdd3#diff-1cc82f5816863b83f053f5daf2341daf
             " is in nixpkgs repo.
+            lua << EOF
+            vim.cmd('packadd nvim-lsp')
             require'nvim_lsp'.pyls.setup{
               root_dir = function(fname)
                 return vim.fn.getcwd()
