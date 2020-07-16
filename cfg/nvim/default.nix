@@ -52,6 +52,7 @@ in {
             set signcolumn=yes
             set cmdheight=2
             highlight LineNr ctermfg=white
+            set hidden
             set statusline=%f%=%r%m%y\ %P\ %l,%c
 
             if !has('gui_running')
