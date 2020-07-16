@@ -52,7 +52,7 @@ in {
             set signcolumn=yes
             set cmdheight=2
             highlight LineNr ctermfg=white
-            set statusline=%f%=%l,%c
+            set statusline=%f%=%r%m%y\ %P\ %l,%c
 
             if !has('gui_running')
               if $TERM == 'alacritty' || $TERM == 'tmux-256color'
