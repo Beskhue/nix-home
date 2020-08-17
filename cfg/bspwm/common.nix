@@ -6,24 +6,6 @@
     sxhkd &
     feh --randomize --bg-fill ~/Backgrounds/* &
 
-    case $HOSTNAME in
-      (castor)
-        (bspc rule -a \* -o desktop=6 && Discord) &
-        (bspc rule -a \* -o desktop=0 && thunderbird) &
-        (bspc rule -a \* -o desktop=0 && keepassxc) &
-        (bspc rule -a \* -o desktop=0 && seafile-applet) &
-        (bspc rule -a \* -o desktop=m && alacritty -e ncmpcpp) &
-        (sleep 5 && bspc rule -a \* -o desktop=m && cool-retro-term -e vis) &
-      ;;
-      (pollux)
-        (bspc rule -a \* -o desktop=0 && thunderbird) &
-        (bspc rule -a \* -o desktop=0 && keepassxc) &
-        (bspc rule -a \* -o desktop=0 && seafile-applet) &
-      ;;
-        (*)   echo "unknown host"
-      ;;
-    esac
-
     # Set desktop 0 to monocle.
     bspc desktop 0 -l monocle
 
@@ -58,6 +40,29 @@
     # Notify window manager has started.
     systemctl --user import-environment PATH DBUS_SESSION_BUS_ADDRESS && \
       systemctl --no-block --user start window-manager.target
+
+    case $HOSTNAME in
+      (castor)
+        (bspc rule -a \* -o desktop=0 && thunderbird) &
+        (bspc rule -a \* -o desktop=0 && keepassxc) &
+        (bspc rule -a \* -o desktop=0 && seafile-applet) &
+        sleep 2
+        (bspc rule -a \* -o desktop=m && alacritty -e ncmpcpp) &
+        sleep 1
+        (bspc rule -a \* -o desktop=m && cool-retro-term -e vis) &
+        sleep 2
+        bspc node @m:/ --rotate 270
+        bspc config -d m window_gap 0
+        (bspc rule -a \* -o desktop=6 && Discord) &
+      ;;
+      (pollux)
+        (bspc rule -a Daily -o desktop=0 && thunderbird) &
+        (bspc rule -a keepassxc -o desktop=0 && keepassxc) &
+        (bspc rule -a seafile-applet -o desktop=0 && seafile-applet) &
+      ;;
+        (*)   echo "unknown host"
+      ;;
+    esac
   '';
 
   home.file.".config/sxhkd/sxhkdrc".text = ''

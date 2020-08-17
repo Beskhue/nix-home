@@ -3,9 +3,6 @@ let
   unstable = import <unstable> { };
   master = import ./nixpkgs { };
 in {
-  # Allow unfree software.
-  nixpkgs.config.allowUnfree = true;
-
   # Common packages.
   home.packages = [
     (import ./my-programs/brightness-control)
@@ -38,7 +35,7 @@ in {
         cm-super scheme-small apacite floatflt wrapfig # Figures
         enumitem courier # Font
         hyperref capt-of;
-      })
+    })
     biber # For LaTeX.
   ]) ++ (with unstable.pkgs; [
     # Fuzzy finder.
@@ -57,13 +54,12 @@ in {
     # File formatting.
     nixfmt
     (python3.withPackages (python-packages: with python-packages; [ numpy ]))
-  ]) ++ (with master.pkgs;
-    [
-      # Chat.
-      discord
-      # Databases.
-      dbeaver
-    ]);
+  ]) ++ (with master.pkgs; [
+    # Chat.
+    discord
+    # Databases.
+    dbeaver
+  ]);
 
   services.syncthing = { enable = true; };
 
