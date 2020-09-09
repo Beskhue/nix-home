@@ -32,7 +32,7 @@ in {
               # Aid completion
               supertab
               # LSP.
-              nvim-lsp
+              nvim-lspconfig
               ### Currently not in repo:
               # vim-jsx-typescript
               vim-tsx
