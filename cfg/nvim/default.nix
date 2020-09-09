@@ -10,7 +10,7 @@ in {
       rustfmt
       rls
       nixfmt
-      rnix-lsp
+      # rnix-lsp
       python37Packages.black
       python37Packages.python-language-server
       nodePackages.javascript-typescript-langserver
@@ -115,16 +115,16 @@ in {
             " https://github.com/neovim/nvim-lsp/commit/1e20c0b29e67e6cd87252cf8fd697906622bfdd3#diff-1cc82f5816863b83f053f5daf2341daf
             " is in nixpkgs repo.
             lua << EOF
-            vim.cmd('packadd nvim-lsp')
+            vim.cmd('packadd nvim-lspconfig')
             require'nvim_lsp'.pyls.setup{
               root_dir = function(fname)
                 return vim.fn.getcwd()
               end;
             }
             require'nvim_lsp'.rls.setup{}
-            require'nvim_lsp'.rnix.setup{}
             require'nvim_lsp'.tsserver.setup{}
             EOF
+            " require'nvim_lsp'.rnix.setup{}
 
             nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
             nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
