@@ -21,6 +21,8 @@ in {
       python37Packages.python-language-server
       nodePackages.javascript-typescript-langserver
       nodePackages.prettier
+      nodePackages.bash-language-server
+      shfmt
       # Preview for nvim telescope
       bat
     ] ++ [
@@ -141,6 +143,7 @@ in {
             }
             require'nvim_lsp'.rls.setup{}
             require'nvim_lsp'.tsserver.setup{}
+            require'nvim_lsp'.bashls.setup{}
             EOF
             " require'nvim_lsp'.rnix.setup{}
 
@@ -203,6 +206,11 @@ in {
       nmap <leader>mf :Neoformat<cr>
     '';
     ".config/nvim/ftplugin/rust.vim".text = ''
+      nmap <leader>mf :Neoformat<cr>
+      setlocal omnifunc=v:lua.vim.lsp.omnifunc
+    '';
+    ".config/nvim/ftplugin/sh.vim".text = ''
+      let g:shfmt_opt="-ci"
       nmap <leader>mf :Neoformat<cr>
       setlocal omnifunc=v:lua.vim.lsp.omnifunc
     '';
