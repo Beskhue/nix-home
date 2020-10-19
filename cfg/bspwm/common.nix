@@ -280,4 +280,18 @@
 
     Service = { ExecStart = "${start-script}"; };
   };
+  home.file.".config/autorandr/postswitch".executable = true;
+  home.file.".config/autorandr/postswitch".text = ''
+    #!/usr/bin/env bash
+
+    i=1
+    IFS=:;
+    for monitor in $AUTORANDR_MONITORS;
+    do
+      i=$((i+1))
+      MONITOR=$monitor polybar top &
+    done
+
+    feh --randomize --bg-fill ~/Backgrounds/* &
+  '';
 }
