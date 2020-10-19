@@ -147,6 +147,7 @@ in {
             nnoremap <silent> gy    <cmd>lua vim.lsp.buf.type_definition()<CR>
             nnoremap <silent> gr    <cmd>lua require'telescope.builtin'.lsp_references{}<CR>
             nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+            inoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 
             "" Some LSP servers have issues with backup files, see #649
             set nobackup
