@@ -22,6 +22,8 @@ in {
     xsynth_dssi
     # Collections
     zam-plugins
+    # Music programming language
+    supercollider
     ### DAW
     ardour
     # Use latest renoise, with stable libjack2 version.
