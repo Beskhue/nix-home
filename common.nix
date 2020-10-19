@@ -17,6 +17,7 @@ in {
     libnotify
     filelight
     ark
+    calc
     # Documents.
     nomacs
     okular
