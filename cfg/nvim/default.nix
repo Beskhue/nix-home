@@ -33,6 +33,8 @@ in {
               supertab
               # LSP.
               nvim-lspconfig
+              # Treesitter.
+              plugins.nvim-treesitter
               ### Currently not in repo:
               # vim-jsx-typescript
               vim-tsx
@@ -134,6 +136,40 @@ in {
             "" Some LSP servers have issues with backup files, see #649
             set nobackup
             set nowritebackup
+
+            " Treesitter
+            lua <<EOF
+            vim.cmd('packadd nvim-treesitter')
+            require'nvim-treesitter.configs'.setup {
+              ensure_installed = { "python", "rust" },
+              highlight = {
+                enable = true,
+                disable = { },
+              },
+              textobjects = {
+                enable = true,
+                select = {
+                  enable = true,
+                  keymaps = {
+                    -- You can use the capture groups defined in textobjects.scm
+                    ["af"] = "@function.outer",
+                    ["if"] = "@function.inner",
+                    ["ac"] = "@class.outer",
+                    ["ic"] = "@class.inner",
+                  },
+                },
+              },
+              incremental_selection = {
+                enable = true,
+                keymaps = {
+                  init_selection = "gnn",
+                  node_incremental = "grn",
+                  scope_incremental = "grc",
+                  node_decremental = "grm",
+                },
+              },
+            }
+            EOF
           '';
         };
       })
