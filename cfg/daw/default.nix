@@ -8,7 +8,13 @@ in {
     jalv
     lilv
     # Plugin host
-    carla
+    (carla.override {
+      python3Packages = pkgs.python3Packages;
+      qtbase = pkgs.qt5.qtbase;
+      wrapQtAppsHook = pkgs.qt5.wrapQtAppsHook;
+      gtk2 = pkgs.gtk2;
+      gtk3 = pkgs.gtk3;
+    })
     # Synths
     zynaddsubfx
     helm
