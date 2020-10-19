@@ -1,7 +1,12 @@
 { pkgs, ... }:
 
 {
-  imports = [ ../../common.nix ../../cfg/bspwm/pollux.nix ../../cfg/email ];
+  imports = [
+    ../../common.nix
+    ../../cfg/bspwm/pollux.nix
+    ../../cfg/daw
+    ../../cfg/email
+  ];
 
   services.polybar = {
     script = ''
