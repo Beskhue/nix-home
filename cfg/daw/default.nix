@@ -3,7 +3,7 @@ let
   unstable = import <unstable> { };
   master = import ../../nixpkgs { };
 in {
-  home.packages = with pkgs; [
+  home.packages = with unstable; [
     # Generic LV2
     jalv
     lilv
