@@ -232,6 +232,9 @@ in {
       let g:neoformat_enabled_htmldjango = ['htmlbeautify']
       nmap <leader>mf :Neoformat<cr>
     '';
+    # This currently does not work due to ABI incompatibilities:
+    # ".config/nvim/parser/rust.so".source = "${master.tree-sitter.builtGrammars.rust}/parser";
+    # ".config/nvim/parser/python.so".source = "${master.tree-sitter.builtGrammars.python}/parser";
   };
 
 }
