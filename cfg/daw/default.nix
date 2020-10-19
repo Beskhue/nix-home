@@ -15,11 +15,13 @@ in {
       gtk2 = pkgs.gtk2;
       gtk3 = pkgs.gtk3;
     })
+    # Collection
+    lsp-plugins
     # Synths
     zynaddsubfx
+    surge
     helm
     qsynth
-    ### Plugins
     # LV2
     avldrums-lv2
     drumkv1
