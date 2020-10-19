@@ -26,7 +26,20 @@ in {
     supercollider
     ### DAW
     ardour
+  ]) ++ [
+    # Wine VST bridge
+    # (master.airwave.override {
+    #   qt5 = pkgs.qt5;
+    #   # libX11 = pkgs.libX11;
+    #   wine = pkgs.wine;
+    # })
+    (master.airwave.override {
+      qt5 = pkgs.qt5;
+    })
     # Use latest renoise, with stable libjack2 version.
-    (master.renoise.override { libjack2 = libjack2; })
+    (master.renoise.override {
+      libjack2 = pkgs.libjack2;
+      releasePath = ~/music-production/renoise/rns_322_linux_x86_64.tar.gz;
+    })
   ];
 }
