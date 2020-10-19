@@ -25,6 +25,8 @@ in {
     libreoffice
     # Cloud.
     seafile-client
+    # Compiler.
+    gcc
     # TeX.
     (texlive.combine {
       inherit (texlive)
