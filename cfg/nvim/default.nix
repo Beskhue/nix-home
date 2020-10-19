@@ -50,7 +50,9 @@ in {
               # Buffer formatting.
               neoformat
               NeoSolarized
+              # Themes.
               awesome-vim-colorschemes
+              plugins.vim-monochrome
               # Popup finder.
               plugins.popup
               plugins.plenary
