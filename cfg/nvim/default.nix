@@ -1,7 +1,13 @@
-{ ... }:
+{ pkgs, ... }:
 let
   unstable = import <unstable> { };
   master = import ../../nixpkgs { };
+  plugins = pkgs.callPackage ./plugins.nix {
+    buildVimPluginFrom2Nix = (master.vimUtils.override {
+      inherit (master.neovim)
+      ;
+    }).buildVimPluginFrom2Nix;
+  };
 in {
   home.packages =
     # Default language servers and formatters
@@ -15,6 +21,8 @@ in {
       python37Packages.python-language-server
       nodePackages.javascript-typescript-langserver
       nodePackages.prettier
+      # Preview for nvim telescope
+      bat
     ] ++ [
       (master.neovim.override {
         configure = {
@@ -43,6 +51,10 @@ in {
               neoformat
               NeoSolarized
               awesome-vim-colorschemes
+              # Popup finder.
+              plugins.popup
+              plugins.plenary
+              plugins.telescope
             ];
 
           };
@@ -77,9 +89,11 @@ in {
 
             let mapleader="\<Space>"
 
+            " File and buffer opening
             nmap <leader>b :Buffers<cr>
             nmap <leader>fo :Files<cr>
             nmap <leader>fd :Explore<cr>
+            nmap <leader>fr <cmd>lua require('telescope.builtin').live_grep()<cr>
 
             set wildignore+=*/tmp/*,*/target/*,*.obj,*.class,*.o,*.so
 
@@ -131,6 +145,7 @@ in {
             nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
             nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
             nnoremap <silent> gy    <cmd>lua vim.lsp.buf.type_definition()<CR>
+            nnoremap <silent> gr    <cmd>lua require'telescope.builtin'.lsp_references{}<CR>
             nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 
             "" Some LSP servers have issues with backup files, see #649
