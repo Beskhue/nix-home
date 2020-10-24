@@ -20,12 +20,16 @@
       url = "github:fxn/vim-monochrome";
       flake = false;
     };
+    nvimCompletionNvim = {
+      url = "github:nvim-lua/completion-nvim";
+      flake = false;
+    };
   };
   outputs = { self, nixpkgs, nvimPlenary, nvimPopup, nvimTelescope
-    , nvimTreesitter, nvimMonochrome }: {
+    , nvimTreesitter, nvimMonochrome, nvimCompletionNvim }: {
       sources = {
         inherit nvimPlenary nvimPopup nvimTelescope nvimTreesitter
-          nvimMonochrome;
+          nvimMonochrome nvimCompletionNvim;
       };
     };
 }
