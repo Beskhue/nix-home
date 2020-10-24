@@ -40,7 +40,7 @@ in {
               vim-nix
               vim-javascript
               # Aid completion
-              supertab
+              plugins.completion-nvim
               # LSP.
               nvim-lspconfig
               # Treesitter.
@@ -123,27 +123,34 @@ in {
             map  <leader>j <Plug>(easymotion-j)
             map  <leader>k <Plug>(easymotion-k)
 
-            " Supertab
-            let g:SuperTabDefaultCompletionType = "context"
-
-            " Close omnifunc buffers on complete
-            set omnifunc=syntaxcomplete#Complete
-            autocmd CompleteDone * pclose
+            " Completion
+            packadd completion-nvim
+            inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+            inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+            set completeopt=menuone,noinsert,noselect
+            set shortmess+=c
 
             " LSP
             " Setting `root_dir` required until
             " https://github.com/neovim/nvim-lsp/commit/1e20c0b29e67e6cd87252cf8fd697906622bfdd3#diff-1cc82f5816863b83f053f5daf2341daf
             " is in nixpkgs repo.
+            packadd nvim-lspconfig
             lua << EOF
-            vim.cmd('packadd nvim-lspconfig')
             require'nvim_lsp'.pyls.setup{
               root_dir = function(fname)
                 return vim.fn.getcwd()
               end;
+              on_attach=require'completion'.on_attach
             }
-            require'nvim_lsp'.rls.setup{}
-            require'nvim_lsp'.tsserver.setup{}
-            require'nvim_lsp'.bashls.setup{}
+            require'nvim_lsp'.rls.setup{
+              on_attach=require'completion'.on_attach
+            }
+            require'nvim_lsp'.tsserver.setup{
+              on_attach=require'completion'.on_attach
+            }
+            require'nvim_lsp'.bashls.setup{
+              on_attach=require'completion'.on_attach
+            }
             EOF
             " require'nvim_lsp'.rnix.setup{}
 
@@ -207,23 +214,19 @@ in {
     '';
     ".config/nvim/ftplugin/rust.vim".text = ''
       nmap <leader>mf :Neoformat<cr>
-      setlocal omnifunc=v:lua.vim.lsp.omnifunc
     '';
     ".config/nvim/ftplugin/sh.vim".text = ''
       let g:shfmt_opt="-ci"
       nmap <leader>mf :Neoformat<cr>
-      setlocal omnifunc=v:lua.vim.lsp.omnifunc
     '';
     ".config/nvim/ftplugin/python.vim".text = ''
       nmap <leader>mf :Neoformat! python black<cr>
-      setlocal omnifunc=v:lua.vim.lsp.omnifunc
     '';
     ".config/nvim/ftplugin/javascript.vim".text = ''
       ${jsCommon}
     '';
     ".config/nvim/ftplugin/typescript.vim".text = ''
       ${jsCommon}
-      setlocal omnifunc=v:lua.vim.lsp.omnifunc
     '';
     ".config/nvim/ftplugin/css.vim".text = ''
       nmap <leader>mf :Neoformat<cr>

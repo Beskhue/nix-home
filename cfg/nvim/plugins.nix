@@ -36,4 +36,10 @@ in {
     src = flake.sources.nvimMonochrome;
     meta.homepage = "https://github.com/fxn/vim-monochrome";
   };
+  completion-nvim = buildVimPluginFrom2Nix {
+    pname = "completion-nvim";
+    version = flake.sources.nvimCompletionNvim.rev;
+    src = flake.sources.nvimCompletionNvim;
+    meta.homepage = "https://github.com/nvim-lua/completion-nvim";
+  };
 }
