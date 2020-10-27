@@ -97,16 +97,32 @@
     "nvimTreesitter": {
       "flake": false,
       "locked": {
-        "lastModified": 1603545061,
-        "narHash": "sha256-vFmCVy285paqW+TGKEKggWDJCy0TQrZ3WjV8rMaREF0=",
+        "lastModified": 1603804094,
+        "narHash": "sha256-VqbT40IaH2EjmLVE5DP9GGhzO3WXib3fFdIZQpWkok8=",
         "owner": "nvim-treesitter",
         "repo": "nvim-treesitter",
-        "rev": "04ff77442ac6fc808724df86641e8ee07d30379d",
+        "rev": "d9454afd93b8396fb72ff15179b5c59df21713c3",
         "type": "github"
       },
       "original": {
         "owner": "nvim-treesitter",
         "repo": "nvim-treesitter",
+        "type": "github"
+      }
+    },
+    "nvimTreesitterTextobjects": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1602959760,
+        "narHash": "sha256-E5ULYwHnBdZDeG22Niyb4lMQtZlBLksl+2I2n8BPpCA=",
+        "owner": "nvim-treesitter",
+        "repo": "nvim-treesitter-textobjects",
+        "rev": "e32c598c234140bf4d28ce5509351eb63c92951e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-treesitter",
+        "repo": "nvim-treesitter-textobjects",
         "type": "github"
       }
     },
@@ -118,7 +134,8 @@
         "nvimPlenary": "nvimPlenary",
         "nvimPopup": "nvimPopup",
         "nvimTelescope": "nvimTelescope",
-        "nvimTreesitter": "nvimTreesitter"
+        "nvimTreesitter": "nvimTreesitter",
+        "nvimTreesitterTextobjects": "nvimTreesitterTextobjects"
       }
     }
   },

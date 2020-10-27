@@ -16,6 +16,10 @@
       url = "github:nvim-treesitter/nvim-treesitter";
       flake = false;
     };
+    nvimTreesitterTextobjects = {
+      url = "github:nvim-treesitter/nvim-treesitter-textobjects";
+      flake = false;
+    };
     nvimMonochrome = {
       url = "github:fxn/vim-monochrome";
       flake = false;
@@ -26,10 +30,11 @@
     };
   };
   outputs = { self, nixpkgs, nvimPlenary, nvimPopup, nvimTelescope
-    , nvimTreesitter, nvimMonochrome, nvimCompletionNvim }: {
+    , nvimTreesitter, nvimTreesitterTextobjects, nvimMonochrome
+    , nvimCompletionNvim }: {
       sources = {
         inherit nvimPlenary nvimPopup nvimTelescope nvimTreesitter
-          nvimMonochrome nvimCompletionNvim;
+          nvimTreesitterTextobjects nvimMonochrome nvimCompletionNvim;
       };
     };
 }
