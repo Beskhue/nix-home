@@ -39,12 +39,6 @@ in {
               # Languages.
               vim-nix
               vim-javascript
-              # Aid completion
-              plugins.completion-nvim
-              # LSP.
-              nvim-lspconfig
-              # Treesitter.
-              plugins.nvim-treesitter
               ### Currently not in repo:
               # vim-jsx-typescript
               vim-tsx
@@ -61,6 +55,12 @@ in {
               plugins.telescope
             ];
             opt = [
+              # LSP.
+              nvim-lspconfig
+              # Aid completion
+              plugins.completion-nvim
+              # Treesitter.
+              plugins.nvim-treesitter
               plugins.nvim-treesitter-textobjects
             ];
 
@@ -169,9 +169,9 @@ in {
             set nowritebackup
 
             " Treesitter
+            packadd nvim-treesitter
             packadd nvim-treesitter-textobjects
             lua <<EOF
-            vim.cmd('packadd nvim-treesitter')
             require'nvim-treesitter.configs'.setup {
               ensure_installed = { "python", "rust" },
               highlight = {
