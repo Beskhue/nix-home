@@ -60,6 +60,9 @@ in {
               plugins.plenary
               plugins.telescope
             ];
+            opt = [
+              plugins.nvim-treesitter-textobjects
+            ];
 
           };
           customRC = ''
@@ -166,6 +169,7 @@ in {
             set nowritebackup
 
             " Treesitter
+            packadd nvim-treesitter-textobjects
             lua <<EOF
             vim.cmd('packadd nvim-treesitter')
             require'nvim-treesitter.configs'.setup {

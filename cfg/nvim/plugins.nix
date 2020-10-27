@@ -30,6 +30,12 @@ in {
     src = flake.sources.nvimTreesitter;
     meta.homepage = "https://github.com/nvim-treesitter/nvim-treesitter/";
   };
+  nvim-treesitter-textobjects = buildVimPluginFrom2Nix rec {
+    pname = "nvim-treesitter-textobjects";
+    version = flake.sources.nvimTreesitterTextobjects.lastModifiedDate;
+    src = flake.sources.nvimTreesitterTextobjects;
+    meta.homepage = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects/";
+  };
   vim-monochrome = buildVimPluginFrom2Nix rec {
     pname = "vim-monochrome";
     version = flake.sources.nvimMonochrome.lastModifiedDate;
