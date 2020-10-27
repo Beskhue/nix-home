@@ -8,37 +8,37 @@ let
 in {
   popup = buildVimPluginFrom2Nix rec {
     pname = "popup";
-    version = flake.sources.nvimPopup.rev;
+    version = flake.sources.nvimPopup.lastModifiedDate;
     src = flake.sources.nvimPopup;
     meta.homepage = "https://github.com/nvim-lua/popup.nvim";
   };
   plenary = buildVimPluginFrom2Nix rec {
     pname = "plenary";
-    version = flake.sources.nvimPlenary.rev;
+    version = flake.sources.nvimPlenary.lastModifiedDate;
     src = flake.sources.nvimPlenary;
     meta.homepage = "https://github.com/nvim-lua/plenary.nvim";
   };
   telescope = buildVimPluginFrom2Nix rec {
     pname = "telescope";
-    version = flake.sources.nvimTelescope.rev;
+    version = flake.sources.nvimTelescope.lastModifiedDate;
     src = flake.sources.nvimTelescope;
     meta.homepage = "https://github.com/nvim-lua/telescope.nvim";
   };
-  nvim-treesitter = buildVimPluginFrom2Nix {
+  nvim-treesitter = buildVimPluginFrom2Nix rec {
     pname = "nvim-treesitter";
-    version = flake.sources.nvimTreesitter.rev;
+    version = flake.sources.nvimTreesitter.lastModifiedDate;
     src = flake.sources.nvimTreesitter;
     meta.homepage = "https://github.com/nvim-treesitter/nvim-treesitter/";
   };
-  vim-monochrome = buildVimPluginFrom2Nix {
+  vim-monochrome = buildVimPluginFrom2Nix rec {
     pname = "vim-monochrome";
-    version = flake.sources.nvimMonochrome.rev;
+    version = flake.sources.nvimMonochrome.lastModifiedDate;
     src = flake.sources.nvimMonochrome;
     meta.homepage = "https://github.com/fxn/vim-monochrome";
   };
-  completion-nvim = buildVimPluginFrom2Nix {
+  completion-nvim = buildVimPluginFrom2Nix rec {
     pname = "completion-nvim";
-    version = flake.sources.nvimCompletionNvim.rev;
+    version = flake.sources.nvimCompletionNvim.lastModifiedDate;
     src = flake.sources.nvimCompletionNvim;
     meta.homepage = "https://github.com/nvim-lua/completion-nvim";
   };
