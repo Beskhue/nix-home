@@ -209,22 +209,22 @@ in {
 
   home.file = let
     jsCommon = ''
-      nmap <leader>mf :Neoformat<cr>
+      nmap <buffer><leader>mf :Neoformat<cr>
       set shiftwidth=2
     '';
   in {
     ".config/nvim/ftplugin/nix.vim".text = ''
-      nmap <leader>mf :Neoformat<cr>
+      nmap <buffer><leader>mf :Neoformat<cr>
     '';
     ".config/nvim/ftplugin/rust.vim".text = ''
-      nmap <leader>mf :Neoformat<cr>
+      nmap <buffer><leader>mf :Neoformat<cr>
     '';
     ".config/nvim/ftplugin/sh.vim".text = ''
       let g:shfmt_opt="-ci"
-      nmap <leader>mf :Neoformat<cr>
+      nmap <buffer><leader>mf :Neoformat<cr>
     '';
     ".config/nvim/ftplugin/python.vim".text = ''
-      nmap <leader>mf :Neoformat! python black<cr>
+      nmap <buffer><leader>mf :Neoformat black<cr>
     '';
     ".config/nvim/ftplugin/javascript.vim".text = ''
       ${jsCommon}
@@ -233,10 +233,10 @@ in {
       ${jsCommon}
     '';
     ".config/nvim/ftplugin/css.vim".text = ''
-      nmap <leader>mf :Neoformat<cr>
+      nmap <buffer><leader>mf :Neoformat<cr>
     '';
     ".config/nvim/ftplugin/html.vim".text = ''
-      nmap <leader>mf :Neoformat<cr>
+      nmap <buffer><leader>mf :Neoformat<cr>
     '';
     ".config/nvim/ftplugin/htmldjango.vim".text = ''
       let g:neoformat_htmldjango_htmlbeautify = {
@@ -245,7 +245,7 @@ in {
         \ 'stdin': 1,
         \ }
       let g:neoformat_enabled_htmldjango = ['htmlbeautify']
-      nmap <leader>mf :Neoformat<cr>
+      nmap <buffer><leader>mf :Neoformat<cr>
     '';
     # This currently does not work due to ABI incompatibilities:
     # ".config/nvim/parser/rust.so".source = "${master.tree-sitter.builtGrammars.rust}/parser";
