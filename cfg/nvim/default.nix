@@ -13,7 +13,7 @@ let
     paths = with unstable; [
       rustfmt
       rls
-      nixfmt
+      nixpkgs-fmt
       # rnix-lsp
       python37Packages.black
       python37Packages.python-language-server
@@ -233,7 +233,7 @@ in
     in
     {
       ".config/nvim/ftplugin/nix.vim".text = ''
-        nmap <buffer><leader>mf :Neoformat<cr>
+        nmap <buffer><leader>mf :Neoformat nixpkgs-fmt<cr>
       '';
       ".config/nvim/ftplugin/rust.vim".text = ''
         nmap <buffer><leader>mf :Neoformat<cr>
