@@ -266,6 +266,11 @@ in
         let g:neoformat_enabled_htmldjango = ['htmlbeautify']
         nmap <buffer><leader>mf :Neoformat<cr>
       '';
+      ".config/nvim/ftdetect/toml.vim".text = ''
+        " From: https://github.com/cespare/vim-toml/blob/master/ftdetect/toml.vim
+        " Go dep and Rust use several TOML config files that are not named with .toml.
+        autocmd BufNewFile,BufRead *.toml,Gopkg.lock,Cargo.lock,*/.cargo/config,*/.cargo/credentials,Pipfile setf toml
+      '';
       # This currently does not work due to ABI incompatibilities:
       # ".config/nvim/parser/rust.so".source = "${master.tree-sitter.builtGrammars.rust}/parser";
       # ".config/nvim/parser/python.so".source = "${master.tree-sitter.builtGrammars.python}/parser";
