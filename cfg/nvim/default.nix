@@ -76,9 +76,21 @@ let
         --prefix PATH : "${runtime}/bin"
     '';
   };
+  wrappedNeovimQt = pkgs.symlinkJoin {
+    name = "neovim-qt";
+    paths = [ (unstable.neovim-qt.override { neovim = neovim; }) ];
+    buildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/nvim-qt \
+        --prefix PATH : "${runtime}/bin"
+    '';
+  };
 in
 {
-  home.packages = [ wrappedNeovim ];
+  home.packages = [
+    wrappedNeovim
+    wrappedNeovimQt
+  ];
 
   home.file =
     let
