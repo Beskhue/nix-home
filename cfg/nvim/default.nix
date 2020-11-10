@@ -75,24 +75,24 @@ let
         set hidden
         set statusline=%f%=%r%m%y\ %P\ %l,%c
 
-        if !has('gui_running')
-          if $TERM == 'alacritty' || $TERM == 'tmux-256color'
-            set guicursor=n-v-c:block-Cursor
-            set guicursor+=i:ver25-Cursor
-            set guicursor+=r-cr-o:hor20-Cursor
-            " let g:neosolarized_vertSplitBgTrans = 1
-            set termguicolors
-            " set background=light
-            " colorscheme sierra
-            colorscheme anderson
-            "" Monochrome:
-            " let g:monochrome_italic_comments = 1
-            " colorscheme monochrome
-            " hi Normal guibg=#141414
-            hi Type gui=bold
-            hi Statement gui=bold
-          endif
-        endif
+        function! s:ui_enter()
+          set guicursor=n-v-c:block-Cursor
+          set guicursor+=i:ver25-Cursor
+          set guicursor+=r-cr-o:hor20-Cursor
+          " let g:neosolarized_vertSplitBgTrans = 1
+          set termguicolors
+          " set background=light
+          " colorscheme sierra
+          colorscheme anderson
+          "" Monochrome:
+          " let g:monochrome_italic_comments = 1
+          " colorscheme monochrome
+          " hi Normal guibg=#141414
+          hi Type gui=bold
+          hi Statement gui=bold
+        endfunction
+
+        au UIEnter * call s:ui_enter()
 
         " Input tab as space
         set shiftwidth=4
