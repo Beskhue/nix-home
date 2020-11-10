@@ -101,7 +101,7 @@ in
     in
     {
       ".config/nvim/ftplugin/nix.vim".text = ''
-        nmap <buffer><leader>mf :Neoformat nixpkgs-fmt<cr>
+        nmap <buffer><leader>mf :Neoformat nixpkgsfmt<cr>
       '';
       ".config/nvim/ftplugin/rust.vim".text = ''
         nmap <buffer><leader>mf :Neoformat<cr>
