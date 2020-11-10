@@ -79,8 +79,12 @@ let
           set guicursor=n-v-c:block-Cursor
           set guicursor+=i:ver25-Cursor
           set guicursor+=r-cr-o:hor20-Cursor
+          if get(v:event, "chan") == 0
+              set termguicolors
+          else
+              set guifont=iosevka:h10.5
+          endif
           " let g:neosolarized_vertSplitBgTrans = 1
-          set termguicolors
           " set background=light
           " colorscheme sierra
           colorscheme anderson
