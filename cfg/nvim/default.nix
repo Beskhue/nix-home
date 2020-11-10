@@ -179,7 +179,7 @@ let
         packadd nvim-treesitter-textobjects
         lua <<EOF
         require'nvim-treesitter.configs'.setup {
-          ensure_installed = { "python", "rust" },
+          ensure_installed = { "nix", "rust", "python", "bash", "toml", "lua", "julia", "typescript", "javascript", "php" },
           highlight = {
             enable = true,
             disable = { },
@@ -271,9 +271,11 @@ in
         " Go dep and Rust use several TOML config files that are not named with .toml.
         autocmd BufNewFile,BufRead *.toml,Gopkg.lock,Cargo.lock,*/.cargo/config,*/.cargo/credentials,Pipfile setf toml
       '';
-      # This currently does not work due to ABI incompatibilities:
+      # ABI incompatibilities. Should use https://github.com/nvim-treesitter/nvim-treesitter/blob/master/lockfile.json
       # ".config/nvim/parser/rust.so".source = "${master.tree-sitter.builtGrammars.rust}/parser";
       # ".config/nvim/parser/python.so".source = "${master.tree-sitter.builtGrammars.python}/parser";
+      # ".config/nvim/parser/toml.so".source = "${master.tree-sitter.builtGrammars.toml}/parser";
+      # ".config/nvim/parser/bash.so".source = "${master.tree-sitter.builtGrammars.bash}/parser";
     };
 
 }
