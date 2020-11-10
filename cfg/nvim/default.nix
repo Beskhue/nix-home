@@ -112,6 +112,7 @@ in
       '';
       ".config/nvim/ftplugin/python.vim".text = ''
         nmap <buffer><leader>mf :Neoformat black<cr>
+        nmap <buffer><leader>mi :Neoformat isort<cr>
       '';
       ".config/nvim/ftplugin/javascript.vim".text = ''
         ${jsCommon}
