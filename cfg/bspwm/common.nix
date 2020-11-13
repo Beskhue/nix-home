@@ -76,7 +76,7 @@
 
     # Application launcher.
     super + p
-        rofi -combi-modi run,drun -show combi -modi combi
+        rofi -modi drun,run -show drun -show-icons
 
     super + w
         firefox
