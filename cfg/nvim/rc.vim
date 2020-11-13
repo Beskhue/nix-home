@@ -15,7 +15,7 @@ function! s:ui_enter()
   if get(v:event, "chan") == 0
       set termguicolors
   else
-      set guifont=iosevka:h10.5
+      set guifont=iosevka:h10.5:sb
   endif
   " let g:neosolarized_vertSplitBgTrans = 1
   " set background=light
