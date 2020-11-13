@@ -27,6 +27,7 @@ function! s:ui_enter()
   " hi Normal guibg=#141414
   hi Type gui=bold
   hi Statement gui=bold
+  hi Comment gui=italic
 endfunction
 
 au UIEnter * call s:ui_enter()
