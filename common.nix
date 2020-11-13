@@ -55,7 +55,7 @@ in {
     # Password manager.
     keepassxc
     # File formatting.
-    nixfmt
+    nixpkgs-fmt
     (python3.withPackages (python-packages: with python-packages; [ numpy ]))
   ]) ++ (with master.pkgs; [
     # Chat.
