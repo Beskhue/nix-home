@@ -82,7 +82,7 @@
         firefox
 
     super + f
-        thunar
+        dolphin
 
     ctrl + shift + 1
         thingshare_screenshot full
