@@ -64,6 +64,18 @@ in {
     dbeaver
   ]);
 
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "inode/directory" = [ "org.kde.dolphin.desktop" ];
+      "text/plain" = [ "nvim-qt.desktop" ];
+      "application/octet-stream" = [ "firefox.desktop" ];
+      "image/svg+xml" = [ "nvim-qt.desktop" ];
+    };
+    associations.added = {
+    };
+  };
+
   services.syncthing = { enable = true; };
 
   # Nix direnv handler.
