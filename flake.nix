@@ -9,7 +9,7 @@
       flake = false;
     };
     nvimTelescope = {
-      url = "github:nvim-lua/telescope.nvim";
+      url = "github:nvim-telescope/telescope.nvim";
       flake = false;
     };
     nvimTreesitter = {
