@@ -2,7 +2,8 @@
 let
   unstable = import <unstable> { };
   master = import ./nixpkgs { };
-in {
+in
+{
   # Common packages.
   home.packages = [
     (import ./my-programs/brightness-control)
@@ -72,8 +73,7 @@ in {
       "application/octet-stream" = [ "firefox.desktop" ];
       "image/svg+xml" = [ "nvim-qt.desktop" ];
     };
-    associations.added = {
-    };
+    associations.added = { };
   };
 
   services.syncthing = { enable = true; };
@@ -116,5 +116,6 @@ in {
     ./cfg/dunst.nix
     ./cfg/polybar
     ./cfg/redshift
+    ./cfg/rofi
   ];
 }
