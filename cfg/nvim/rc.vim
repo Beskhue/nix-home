@@ -82,23 +82,23 @@ set shortmess+=c
 " is in nixpkgs repo.
 packadd nvim-lspconfig
 lua << EOF
-require'nvim_lsp'.pyls.setup{
+require'lspconfig'.pyls.setup{
   root_dir = function(fname)
     return vim.fn.getcwd()
   end;
   on_attach=require'completion'.on_attach
 }
-require'nvim_lsp'.rls.setup{
+require'lspconfig'.rls.setup{
   on_attach=require'completion'.on_attach
 }
-require'nvim_lsp'.tsserver.setup{
+require'lspconfig'.tsserver.setup{
   on_attach=require'completion'.on_attach
 }
-require'nvim_lsp'.bashls.setup{
+require'lspconfig'.bashls.setup{
   on_attach=require'completion'.on_attach
 }
 EOF
-" require'nvim_lsp'.rnix.setup{}
+" require'lspconfig'.rnix.setup{}
 
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
