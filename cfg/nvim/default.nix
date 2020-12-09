@@ -126,6 +126,9 @@ in
       ".config/nvim/ftplugin/html.vim".text = ''
         nmap <buffer><leader>mf :Neoformat<cr>
       '';
+      ".config/nvim/ftdetect/html.vim".text = ''
+        autocmd BufNewFile,BufRead *.html.tera setf html
+      '';
       ".config/nvim/ftplugin/htmldjango.vim".text = ''
         let g:neoformat_htmldjango_htmlbeautify = {
           \ 'exe': 'html-beautify',
