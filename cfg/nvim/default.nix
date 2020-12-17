@@ -11,8 +11,7 @@ let
   runtime = pkgs.buildEnv {
     name = "neovim-env";
     paths = with unstable; [
-      rustfmt
-      rls
+      rust-analyzer
       nixpkgs-fmt
       # rnix-lsp
       python37Packages.black
