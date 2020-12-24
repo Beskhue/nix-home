@@ -13,8 +13,8 @@ in {
 
   services.polybar = {
     script = ''
+      MONITOR=DP-2 polybar top &
       MONITOR=DP-4 polybar top &
-      MONITOR=DVI-D-0 polybar top &
     '';
     config."module/wlan".interface = "wlp3s0";
     config."bar/top".modules-right = "wlan cpu memory date";
