@@ -19,6 +19,8 @@ in
     filelight
     ark
     calc
+    leafpad
+    transmission-gtk
     # Documents.
     nomacs
     okular
@@ -26,8 +28,14 @@ in
     libreoffice
     # Cloud.
     seafile-client
-    # Compiler.
+    # Compiling.
     gcc
+    gnumake
+    # Debugging.
+    ltrace
+    gdb
+    lldb
+    gdbgui
     # TeX.
     (texlive.combine {
       inherit (texlive)
@@ -49,18 +57,22 @@ in
     # Editor.
     # The basics.
     firefox
+    chromium
     thunderbird
     # Tools.
     direnv
     nox
+    ripgrep
     # Password manager.
     keepassxc
     # File formatting.
     nixpkgs-fmt
     (python3.withPackages (python-packages: with python-packages; [ numpy ]))
-  ]) ++ (with master.pkgs; [
     # Chat.
     discord
+    # Music.
+    spotify
+  ]) ++ (with master.pkgs; [
     # Databases.
     dbeaver
   ]);
