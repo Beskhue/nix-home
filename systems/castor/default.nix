@@ -2,7 +2,8 @@
 let
   unstable = import <unstable> { };
   master = import ./../../nixpkgs { };
-in {
+in
+{
   imports = [
     ../../common.nix
     ../../cfg/bspwm/castor.nix
@@ -20,7 +21,16 @@ in {
     config."bar/top".modules-right = "wlan cpu memory date";
   };
 
-  home.packages = (with pkgs; [ deluge ]) ++ (with unstable.pkgs; [
+  home.packages = (with pkgs; [
+    deluge
+    # Games.
+    lutris
+    # E-book management.
+    calibre
+    # Disassembly.
+    ghidra-bin
+    radare2-cutter
+  ]) ++ (with unstable.pkgs; [
     wineWowPackages.staging
     winetricks
 
