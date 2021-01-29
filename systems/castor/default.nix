@@ -6,20 +6,11 @@ in
 {
   imports = [
     ../../common.nix
-    ../../cfg/bspwm/castor.nix
+    ../../cfg/awesome/castor.nix
     ../../cfg/daw
     ../../cfg/email
     ./music.nix
   ];
-
-  services.polybar = {
-    script = ''
-      MONITOR=DP-2 polybar top &
-      MONITOR=DP-4 polybar top &
-    '';
-    config."module/wlan".interface = "wlp3s0";
-    config."bar/top".modules-right = "wlan cpu memory date";
-  };
 
   home.packages = (with pkgs; [
     deluge

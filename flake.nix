@@ -28,13 +28,36 @@
       url = "github:nvim-lua/completion-nvim";
       flake = false;
     };
+    awesomeSharedtags = {
+      url = "github:Drauthius/awesome-sharedtags";
+      flake = false;
+    };
+    awesomeLain = {
+      url = "github:lcpz/lain";
+      flake = false;
+    };
+    awesomeFreedesktop = {
+      url = "github:lcpz/awesome-freedesktop";
+      flake = false;
+    };
   };
-  outputs = { self, nixpkgs, nvimPlenary, nvimPopup, nvimTelescope
-    , nvimTreesitter, nvimTreesitterTextobjects, nvimMonochrome
-    , nvimCompletionNvim }: {
+  outputs =
+    { self
+    , nixpkgs
+    , nvimPlenary
+    , nvimPopup
+    , nvimTelescope
+    , nvimTreesitter
+    , nvimTreesitterTextobjects
+    , nvimMonochrome
+    , nvimCompletionNvim
+    , awesomeSharedtags
+    , awesomeLain
+    , awesomeFreedesktop
+    }: {
       sources = {
         inherit nvimPlenary nvimPopup nvimTelescope nvimTreesitter
-          nvimTreesitterTextobjects nvimMonochrome nvimCompletionNvim;
+          nvimTreesitterTextobjects nvimMonochrome nvimCompletionNvim awesomeSharedtags awesomeLain awesomeFreedesktop;
       };
     };
 }

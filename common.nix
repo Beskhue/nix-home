@@ -126,7 +126,6 @@ in
     ./cfg/gtk.nix
     ./cfg/xresources
     ./cfg/dunst.nix
-    ./cfg/polybar
     ./cfg/redshift
     ./cfg/rofi
   ];
