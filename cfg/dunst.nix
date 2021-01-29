@@ -12,9 +12,10 @@
         markup = true;
         sort = false;
         alignment = "left";
+        vertical_alignment = "center";
         word_wrap = true;
         ignore_newline = false;
-        geometry = "350x5-15+49";
+        geometry = "680x5-24+49";
         shrink = false;
         transparency = 5;
         show_indicators = true;
@@ -23,15 +24,17 @@
         separator_color = "frame";
         dmenu = "rofi -dmenu -p dunst";
         browser = "firefox -new-tab";
-        icon_position = "left";
-        max_icon_size = 80;
-        frame_width = 2;
-        frame_color = "#585858";
+        icon_position = "right";
+        max_icon_size = 256;
+        frame_width = 1;
+        frame_color = "#BABABA";
         font = "Noto Sans 11";
         allow_markup = true;
         format = "<b>%a</b>\\n%s\\n%b";
-        padding = 8;
-        horizontal_padding = 8;
+        padding = 24;
+        horizontal_padding = 24;
+        # not yet in released version:
+        # text_icon_padding = 16;
       };
       shortcuts = {
         close = "ctrl+space";
@@ -40,19 +43,22 @@
         context = "ctrl+shift+period";
       };
       urgency_low = {
-        background = "#383838";
-        foreground = "#BCE5AA";
+        background = "#FAFAFA";
+        foreground = "#595959";
         timeout = 5;
       };
       urgency_normal = {
-        background = "#383838";
-        foreground = "#AADDE5";
+        background = "#FAFAFA";
+        foreground = "#595959";
         timeout = 15;
       };
       urgency_critical = {
-        background = "#383838";
-        foreground = "#ED945C";
+        background = "#FAFAFA";
+        foreground = "#895959";
         timeout = 0;
+      };
+      fullscreen_delay_everything = {
+        fullscreen = "delay";
       };
     };
   };
