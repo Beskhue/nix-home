@@ -74,7 +74,7 @@ theme.font = "Source Code Pro 9"
 theme.fg_normal   = "#FEFEFE"
 theme.fg_focus    = "#32D6FF"
 theme.fg_urgent   = "#C83F11"
-theme.fg_minimize = "#32D6FF"
+theme.fg_minimize = "#BEBEBE"
 
 theme.bg_normal   = "#222222"
 theme.bg_focus    = "#1E2320"
@@ -91,6 +91,8 @@ theme.border_marked = "#CC9393"
 theme.titlebar_bg_focus  = theme.bg_focus
 theme.titlebar_bg_normal = theme.bg_normal
 theme.titlebar_fg_focus  = theme.fg_focus
+theme.titlebar_fg_urgent = theme.fg_urgent
+theme.titlebar_fg_minimize = theme.fg_minimize
 
 theme.menu_height = dpi(19)
 theme.menu_width  = dpi(140)
@@ -372,17 +374,50 @@ awful.screen.connect_for_each_screen(function(s)
         screen  = s,
         filter  = awful.widget.tasklist.filter.currenttags,
         buttons = tasklist_buttons,
-        -- style = {
-        --     shape_border_width = theme.border_width,
-        --     shape_border_color = theme.border_color,
-        -- },
+        widget_template = {
+            {
+                {
+                    {
+                        {
+                            {
+                                id = "icon_role",
+                                widget = wibox.widget.imagebox,
+                            },
+                            margins = 3,
+                            widget = wibox.container.margin,
+                        },
+                        {
+                            {
+                                id = "text_role",
+                                widget = wibox.widget.textbox,
+                            },
+                            left = 8,
+                            widget = wibox.container.margin,
+                        },
+                        layout = wibox.layout.fixed.horizontal,
+                    },
+                    id = "background_role",
+                    widget = wibox.container.background,
+                },
+                id = "border",
+                color = theme.border_normal,
+                margins = 1,
+                widget = wibox.container.margin,
+            },
+            margins = 2,
+            widget = wibox.container.margin,
+            create_callback = function(self, c, index, objects)
+                local border_margin = self:get_children_by_id("border")[1]
+                self:connect_signal('mouse::enter', function()
+                    border_margin.color = theme.border_focus
+                end)
+                self:connect_signal('mouse::leave', function()
+                    border_margin.color = theme.border_normal
+                end)
+            end,
+        },
         layout = {
             layout = wibox.layout.flex.horizontal,
-            spacing = 8,
-            spacing_widget = {
-                vert_sep,
-                widget = wibox.container.place,
-            },
         },
     }
 
