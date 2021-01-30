@@ -495,12 +495,20 @@ awful.screen.connect_for_each_screen(function(s)
             arrow(theme.bg_normal, "#777E76"),
             wibox.container.background(wibox.container.margin(mytextclock, dpi(4), dpi(8)), "#777E76"),
             arrow("#777E76", "alpha"),
-            s.mylayoutbox,
+            {
+                s.mylayoutbox,
+                margins = 2,
+                layout = wibox.container.margin,
+            },
         }
         or
         { -- Right widgets on small screens
             layout = wibox.layout.fixed.horizontal,
-            s.mylayoutbox
+            {
+                s.mylayoutbox,
+                margins = 2,
+                layout = wibox.container.margin,
+            },
         },
     }
 end)
