@@ -121,6 +121,7 @@ in
   systemd.user.sessionVariables = config.home.sessionVariables;
 
   imports = [
+    ./cfg/picom
     ./cfg/alacritty
     ./cfg/nvim
     ./cfg/gtk.nix
