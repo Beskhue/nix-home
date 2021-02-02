@@ -47,6 +47,7 @@ in
   ];
 
   xdg.configFile."awesome/rc.lua".source = ./rc.lua;
+  xdg.configFile."awesome/theme".source = ./icons;
   xdg.configFile."awesome/sharedtags/init.lua".source = "${flake.sources.awesomeSharedtags.outPath}/init.lua";
   # xdg.configFile."awesome/themes".source = ./awesome-copycats/themes;
   xdg.configFile."sxhkd/sxhkdrc".text = ''

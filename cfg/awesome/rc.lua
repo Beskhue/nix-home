@@ -85,11 +85,11 @@ theme.border_normal = "#3F3F3F"
 theme.border_focus  = "#6F6F6F"
 theme.border_marked = "#CC9393"
 
-theme.titlebar_bg_normal = theme.bg_normal
-theme.titlebar_bg_focus  = "#1E2330"
-theme.titlebar_fg_focus  = theme.fg_focus
-theme.titlebar_fg_urgent = theme.fg_urgent
-theme.titlebar_fg_minimize = theme.fg_minimize
+theme.titlebar_bg_normal = "#C8C8C8" .. "A8";
+theme.titlebar_bg_focus = "#FFFFFF" .. "B8";
+theme.titlebar_fg_normal= "#262626";
+theme.titlebar_fg_focus = "#161616";
+theme.titlebar_fg_urgent = "#963636";
 
 theme.tasklist_bg_focus    = "#1E232A"
 theme.tasklist_bg_urgent   = "#362222"
@@ -130,57 +130,50 @@ theme.layout_cornerne = themes_path.."default/layouts/cornernew.png"
 theme.layout_cornersw = themes_path.."default/layouts/cornersww.png"
 theme.layout_cornerse = themes_path.."default/layouts/cornersew.png"
 
--- theme.widget_ac            = theme.dir .. "/icons/ac.png"
--- theme.widget_battery       = theme.dir .. "/icons/battery.png"
--- theme.widget_battery_low   = theme.dir .. "/icons/battery_low.png"
--- theme.widget_battery_empty = theme.dir .. "/icons/battery_empty.png"
--- theme.widget_brightness    = theme.dir .. "/icons/brightness.png"
--- theme.widget_mem           = theme.dir .. "/icons/mem.png"
--- theme.widget_cpu           = theme.dir .. "/icons/cpu.png"
--- theme.widget_temp          = theme.dir .. "/icons/temp.png"
--- theme.widget_net           = theme.dir .. "/icons/net.png"
--- theme.widget_hdd           = theme.dir .. "/icons/hdd.png"
--- theme.widget_music         = theme.dir .. "/icons/note.png"
--- theme.widget_music_on      = theme.dir .. "/icons/note_on.png"
--- theme.widget_music_pause   = theme.dir .. "/icons/pause.png"
--- theme.widget_music_stop    = theme.dir .. "/icons/stop.png"
--- theme.widget_vol           = theme.dir .. "/icons/vol.png"
--- theme.widget_vol_low       = theme.dir .. "/icons/vol_low.png"
--- theme.widget_vol_no        = theme.dir .. "/icons/vol_no.png"
--- theme.widget_vol_mute      = theme.dir .. "/icons/vol_mute.png"
--- theme.widget_mail          = theme.dir .. "/icons/mail.png"
--- theme.widget_mail_on       = theme.dir .. "/icons/mail_on.png"
--- theme.widget_task          = theme.dir .. "/icons/task.png"
--- theme.widget_scissors      = theme.dir .. "/icons/scissors.png"
-
 theme.tasklist_plain_task_name = false
 theme.tasklist_disable_icon    = false
 
-theme.titlebar_close_button_normal = themes_path.."default/titlebar/close_normal.png"
-theme.titlebar_close_button_focus  = themes_path.."default/titlebar/close_focus.png"
+theme.titlebar_close_button_normal = theme.dir .. "/window-close.svg"
+theme.titlebar_close_button_normal_hover = theme.dir .. "/window-close-hover.svg"
+theme.titlebar_close_button_normal_press = theme.dir .. "/window-close-press.svg"
+theme.titlebar_close_button_focus = theme.dir .. "/window-close-focus.svg"
+theme.titlebar_close_button_focus_hover = theme.dir .. "/window-close-focus-hover.svg"
+theme.titlebar_close_button_focus_press = theme.dir .. "/window-close-focus-press.svg"
 
-theme.titlebar_minimize_button_normal = themes_path.."default/titlebar/minimize_normal.png"
-theme.titlebar_minimize_button_focus  = themes_path.."default/titlebar/minimize_focus.png"
+theme.titlebar_minimize_button_normal = theme.dir .. "/go-down.svg"
+theme.titlebar_minimize_button_normal_hover = theme.dir .. "/go-down-hover.svg"
+theme.titlebar_minimize_button_normal_press = theme.dir .. "/go-down-press.svg"
+theme.titlebar_minimize_button_focus = theme.dir .. "/go-down-focus.svg"
+theme.titlebar_minimize_button_focus_hover = theme.dir .. "/go-down-focus-hover.svg"
+theme.titlebar_minimize_button_focus_press = theme.dir .. "/go-down-focus-press.svg"
 
-theme.titlebar_ontop_button_normal_inactive = themes_path.."default/titlebar/ontop_normal_inactive.png"
-theme.titlebar_ontop_button_focus_inactive  = themes_path.."default/titlebar/ontop_focus_inactive.png"
-theme.titlebar_ontop_button_normal_active = themes_path.."default/titlebar/ontop_normal_active.png"
-theme.titlebar_ontop_button_focus_active  = themes_path.."default/titlebar/ontop_focus_active.png"
+theme.titlebar_ontop_button_normal_inactive = theme.dir .. "/go-top.svg"
+theme.titlebar_ontop_button_normal_inactive_hover = theme.dir .. "/go-top-hover.svg"
+theme.titlebar_ontop_button_normal_inactive_press = theme.dir .. "/go-top-press.svg"
+theme.titlebar_ontop_button_focus_inactive = theme.dir .. "/go-top-focus.svg"
+theme.titlebar_ontop_button_focus_inactive_hover = theme.dir .. "/go-top-focus-hover.svg"
+theme.titlebar_ontop_button_focus_inactive_press = theme.dir .. "/go-top-focus-press.svg"
 
-theme.titlebar_sticky_button_normal_inactive = themes_path.."default/titlebar/sticky_normal_inactive.png"
-theme.titlebar_sticky_button_focus_inactive  = themes_path.."default/titlebar/sticky_focus_inactive.png"
-theme.titlebar_sticky_button_normal_active = themes_path.."default/titlebar/sticky_normal_active.png"
-theme.titlebar_sticky_button_focus_active  = themes_path.."default/titlebar/sticky_focus_active.png"
+theme.titlebar_ontop_button_normal_active = theme.dir .. "/go-bottom.svg"
+theme.titlebar_ontop_button_normal_active_hover = theme.dir .. "/go-bottom-hover.svg"
+theme.titlebar_ontop_button_normal_active_press = theme.dir .. "/go-bottom-press.svg"
+theme.titlebar_ontop_button_focus_active = theme.dir .. "/go-bottom-focus.svg"
+theme.titlebar_ontop_button_focus_active_hover = theme.dir .. "/go-bottom-focus-hover.svg"
+theme.titlebar_ontop_button_focus_active_press = theme.dir .. "/go-bottom-focus-press.svg"
 
-theme.titlebar_floating_button_normal_inactive = themes_path.."default/titlebar/floating_normal_inactive.png"
-theme.titlebar_floating_button_focus_inactive  = themes_path.."default/titlebar/floating_focus_inactive.png"
-theme.titlebar_floating_button_normal_active = themes_path.."default/titlebar/floating_normal_active.png"
-theme.titlebar_floating_button_focus_active  = themes_path.."default/titlebar/floating_focus_active.png"
+theme.titlebar_sticky_button_normal_inactive = theme.dir .. "/window-pin.svg"
+theme.titlebar_sticky_button_normal_inactive_hover = theme.dir .. "/window-pin-hover.svg"
+theme.titlebar_sticky_button_normal_inactive_press = theme.dir .. "/window-pin-press.svg"
+theme.titlebar_sticky_button_focus_inactive = theme.dir .. "/window-pin-focus.svg"
+theme.titlebar_sticky_button_focus_inactive_hover = theme.dir .. "/window-pin-focus-hover.svg"
+theme.titlebar_sticky_button_focus_inactive_press = theme.dir .. "/window-pin-focus-press.svg"
 
-theme.titlebar_maximized_button_normal_inactive = themes_path.."default/titlebar/maximized_normal_inactive.png"
-theme.titlebar_maximized_button_focus_inactive  = themes_path.."default/titlebar/maximized_focus_inactive.png"
-theme.titlebar_maximized_button_normal_active = themes_path.."default/titlebar/maximized_normal_active.png"
-theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/maximized_focus_active.png"
+theme.titlebar_sticky_button_normal_active = theme.dir .. "/window-unpin.svg"
+theme.titlebar_sticky_button_normal_active_hover = theme.dir .. "/window-unpin-hover.svg"
+theme.titlebar_sticky_button_normal_active_press = theme.dir .. "/window-unpin-press.svg"
+theme.titlebar_sticky_button_focus_active = theme.dir .. "/window-unpin-focus.svg"
+theme.titlebar_sticky_button_focus_active_hover = theme.dir .. "/window-unpin-focus-hover.svg"
+theme.titlebar_sticky_button_focus_active_press = theme.dir .. "/window-unpin-focus-press.svg"
 
 if not beautiful.init(theme) then
     beautiful.init({font = 'Monospace Bold 10'})
