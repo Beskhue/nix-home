@@ -90,6 +90,9 @@ in
     associations.added = { };
   };
 
+  services.unclutter.enable = true;
+  services.unclutter.timeout = 3;
+
   services.syncthing = { enable = true; };
 
   # Nix direnv handler.
