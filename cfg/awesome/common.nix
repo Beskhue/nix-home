@@ -35,6 +35,10 @@ in
   # xsession.windowManager.command = "";
   xsession.windowManager.awesome = {
     enable = true;
+    package = pkgs.callPackage ./awesome.nix {
+      cairo = pkgs.cairo.override { xcbSupport = true; };
+      inherit (pkgs.texFunctions) fontsConf;
+    };
     luaModules = [ lain freedesktop ];
   };
 
