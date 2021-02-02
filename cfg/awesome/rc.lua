@@ -69,7 +69,8 @@ local themes_path = gfs.get_themes_dir()
 local theme = {}
 theme.dir = os.getenv("HOME") .. "/.config/awesome/theme"
 
-theme.font = "Source Code Pro 9"
+theme.font = "DejaVu Sans 9"
+theme.mono_font = "Source Code Pro 9"
 
 theme.fg_normal   = "#FEFEFE"
 theme.fg_focus    = "#32D6FF"
@@ -314,21 +315,21 @@ local tasklist_buttons = gears.table.join(
 local neticon = wibox.widget.imagebox(theme.widget_net)
 local net = lain.widget.net({
     settings = function()
-        widget:set_markup(markup.fontfg(theme.font, "#FEFEFE", " " .. net_now.received .. " ↓↑ " .. net_now.sent .. " "))
+        widget:set_markup(markup.fontfg(theme.mono_font, "#FEFEFE", " " .. net_now.received .. " ↓↑ " .. net_now.sent .. " "))
     end
 })
 
 local memicon = wibox.widget.imagebox(theme.widget_mem)
 local mem = lain.widget.mem({
     settings = function()
-        widget:set_markup(markup.font(theme.font, " " .. mem_now.used .. "MB "))
+        widget:set_markup(markup.font(theme.mono_font, " " .. mem_now.used .. "MB "))
     end
 })
 
 local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
 local cpu = lain.widget.cpu({
     settings = function()
-        widget:set_markup(markup.font(theme.font, " " .. cpu_now.usage .. "% "))
+        widget:set_markup(markup.font(theme.mono_font, " " .. cpu_now.usage .. "% "))
     end
 })
 
