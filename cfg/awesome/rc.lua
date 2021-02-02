@@ -517,6 +517,8 @@ root.buttons(gears.table.join(
 ))
 -- }}}
 
+local compositor_pid = awful.util.spawn("picom --experimental-backends")
+
 -- {{{ Key bindings
 -- @DOC_GLOBAL_KEYBINDINGS@
 globalkeys = gears.table.join(
@@ -614,7 +616,20 @@ globalkeys = gears.table.join(
               function()
                   awful.util.spawn("rofi -modi drun,run -show drun -show-icons")
               end,
-              {description = "show the menubar", group = "launcher"})
+              {description = "show the menubar", group = "launcher"}),
+
+    -- Compositor
+    awful.key({ modkey }, "c",
+              function()
+                  if compositor_pid then
+                      awful.util.spawn("kill -9 " .. compositor_pid)
+                      compositor_pid = nil
+                  else
+                      compositor_pid = awful.util.spawn("picom --experimental-backends")
+                  end
+              end,
+              {description = "toggle the compositor", group = "awesome"})
+
 )
 
 -- @DOC_CLIENT_KEYBINDINGS@
