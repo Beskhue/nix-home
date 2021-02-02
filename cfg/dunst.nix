@@ -17,7 +17,6 @@
         ignore_newline = false;
         geometry = "680x5-24+49";
         shrink = false;
-        transparency = 5;
         show_indicators = true;
         line_height = 1;
         separator_height = 2;
@@ -43,17 +42,17 @@
         context = "ctrl+shift+period";
       };
       urgency_low = {
-        background = "#FAFAFA";
+        background = "#FAFAFAC0";
         foreground = "#595959";
         timeout = 5;
       };
       urgency_normal = {
-        background = "#FAFAFA";
+        background = "#FAFAFAC0";
         foreground = "#595959";
         timeout = 15;
       };
       urgency_critical = {
-        background = "#FAFAFA";
+        background = "#FAFAFAC0";
         foreground = "#895959";
         timeout = 0;
       };
