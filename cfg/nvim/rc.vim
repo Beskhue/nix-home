@@ -82,6 +82,15 @@ set shortmess+=c
 " is in nixpkgs repo.
 packadd nvim-lspconfig
 lua << EOF
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    underline = true,
+    virtual_text = true,
+    signs = true,
+    update_in_insert = false,
+  }
+)
+
 require'lspconfig'.pyls.setup{
   root_dir = function(fname)
     return vim.fn.getcwd()

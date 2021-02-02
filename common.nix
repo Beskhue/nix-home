@@ -39,19 +39,19 @@ in
     # TeX.
     (texlive.combine {
       inherit (texlive)
-        amsmath # Math
-        amsfonts # Math
-        logreq # Automation, necessary for biblatex
-        biblatex biblatex-ieee # References
+        amsmath# Math
+        amsfonts# Math
+        logreq# Automation, necessary for biblatex
+        biblatex biblatex-ieee# References
         # psfonts # textcomp
-        cm-super scheme-small apacite floatflt wrapfig # Figures
-        enumitem courier # Font
+        cm-super scheme-small apacite floatflt wrapfig# Figures
+        enumitem courier# Font
         hyperref capt-of;
     })
     biber # For LaTeX.
   ]) ++ (with unstable.pkgs; [
     # Fuzzy finder.
-    fzf
+    # fzf
     # Dotfiles manager.
     yadm
     # Editor.
@@ -73,6 +73,8 @@ in
     # Music.
     spotify
   ]) ++ (with master.pkgs; [
+    # Temporarily use master version of fuzzy finder, until 0.24 is in nixos-unstable
+    fzf
     # Databases.
     dbeaver
   ]);

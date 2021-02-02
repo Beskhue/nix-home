@@ -289,9 +289,11 @@
     for monitor in $AUTORANDR_MONITORS;
     do
       i=$((i+1))
+      echo $monitor >>bspwm_test
       MONITOR=$monitor polybar top &
+      disown
     done
 
-    feh --randomize --bg-fill ~/Backgrounds/* &
+    feh --randomize --bg-fill ~/Backgrounds/*
   '';
 }

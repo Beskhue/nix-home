@@ -11,12 +11,15 @@ let
   runtime = pkgs.buildEnv {
     name = "neovim-env";
     paths = with unstable; [
+      # rustfmt
+      # rls
       rust-analyzer
       nixpkgs-fmt
       # rnix-lsp
       python37Packages.black
       python37Packages.python-language-server
-      nodePackages.javascript-typescript-langserver
+      # nodePackages.javascript-typescript-langserver
+      nodePackages.typescript-language-server # tsserver
       nodePackages.prettier
       nodePackages.bash-language-server
       shfmt
