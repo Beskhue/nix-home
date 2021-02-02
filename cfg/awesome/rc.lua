@@ -935,7 +935,17 @@ client.connect_signal("request::titlebars", function(c)
 end)
 
 local function handle_title_bar(c)
-    if c.floating or c.first_tag and c.first_tag.layout.name == "floating" then
+    local show = true
+
+    if c.requests_no_titlebar then
+        show = false
+    end
+
+    if not c.floating and (c.first_tag and c.first_tag.layout.name ~= "floating") then
+        show = false
+    end
+
+    if show then
         awful.titlebar.show(c)
     else
         awful.titlebar.hide(c)
