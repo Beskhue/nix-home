@@ -805,9 +805,7 @@ awful.rules.rules = {
     -- @DOC_GLOBAL_RULE@
     -- All clients will match this rule.
     { rule = { },
-      properties = { border_width = beautiful.border_width,
-                     border_color = beautiful.border_normal,
-                     focus = awful.client.focus.filter,
+      properties = { focus = awful.client.focus.filter,
                      raise = true,
                      keys = clientkeys,
                      buttons = clientbuttons,
@@ -815,6 +813,14 @@ awful.rules.rules = {
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen
      }
     },
+
+    { rule = { },
+      except_any = { type = { "desktop" } },
+      properties = { border_width = beautiful.border_width,
+                     border_color = beautiful.border_normal,
+      }
+    },
+
 
     -- @DOC_FLOATING_RULE@
     -- Floating clients.
