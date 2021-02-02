@@ -312,21 +312,21 @@ local tasklist_buttons = gears.table.join(
 -- 	widget:set_markup(stdout:gsub("\n", ""))
 -- 	widget.align = "center"
 -- end)
-local neticon = wibox.widget.imagebox(theme.widget_net)
+local neticon = wibox.widget.textbox('<span font="siji 8">&#x00e1a0;</span>')
 local net = lain.widget.net({
     settings = function()
         widget:set_markup(markup.fontfg(theme.mono_font, "#FEFEFE", " " .. net_now.received .. " ↓↑ " .. net_now.sent .. " "))
     end
 })
 
-local memicon = wibox.widget.imagebox(theme.widget_mem)
+local memicon = wibox.widget.textbox('<span font="siji 8">&#x00e020;</span>')
 local mem = lain.widget.mem({
     settings = function()
         widget:set_markup(markup.font(theme.mono_font, " " .. mem_now.used .. "MB "))
     end
 })
 
-local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
+local cpuicon = wibox.widget.textbox('<span font="siji 8">&#x00e026;</span>')
 local cpu = lain.widget.cpu({
     settings = function()
         widget:set_markup(markup.font(theme.mono_font, " " .. cpu_now.usage .. "% "))
