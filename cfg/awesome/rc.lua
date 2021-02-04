@@ -894,6 +894,14 @@ client.connect_signal("manage", function (c)
     -- i.e. put it at the end of others instead of setting it master.
     if not awesome.startup then awful.client.setslave(c) end
 
+    local tag_clients = c.first_tag:clients()
+    for k,client in pairs(tag_clients) do
+        if client.floating then
+            c.floating = true
+            break
+        end
+    end
+
     if awesome.startup
       and not c.size_hints.user_position
       and not c.size_hints.program_position then
