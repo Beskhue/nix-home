@@ -890,6 +890,7 @@ end
 -- Signal function to execute when a new client appears.
 -- @DOC_MANAGE_HOOK@
 client.connect_signal("manage", function (c)
+    c._in_managing = true
     -- Set the windows at the slave,
     -- i.e. put it at the end of others instead of setting it master.
     if not awesome.startup then awful.client.setslave(c) end
@@ -907,8 +908,50 @@ client.connect_signal("manage", function (c)
       and not c.size_hints.program_position then
         -- Prevent clients from being unreachable after screen count changes.
         awful.placement.no_offscreen(c)
+    elseif c.floating or c.first_tag.layout.name == "floating" then
+        local placement = awful.placement.under_mouse + awful.placement.no_offscreen
+        placement(c, {
+            honor_workarea = true,
+        })
+    end
+
+    handle_title_bar(c)
+    c._in_managing = false
+end)
+
+client.connect_signal("property::floating", function(c)
+    if c._in_managing then
+        return
+    end
+
+    handle_title_bar(c)
+
+    if c.floating or c.first_tag and c.first_tag.layout.name == "floating" then
+        local placement = awful.placement.under_mouse + awful.placement.no_offscreen
+        placement(c, { honor_workarea = true })
     end
 end)
+
+client.connect_signal("tagged", function(c)
+    handle_title_bar(c)
+end)
+
+tag.connect_signal("property::layout", function(t)
+    local clients = t:clients()
+    for k,c in pairs(clients) do
+        handle_title_bar(c)
+    end
+end)
+
+-- Enable sloppy focus, so that focus follows mouse.
+client.connect_signal("mouse::enter", function(c)
+    c:emit_signal("request::activate", "mouse_enter", {raise = false})
+end)
+
+-- @DOC_BORDER@
+client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
+client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+-- }}}
 
 -- @DOC_TITLEBARS@
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
@@ -961,31 +1004,6 @@ client.connect_signal("request::titlebars", function(c)
     }
 end)
 
-
-client.connect_signal("property::floating", function(c)
-    handle_title_bar(c)
-end)
-
-client.connect_signal("manage", function(c)
-    handle_title_bar(c)
-end)
-
-tag.connect_signal("property::layout", function(t)
-    local clients = t:clients()
-    for k,c in pairs(clients) do
-        handle_title_bar(c)
-    end
-end)
-
--- Enable sloppy focus, so that focus follows mouse.
-client.connect_signal("mouse::enter", function(c)
-    c:emit_signal("request::activate", "mouse_enter", {raise = false})
-end)
-
--- @DOC_BORDER@
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
--- }}}
 
 awful.spawn("sxhkd")
 awful.spawn("keepassxc", { tag = tags[10] })
