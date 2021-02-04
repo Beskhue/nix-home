@@ -867,6 +867,25 @@ awful.rules.rules = {
 }
 -- }}}
 
+local function handle_title_bar(c)
+    local show = true
+
+    if c.requests_no_titlebar then
+        show = false
+    end
+
+    if not c.floating and (c.first_tag and c.first_tag.layout.name ~= "floating") then
+        show = false
+    end
+
+    if show then
+        awful.titlebar.show(c)
+    else
+        awful.titlebar.hide(c)
+    end
+end
+
+
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
 -- @DOC_MANAGE_HOOK@
@@ -934,23 +953,6 @@ client.connect_signal("request::titlebars", function(c)
     }
 end)
 
-local function handle_title_bar(c)
-    local show = true
-
-    if c.requests_no_titlebar then
-        show = false
-    end
-
-    if not c.floating and (c.first_tag and c.first_tag.layout.name ~= "floating") then
-        show = false
-    end
-
-    if show then
-        awful.titlebar.show(c)
-    else
-        awful.titlebar.hide(c)
-    end
-end
 
 client.connect_signal("property::floating", function(c)
     handle_title_bar(c)
