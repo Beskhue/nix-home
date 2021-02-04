@@ -230,7 +230,7 @@ local tags = sharedtags({
     { name = "9", layout = awful.layout.layouts[2] },
     { name = "0", layout = awful.layout.layouts[10] },
     { name = "d", layout = awful.layout.layouts[1] },
-    { name = "m", layout = awful.layout.layouts[1] },
+    { name = "m", layout = awful.layout.layouts[10] },
 })
 -- }}}
 
@@ -978,10 +978,12 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 awful.spawn("sxhkd")
-awful.spawn("keepassxc", { floating = true, tag = tags[10] })
-awful.spawn("thunderbird", { floating = true, tag = tags[10] })
+awful.spawn("keepassxc", { tag = tags[10] })
+awful.spawn("thunderbird", { tag = tags[10] })
 awful.spawn("seafile-applet", { tag = tags[10] })
 awful.spawn("Discord", { tag = tags[6] })
-awful.spawn("alacritty -e ncmpcpp", { tag = tags[12] })
-awful.spawn("cool-retro-term -e vis", { tag = tags[12] })
+
+awful.spawn("cool-retro-term -e vis", { tag = tags[12], below = true })
+awful.spawn("alacritty -e ncmpcpp", { tag = tags[12], above = true })
+
 awful.spawn("bash -c 'feh --randomize --bg-fill ~/Backgrounds/*'")
