@@ -322,7 +322,7 @@ local net = lain.widget.net({
 local memicon = wibox.widget.textbox('<span font="siji 8">&#x00e020;</span>')
 local mem = lain.widget.mem({
     settings = function()
-        widget:set_markup(markup.font(theme.mono_font, " " .. mem_now.used .. "MB "))
+        widget:set_markup(markup.font(theme.mono_font, " " .. string.format("%.1f", mem_now.used / 1000) .. "GB "))
     end
 })
 
