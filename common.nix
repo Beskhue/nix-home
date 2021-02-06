@@ -84,10 +84,38 @@ in
     defaultApplications = {
       "inode/directory" = [ "org.kde.dolphin.desktop" ];
       "text/plain" = [ "nvim-qt.desktop" ];
+      "text/html" = [ "firefox.desktop" ];
       "application/octet-stream" = [ "firefox.desktop" ];
+      "application/pdf" = [ "zathura.desktop" ];
+      "image/svg+xml" = [ "org.nomacs.ImageLounge.desktop" ];
+      "image/png" = [ "org.nomacs.ImageLounge.desktop" ];
+      "image/tiff" = [ "org.nomacs.ImageLounge.desktop" ];
+      "image/gif" = [ "org.nomacs.ImageLounge.desktop" ];
+      "image/jpeg" = [ "org.nomacs.ImageLounge.desktop" ];
+      "image/bmp" = [ "org.nomacs.ImageLounge.desktop" ];
+      "video/mp4" = [ "mpv.desktop" ];
+      "video/mpeg" = [ "mpv.desktop" ];
+      "video/mkv" = [ "mpv.desktop" ];
+      "video/flv" = [ "mpv.desktop" ];
+      "audio/aac" = [ "mpv.desktop" ];
+      "audio/ac3" = [ "mpv.desktop" ];
+      "audio/mp4" = [ "mpv.desktop" ];
+      "audio/mpeg" = [ "mpv.desktop" ];
+      "audio/ogg" = [ "mpv.desktop" ];
+      "audio/vorbis" = [ "mpv.desktop" ];
+      "audio/wav" = [ "mpv.desktop" ];
+      "audio/x-wav" = [ "mpv.desktop" ];
+      "audio/mp3" = [ "mpv.desktop" ];
+      "audio/x-mp3" = [ "mpv.desktop" ];
+      "x-scheme-handler/http" = [ "firefox.desktop" ];
+      "x-scheme-handler/https" = [ "firefox.desktop" ];
+      "x-scheme-handler/about" = [ "firefox.desktop" ];
+      "x-scheme-handler/unknown" = [ "firefox.desktop" ];
+      "x-scheme-handler/magnet" = [ "deluge.desktop" ];
+    };
+    associations.added = {
       "image/svg+xml" = [ "nvim-qt.desktop" ];
     };
-    associations.added = { };
   };
 
   services.unclutter.enable = true;
