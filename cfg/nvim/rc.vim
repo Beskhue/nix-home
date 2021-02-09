@@ -155,3 +155,10 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
+
+
+" Location list following
+packadd vim-loclist-follow
+let g:loclist_follow = 1
+let g:loclist_follow_modes = 'ni'
+let g:loclist_follow_target = 'nearest'

@@ -28,6 +28,10 @@
       url = "github:nvim-lua/completion-nvim";
       flake = false;
     };
+    nvimVimLoclistFollow = {
+      url = "github:elbeardmorez/vim-loclist-follow";
+      flake = false;
+    };
     awesomeSharedtags = {
       url = "github:Drauthius/awesome-sharedtags";
       flake = false;
@@ -51,13 +55,14 @@
     , nvimTreesitterTextobjects
     , nvimMonochrome
     , nvimCompletionNvim
+    , nvimVimLoclistFollow
     , awesomeSharedtags
     , awesomeLain
     , awesomeFreedesktop
     }: {
       sources = {
         inherit nvimPlenary nvimPopup nvimTelescope nvimTreesitter
-          nvimTreesitterTextobjects nvimMonochrome nvimCompletionNvim awesomeSharedtags awesomeLain awesomeFreedesktop;
+          nvimTreesitterTextobjects nvimMonochrome nvimCompletionNvim nvimVimLoclistFollow awesomeSharedtags awesomeLain awesomeFreedesktop;
       };
     };
 }

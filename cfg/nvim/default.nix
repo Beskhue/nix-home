@@ -54,6 +54,8 @@ let
           plugins.popup
           plugins.plenary
           plugins.telescope
+          # Update location list position.
+          plugins.vim-loclist-follow
         ];
         opt = [
           # LSP.

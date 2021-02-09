@@ -48,4 +48,10 @@ in {
     src = flake.sources.nvimCompletionNvim;
     meta.homepage = "https://github.com/nvim-lua/completion-nvim";
   };
+  vim-loclist-follow = buildVimPluginFrom2Nix rec {
+    pname = "vim-loclist-follow";
+    version = flake.sources.nvimVimLoclistFollow.lastModifiedDate;
+    src = flake.sources.nvimVimLoclistFollow;
+    meta.homepage = "https://github.com/elbeardmorez/vim-loclist-follow";
+  };
 }
