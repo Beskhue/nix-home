@@ -89,7 +89,7 @@ lua << EOF
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     underline = true,
-    virtual_text = true,
+    virtual_text = false,
     signs = true,
     update_in_insert = false,
   }
@@ -110,8 +110,15 @@ require'lspconfig'.tsserver.setup{
 require'lspconfig'.bashls.setup{
   on_attach=require'completion'.on_attach
 }
+-- require'lspconfig'.rnix.setup{}
+
+update_diagnostics_loclist = function()
+    vim.lsp.diagnostic.set_loclist({open_loclist = false})
+end
+
 EOF
-" require'lspconfig'.rnix.setup{}
+
+autocmd! User LspDiagnosticsChanged lua update_diagnostics_loclist()
 
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
