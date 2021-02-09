@@ -120,6 +120,17 @@ EOF
 
 autocmd! User LspDiagnosticsChanged lua update_diagnostics_loclist()
 
+function! ToggleLoclist()
+    if get(getloclist(0, {'winid':0}), 'winid', 0)
+        lclose
+    else
+        lopen
+        wincmd p
+    endif
+endfunction
+
+nnoremap <silent> <F5>  <cmd>call ToggleLoclist()<CR>
+inoremap <silent> <F5>  <cmd>call ToggleLoclist()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> gy    <cmd>lua vim.lsp.buf.type_definition()<CR>
@@ -167,6 +178,9 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
+
+nnoremap <silent> [l     <cmd>lprevious<CR>
+nnoremap <silent> ]l     <cmd>lnext<CR>
 
 " Location list following
 packadd vim-loclist-follow
