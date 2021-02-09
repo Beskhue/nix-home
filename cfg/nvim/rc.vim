@@ -197,6 +197,8 @@ EOF
 
 nnoremap <silent> [l     <cmd>lprevious<CR>
 nnoremap <silent> ]l     <cmd>lnext<CR>
+nnoremap <silent> [q     <cmd>cprevious<CR>
+nnoremap <silent> ]q     <cmd>cnext<CR>
 
 " Location list following
 packadd vim-loclist-follow
