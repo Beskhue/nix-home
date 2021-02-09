@@ -112,25 +112,41 @@ require'lspconfig'.bashls.setup{
 }
 -- require'lspconfig'.rnix.setup{}
 
-update_diagnostics_loclist = function()
-    vim.lsp.diagnostic.set_loclist({open_loclist = false})
+update_diagnostics_qflist = function()
+  local buf = vim.api.nvim_get_current_buf()
+  local diagnostics = vim.lsp.diagnostic.get(buf)
+  local items = {}
+  if diagnostics then
+    for _, d in ipairs(diagnostics) do
+      table.insert(items, {
+        bufnr = buf,
+        lnum = d.range.start.line + 1,
+        col = d.range.start.character + 1,
+        text = d.message,
+      })
+    end
+    vim.lsp.util.set_qflist(items)
+  end
 end
-
 EOF
 
-autocmd! User LspDiagnosticsChanged lua update_diagnostics_loclist()
+autocmd! User LspDiagnosticsChanged lua update_diagnostics_qflist()
+autocmd! BufEnter * lua update_diagnostics_qflist()
 
-function! ToggleLoclist()
-    if get(getloclist(0, {'winid':0}), 'winid', 0)
-        lclose
-    else
-        lopen
-        wincmd p
-    endif
+function! ToggleQflist()
+    for winnr in range(1, winnr('$'))
+        if getwinvar(winnr, '&syntax') == 'qf'
+            cclose
+            return
+        endif
+    endfor
+
+    copen
+    wincmd p
 endfunction
 
-nnoremap <silent> <F5>  <cmd>call ToggleLoclist()<CR>
-inoremap <silent> <F5>  <cmd>call ToggleLoclist()<CR>
+nnoremap <silent> <F5>  <cmd>call ToggleQflist()<CR>
+inoremap <silent> <F5>  <cmd>call ToggleQflist()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> gy    <cmd>lua vim.lsp.buf.type_definition()<CR>
