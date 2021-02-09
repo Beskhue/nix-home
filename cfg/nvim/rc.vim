@@ -125,6 +125,19 @@ update_diagnostics_qflist = function()
         text = d.message,
       })
     end
+
+    table.sort(items, function(i1, i2)
+      if i1.bufnr == i2.bufnr then
+        if i1.lnum == i2.lnum then
+          return i1.col < i2.col
+        else
+          return i1.lnum < i2.lnum
+        end
+      else
+        return i1.bufnr < i2.bufnr
+      end
+    end)
+
     vim.lsp.util.set_qflist(items)
   end
 end
