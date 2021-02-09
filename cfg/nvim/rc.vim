@@ -28,6 +28,10 @@ function! s:ui_enter()
   hi Type gui=bold
   hi Statement gui=bold
   hi Comment gui=italic
+
+  " I'm not sure why this is necessary, but otherwise LSP diagnostics are not
+  " highlighted:
+  lua require('vim.lsp.diagnostic')._define_default_signs_and_highlights()
 endfunction
 
 au UIEnter * call s:ui_enter()
