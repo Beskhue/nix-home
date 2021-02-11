@@ -1014,4 +1014,4 @@ awful.spawn("Discord", { tag = tags[6] })
 awful.spawn("cool-retro-term -e vis", { tag = tags[12], below = true })
 awful.spawn("alacritty -e ncmpcpp", { tag = tags[12], above = true })
 
-awful.spawn("bash -c 'feh --randomize --bg-fill ~/Backgrounds/*'")
+awful.spawn("paper")
