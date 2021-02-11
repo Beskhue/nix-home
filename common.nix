@@ -10,6 +10,9 @@ in
     (import ./my-programs/volume-control)
     (import ./my-programs/thingshare)
     (import ./my-programs/extract)
+    (pkgs.callPackage ./my-programs/paper {
+      buildPythonPackage = pkgs.python3Packages.buildPythonPackage;
+    })
   ] ++ (with pkgs; [
     # Font tools.
     gnome3.gucharmap
