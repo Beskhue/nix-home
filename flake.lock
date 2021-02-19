@@ -19,11 +19,11 @@
     "awesomeLain": {
       "flake": false,
       "locked": {
-        "lastModified": 1609337858,
-        "narHash": "sha256-8mBH2CQGIY4UCbl5S8bDaZJ4jdZxsTlftkG4c5fsjz8=",
+        "lastModified": 1613729986,
+        "narHash": "sha256-QEvvW6rX+p+Yqtc3R05wlXEzEkQbUQgfIo5pkBR4QVo=",
         "owner": "lcpz",
         "repo": "lain",
-        "rev": "b38c6d67e98a6bf2fda46e1a3ec4ef36b63c2aba",
+        "rev": "10076e1d69cabd9ac45b3576f06feafe1190d5e0",
         "type": "github"
       },
       "original": {
@@ -50,11 +50,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1612638297,
-        "narHash": "sha256-Q01bhZXvgGvR9drGloyl2P0Ta9ctyTjA746bk/C8SvA=",
+        "lastModified": 1613732205,
+        "narHash": "sha256-uibSFEx8SBvDLM1ldF7NWbeiL0v8FK3GXnREHTgwRg8=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a007152316a53f54aff7cc147dde0378866269e2",
+        "rev": "16fed7f1ebaee6dac55eea0628a9eb8bd471201b",
         "type": "github"
       },
       "original": {
@@ -78,6 +78,22 @@
         "type": "github"
       }
     },
+    "nvimLspExtensions": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1613579170,
+        "narHash": "sha256-YKNsz+fE5Pw7lj7EB23Lng1CsE0w0bxlDDrg9brqy78=",
+        "owner": "nvim-lua",
+        "repo": "lsp_extensions.nvim",
+        "rev": "ce5d03822fda9ddbdeb2461e5b4c06c1641fe7ea",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-lua",
+        "repo": "lsp_extensions.nvim",
+        "type": "github"
+      }
+    },
     "nvimMonochrome": {
       "flake": false,
       "locked": {
@@ -94,14 +110,30 @@
         "type": "github"
       }
     },
+    "nvimPhoton": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1608838203,
+        "narHash": "sha256-xlqSzavIZRBqnHl1g3rwgrw7Lr0piiaEQWLbe/vQw6M=",
+        "owner": "axvr",
+        "repo": "photon.vim",
+        "rev": "f7c3b58e798d0a449a41c2095d8b30558aae4cf1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "axvr",
+        "repo": "photon.vim",
+        "type": "github"
+      }
+    },
     "nvimPlenary": {
       "flake": false,
       "locked": {
-        "lastModified": 1612356204,
-        "narHash": "sha256-rRhDYoHr+XqZc1nYUqkaQx8HW/T+yWlt9p5+hSotaUw=",
+        "lastModified": 1613700447,
+        "narHash": "sha256-mNDcQWOYdtAGY9O2mwAwjgRTeKZd1SSlFyt3qli1veU=",
         "owner": "nvim-lua",
         "repo": "plenary.nvim",
-        "rev": "a022a1b11c3a74a18df383894ddab58169c5ace0",
+        "rev": "45a09b2b897f453626899568703c5a1c573a9bb0",
         "type": "github"
       },
       "original": {
@@ -129,11 +161,11 @@
     "nvimTelescope": {
       "flake": false,
       "locked": {
-        "lastModified": 1612490165,
-        "narHash": "sha256-hRbtovEFooTcv3tNmz3hhdSHYtnxW5iPfsXnTg1Ldvk=",
+        "lastModified": 1613165487,
+        "narHash": "sha256-ZTQhgGbojP8cGC98mrkpBBpuViNWD/oBHZL8eJxkGiE=",
         "owner": "nvim-telescope",
         "repo": "telescope.nvim",
-        "rev": "5f1d16acf6716261bd52466733e096a49b9eadad",
+        "rev": "1c5e42a6a5a6d29be8fbf8dcefb0d8da535eac9a",
         "type": "github"
       },
       "original": {
@@ -145,11 +177,11 @@
     "nvimTreesitter": {
       "flake": false,
       "locked": {
-        "lastModified": 1612538201,
-        "narHash": "sha256-t3blXPz0NIsOpjHkBskBAiwNuRL6oDXxnzwi/UOsmnU=",
+        "lastModified": 1613569412,
+        "narHash": "sha256-PQqiumPJuMMaolL7dikHX4gFrt8wGP5HnsyRmYlM8Bw=",
         "owner": "nvim-treesitter",
         "repo": "nvim-treesitter",
-        "rev": "7055ba9c89831c8cddb4d3ed1e40352770c6d11d",
+        "rev": "5757f8a50d5d26b8c184b3a51713db763cdd9702",
         "type": "github"
       },
       "original": {
@@ -161,16 +193,32 @@
     "nvimTreesitterTextobjects": {
       "flake": false,
       "locked": {
-        "lastModified": 1609543792,
-        "narHash": "sha256-RzfqnBqnNuqkBntKOvGxzie1f8rAoDOM4FaHYGMs1B8=",
+        "lastModified": 1613345481,
+        "narHash": "sha256-lgYl3Y8eqtlDIvxAKlnRMctLfKtNIzm/TQV/b+CiI+U=",
         "owner": "nvim-treesitter",
         "repo": "nvim-treesitter-textobjects",
-        "rev": "065b342db053810ac7a5ee9740b891cfa05c380f",
+        "rev": "b0f6d2c91b46faecee8b44f426de4b40d8ec8494",
         "type": "github"
       },
       "original": {
         "owner": "nvim-treesitter",
         "repo": "nvim-treesitter-textobjects",
+        "type": "github"
+      }
+    },
+    "nvimVimColorsPencil": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1604913726,
+        "narHash": "sha256-9klBx0KetKHRy6okrCsqhCXii0avLH5byJH+9jzk0TQ=",
+        "owner": "reedes",
+        "repo": "vim-colors-pencil",
+        "rev": "fcbdca1d8218c7c4002084cfe3b2e4abc7ebdc35",
+        "type": "github"
+      },
+      "original": {
+        "owner": "reedes",
+        "repo": "vim-colors-pencil",
         "type": "github"
       }
     },
@@ -190,6 +238,22 @@
         "type": "github"
       }
     },
+    "nvimVistaVim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1613572177,
+        "narHash": "sha256-cpBZfpv8L6oYbF38Dogd18fv67nW/PN+/QxWU/3YRK8=",
+        "owner": "liuchengxu",
+        "repo": "vista.vim",
+        "rev": "30bf0bdaf33d942d35a0e767cf2387ced755d0e0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "liuchengxu",
+        "repo": "vista.vim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "awesomeFreedesktop": "awesomeFreedesktop",
@@ -197,13 +261,17 @@
         "awesomeSharedtags": "awesomeSharedtags",
         "nixpkgs": "nixpkgs",
         "nvimCompletionNvim": "nvimCompletionNvim",
+        "nvimLspExtensions": "nvimLspExtensions",
         "nvimMonochrome": "nvimMonochrome",
+        "nvimPhoton": "nvimPhoton",
         "nvimPlenary": "nvimPlenary",
         "nvimPopup": "nvimPopup",
         "nvimTelescope": "nvimTelescope",
         "nvimTreesitter": "nvimTreesitter",
         "nvimTreesitterTextobjects": "nvimTreesitterTextobjects",
-        "nvimVimLoclistFollow": "nvimVimLoclistFollow"
+        "nvimVimColorsPencil": "nvimVimColorsPencil",
+        "nvimVimLoclistFollow": "nvimVimLoclistFollow",
+        "nvimVistaVim": "nvimVistaVim"
       }
     }
   },

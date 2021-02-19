@@ -15,12 +15,22 @@ function! s:ui_enter()
   if get(v:event, "chan") == 0
       set termguicolors
   else
-      set guifont=iosevka:h10.5:sb
+      set guifont=iosevka:h12.0
   endif
   " let g:neosolarized_vertSplitBgTrans = 1
+  " let g:neosolarized_bold = 1
+  " let g:neosolarized_underline = 1
   " set background=light
+  " let g:neosolarized_italic = 1
+  " colorscheme NeoSolarized
+
+  set background=light
+  colorscheme PaperColor
+
   " colorscheme sierra
-  colorscheme anderson
+  " colorscheme anderson
+  " colorscheme photon
+
   "" Monochrome:
   " let g:monochrome_italic_comments = 1
   " colorscheme monochrome

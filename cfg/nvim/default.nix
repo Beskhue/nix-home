@@ -50,6 +50,8 @@ let
           # Themes.
           awesome-vim-colorschemes
           plugins.vim-monochrome
+          plugins.vim-colors-pencil
+          plugins.vim-photon
           # Popup finder.
           plugins.popup
           plugins.plenary
