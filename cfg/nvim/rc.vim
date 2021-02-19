@@ -54,8 +54,8 @@ set expandtab smarttab
 let mapleader="\<Space>"
 
 " File and buffer opening
-nmap <leader>b :Buffers<cr>
-nmap <leader>fo :Files<cr>
+nmap <leader>b <cmd>lua require('telescope.builtin').buffers()<cr>
+nmap <leader>fo <cmd>lua require('telescope.builtin').find_files()<cr>
 nmap <leader>fd :Explore<cr>
 nmap <leader>fg <cmd>lua require('telescope.builtin').git_files()<cr>
 nmap <leader>fr <cmd>lua require('telescope.builtin').live_grep()<cr>
@@ -232,3 +232,15 @@ packadd vim-loclist-follow
 let g:loclist_follow = 1
 let g:loclist_follow_modes = 'ni'
 let g:loclist_follow_target = 'nearest'
+
+" Telescope
+lua <<EOF
+require('telescope').setup{
+  defaults = {
+    preview_cutoff = 80,
+    file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
+    grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
+    qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new
+  }
+}
+EOF
