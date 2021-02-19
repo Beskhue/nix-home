@@ -50,16 +50,32 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1613732205,
-        "narHash": "sha256-uibSFEx8SBvDLM1ldF7NWbeiL0v8FK3GXnREHTgwRg8=",
+        "lastModified": 1613761605,
+        "narHash": "sha256-lUF6UPR96ZzQC0faNXBHLoLhNAdxZqYqDwz0PaIZ/7Y=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "16fed7f1ebaee6dac55eea0628a9eb8bd471201b",
+        "rev": "9816b99e71c3504b0b4c1f8b2e004148460029d4",
         "type": "github"
       },
       "original": {
         "id": "nixpkgs",
         "type": "indirect"
+      }
+    },
+    "nvimColorbuddyNvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1604675384,
+        "narHash": "sha256-cEzT9RhE+voYgwY53xjNH5j88Uk+L/DmIDsFMN5plm8=",
+        "owner": "tjdevries",
+        "repo": "colorbuddy.nvim",
+        "rev": "ee11ea2e0305de55f3a8ba9e9996ed72bbdc99e5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tjdevries",
+        "repo": "colorbuddy.nvim",
+        "type": "github"
       }
     },
     "nvimCompletionNvim": {
@@ -260,6 +276,7 @@
         "awesomeLain": "awesomeLain",
         "awesomeSharedtags": "awesomeSharedtags",
         "nixpkgs": "nixpkgs",
+        "nvimColorbuddyNvim": "nvimColorbuddyNvim",
         "nvimCompletionNvim": "nvimCompletionNvim",
         "nvimLspExtensions": "nvimLspExtensions",
         "nvimMonochrome": "nvimMonochrome",

@@ -72,4 +72,11 @@ in {
     src = flake.sources.nvimVimLoclistFollow;
     meta.homepage = "https://github.com/elbeardmorez/vim-loclist-follow";
   };
+  colorbuddy = buildVimPluginFrom2Nix rec {
+    pname = "colorbuddy.nvim";
+    version = flake.sources.nvimColorbuddyNvim.lastModifiedDate;
+    src = flake.sources.nvimColorbuddyNvim;
+    meta.homepage = "https://github.com/tjdevries/colorbuddy.nvim";
+  };
+
 }

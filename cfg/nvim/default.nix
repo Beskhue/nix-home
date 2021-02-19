@@ -59,6 +59,8 @@ let
           plugins.telescope
           # Update location list position.
           plugins.vim-loclist-follow
+          # Colorscheme framework.
+          plugins.colorbuddy
         ];
         opt = [
           # LSP.
@@ -107,6 +109,7 @@ in
       '';
     in
     {
+      ".config/nvim/lua".source = ./lua;
       ".config/nvim/ftplugin/nix.vim".text = ''
         nmap <buffer><leader>mf :Neoformat nixpkgsfmt<cr>
       '';

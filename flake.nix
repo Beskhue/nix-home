@@ -48,6 +48,10 @@
       url = "github:liuchengxu/vista.vim";
       flake = false;
     };
+    nvimColorbuddyNvim = {
+      url = "github:tjdevries/colorbuddy.nvim";
+      flake = false;
+    };
     awesomeSharedtags = {
       url = "github:Drauthius/awesome-sharedtags";
       flake = false;
@@ -76,13 +80,14 @@
     , nvimCompletionNvim
     , nvimVimLoclistFollow
     , nvimVistaVim
+    , nvimColorbuddyNvim
     , awesomeSharedtags
     , awesomeLain
     , awesomeFreedesktop
     }: {
       sources = {
         inherit nvimPlenary nvimPopup nvimLspExtensions nvimTelescope nvimTreesitter nvimTreesitterTextobjects
-          nvimMonochrome nvimVimColorsPencil nvimPhoton nvimVistaVim
+          nvimMonochrome nvimVimColorsPencil nvimPhoton nvimVistaVim nvimColorbuddyNvim
           nvimCompletionNvim nvimVimLoclistFollow awesomeSharedtags awesomeLain awesomeFreedesktop;
       };
     };
