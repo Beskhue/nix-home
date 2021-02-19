@@ -160,6 +160,7 @@ in
     ./cfg/picom
     ./cfg/alacritty
     ./cfg/nvim
+    ./cfg/vscode
     ./cfg/gtk.nix
     ./cfg/xresources
     ./cfg/dunst.nix
