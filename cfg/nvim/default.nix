@@ -55,6 +55,7 @@ let
           # Popup finder.
           plugins.popup
           plugins.plenary
+          plugins.lsp-extensions
           plugins.telescope
           # Update location list position.
           plugins.vim-loclist-follow

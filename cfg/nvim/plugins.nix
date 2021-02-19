@@ -18,6 +18,12 @@ in {
     src = flake.sources.nvimPlenary;
     meta.homepage = "https://github.com/nvim-lua/plenary.nvim";
   };
+  lsp-extensions = buildVimPluginFrom2Nix rec {
+    pname = "lsp-extensions";
+    version = flake.sources.nvimLspExtensions.lastModifiedDate;
+    src = flake.sources.nvimLspExtensions;
+    meta.homepage = "https://github.com/nvim-lua/lsp_extensions.nvim";
+  };
   telescope = buildVimPluginFrom2Nix rec {
     pname = "telescope";
     version = flake.sources.nvimTelescope.lastModifiedDate;
