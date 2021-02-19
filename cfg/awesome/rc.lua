@@ -315,7 +315,34 @@ local tasklist_buttons = gears.table.join(
 local neticon = wibox.widget.textbox('<span font="siji 8">&#x00e1a0;</span>')
 local net = lain.widget.net({
     settings = function()
-        widget:set_markup(markup.fontfg(theme.mono_font, "#FEFEFE", " " .. net_now.received .. " ↓↑ " .. net_now.sent .. " "))
+        local received = tonumber(net_now.received)
+        local received_unit = "k"
+        if received > 1024 then
+            received = received / 1024
+            received_unit = "M"
+        end
+        local sent = tonumber(net_now.sent)
+        local sent_unit = "k"
+        if sent > 1024 then
+            sent = sent / 1024
+            sent_unit = "M"
+        end
+
+        local received_format = "%4.1f"
+        local sent_format = "%-4.1f"
+
+        if received >= 100 then
+            received_format = "%4.0f"
+        end
+        if sent >= 100 then
+            sent_format = "%-4.0f"
+        end
+
+        widget:set_markup(markup.fontfg(
+            theme.mono_font,
+            "#FEFEFE",
+            " " .. string.format(received_format, received) .. received_unit .. " ↓↑ " .. string.format(sent_format, sent) .. sent_unit .. " B/s"
+        ))
     end
 })
 
