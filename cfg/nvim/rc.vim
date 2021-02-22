@@ -43,6 +43,9 @@ function! s:ui_enter()
   " I'm not sure why this is necessary, but otherwise LSP diagnostics are not
   " highlighted:
   lua require('vim.lsp.diagnostic')._define_default_signs_and_highlights()
+
+  " Color string colorizer
+  lua require'colorizer'.setup()
 endfunction
 
 au UIEnter * call s:ui_enter()

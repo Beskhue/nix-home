@@ -78,5 +78,10 @@ in {
     src = flake.sources.nvimColorbuddyNvim;
     meta.homepage = "https://github.com/tjdevries/colorbuddy.nvim";
   };
-
+  nvim-colorizer-lua = buildVimPluginFrom2Nix rec {
+    pname = "colorizer.lua";
+    version = flake.sources.nvimColorizerLua.lastModifiedDate;
+    src = flake.sources.nvimColorizerLua;
+    meta.homepage = "https://github.com/norcalli/nvim-colorizer.lua";
+  };
 }
