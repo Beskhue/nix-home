@@ -360,6 +360,45 @@ local cpu = lain.widget.cpu({
     end
 })
 
+local bat_critical_icon = '<span font="siji 8">&#x00e243;</span>'
+local bat_low_icon = '<span font="siji 8">&#x00e245;</span>'
+local bat_medium_icon = '<span font="siji 8">&#x00e247;</span>'
+local bat_high_icon = '<span font="siji 8">&#x00e249;</span>'
+local bat_full_icon = '<span font="siji 8">&#x00e24b;</span>'
+local bat_charging_icon = '<span font="siji 8">&#x00e239;</span>'
+local bat = lain.widget.bat({
+    battery = "BAT0",
+    settings = function()
+        if bat_now.status and bat_now.status ~= "N/A" then
+            if bat_now.ac_status == 1 or bat_now.status == "Charging" then
+                local str =  bat_charging_icon .. " " .. bat_now.perc .. "%"
+                if bat_now.status == "Charging" then
+                    str = str .. " (" .. bat_now.time .. ")"
+                end
+
+                widget:set_markup(markup.font(theme.mono_font, str))
+            else
+                local str = ""
+                if bat_now.perc > 90 then
+                    str = bat_full_icon
+                elseif bat_now.perc > 70 then
+                    str = bat_high_icon
+                elseif bat_now.perc > 50 then
+                    str = bat_medium_icon
+                elseif bat_now.perc > 30 then
+                    str = bat_low_icon
+                else
+                    str = bat_critical_icon
+                end
+
+                str = str .. " " .. bat_now.perc .. "% (" .. bat_now.time .. ")"
+
+                widget:set_markup(markup.font(theme.mono_font, str)) -- .. bat_now.status.perc))
+            end
+        end
+    end
+})
+
 local vert_sep = wibox.widget.separator {
     orientation = "vertical",
     forced_width = theme.border_width,
@@ -487,6 +526,8 @@ awful.screen.connect_for_each_screen(function(s)
     -- Add widgets to the wibox
     local width = s.geometry.width
 
+    local bat_hosts = { pollux = true, argo = true }
+
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
@@ -512,7 +553,9 @@ awful.screen.connect_for_each_screen(function(s)
             arrow("#4B696D", "#4B3B51"),
             wibox.container.background(wibox.container.margin(wibox.widget { nil, neticon, net.widget, layout = wibox.layout.align.horizontal }, dpi(3), dpi(3)), "#4B3B51"),
             arrow("#4B3B51", theme.bg_normal),
-            wibox.container.background(wibox.container.margin(task, dpi(3), dpi(7)), theme.bg_normal),
+            bat_hosts[awesome.hostname]
+                and wibox.container.background(wibox.container.margin(bat.widget, dpi(2), dpi(3)), theme.bg_normal)
+                or wibox.container.background(wibox.container.margin(task, dpi(3), dpi(7)), theme.bg_normal),
             arrow(theme.bg_normal, "#777E76"),
             wibox.container.background(wibox.container.margin(mytextclock, dpi(4), dpi(8)), "#777E76"),
             arrow("#777E76", "alpha"),
