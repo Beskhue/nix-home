@@ -83,7 +83,9 @@ Group.new('SignColumn',   colors.lightgrey,  colors.darkbackground)
 Group.new('LineNr',       groups.SignColumn, groups.SignColumn)
 Group.new('CursorLineNr', colors.blue,       colors.background, styles.bold)
 
-Group.new('FoldColumn',   groups.SignColumn, groups.SignColumn)
+Group.new('FoldColumn',   colors.foreground, groups.SignColumn)
+
+Group.new('Folded', colors.foreground, colors.verydarkbackground)
 
 Group.new('StatusLine',   colors.background,          colors.darkblue)
 Group.new('StatusLineNC', colors.highlightbackground, colors.paledarkblue)
