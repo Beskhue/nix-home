@@ -4,6 +4,7 @@ vim.api.nvim_command("hi! clear")
 
 Color.new('background',          '#e8e8e8')
 Color.new('darkbackground',      '#d8d8d8')
+Color.new('verydarkbackground',  '#c8c8c8')
 Color.new('highlightbackground', '#bcc1d1')
 
 Color.new('foreground',    '#2a2a2a')
@@ -98,7 +99,8 @@ Group.new('Title', colors.purple)
 Group.new('Question', colors.green)
 Group.new('MoreMsg', groups.Question)
 
-Group.new('Pmenu', colors.background, colors.foreground)
+Group.new('Pmenu', colors.foreground, colors.verydarkbackground)
+Group.new('NormalFloat', colors.foreground, colors.verydarkbackground)
 
 -- Some plugin coloring:
 Group.new('TSVariableBuiltin', groups.Constant)
