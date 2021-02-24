@@ -57,7 +57,7 @@ set expandtab smarttab
 let mapleader="\<Space>"
 
 " File and buffer opening
-nmap <leader>b <cmd>lua require('telescope.builtin').buffers()<cr>
+nmap <leader>b <cmd>lua require('telescope.builtin').buffers({sort_lastused = true})<cr>
 nmap <leader>fo <cmd>lua require('telescope.builtin').find_files()<cr>
 nmap <leader>fd :Explore<cr>
 nmap <leader>fg <cmd>lua require('telescope.builtin').git_files()<cr>
