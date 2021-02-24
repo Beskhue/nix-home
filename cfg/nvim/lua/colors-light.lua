@@ -63,10 +63,12 @@ Group.new('WarningMsg', groups.Warning)
 
 -- Vim coloring:
 Group.new('Cursor',  colors.background, colors.darkblue)
-Group.new('iCursor',  groups.Cursor)
-Group.new('vCursor',  groups.Cursor)
-Group.new('cCursor',  groups.Cursor)
-Group.new('iCursor',  groups.Cursor)
+Group.new('iCursor',                    groups.Cursor, groups.Cursor)
+Group.new('vCursor',                    groups.Cursor, groups.Cursor)
+Group.new('cCursor',                    groups.Cursor, groups.Cursor)
+Group.new('iCursor',                    groups.Cursor, groups.Cursor)
+Group.new('TermCursor',                 groups.Cursor, groups.Cursor)
+Group.new('VitalOverCommandLineCursor', groups.Cursor, groups.Cursor)
 
 Group.new('Visual',  colors.background, colors.darkblue)
 
