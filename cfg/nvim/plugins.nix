@@ -84,4 +84,10 @@ in {
     src = flake.sources.nvimColorizerLua;
     meta.homepage = "https://github.com/norcalli/nvim-colorizer.lua";
   };
+  minimap-vim = buildVimPluginFrom2Nix rec {
+    pname = "minimap.vim";
+    version = flake.sources.nvimMinimapVim.lastModifiedDate;
+    src = flake.sources.nvimMinimapVim;
+    meta.homepage = "https://github.com/wfxr/minimap.vim";
+  };
 }

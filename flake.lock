@@ -126,6 +126,22 @@
         "type": "github"
       }
     },
+    "nvimMinimapVim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1614312391,
+        "narHash": "sha256-suKSKT8AVwOVAkJwfXGPvssWmeyxIx+DpoO2bea6Pu0=",
+        "owner": "wfxr",
+        "repo": "minimap.vim",
+        "rev": "0b801a32b83db248f86e5540dcf954dc24d88dd1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wfxr",
+        "repo": "minimap.vim",
+        "type": "github"
+      }
+    },
     "nvimMonochrome": {
       "flake": false,
       "locked": {
@@ -296,6 +312,7 @@
         "nvimColorizerLua": "nvimColorizerLua",
         "nvimCompletionNvim": "nvimCompletionNvim",
         "nvimLspExtensions": "nvimLspExtensions",
+        "nvimMinimapVim": "nvimMinimapVim",
         "nvimMonochrome": "nvimMonochrome",
         "nvimPhoton": "nvimPhoton",
         "nvimPlenary": "nvimPlenary",

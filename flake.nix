@@ -56,6 +56,10 @@
       url = "github:norcalli/nvim-colorizer.lua";
       flake = false;
     };
+    nvimMinimapVim = {
+      url = "github:wfxr/minimap.vim";
+      flake = false;
+    };
     awesomeSharedtags = {
       url = "github:Drauthius/awesome-sharedtags";
       flake = false;
@@ -86,13 +90,14 @@
     , nvimVistaVim
     , nvimColorbuddyNvim
     , nvimColorizerLua
+    , nvimMinimapVim
     , awesomeSharedtags
     , awesomeLain
     , awesomeFreedesktop
     }: {
       sources = {
         inherit nvimPlenary nvimPopup nvimLspExtensions nvimTelescope nvimTreesitter nvimTreesitterTextobjects
-          nvimMonochrome nvimVimColorsPencil nvimPhoton nvimVistaVim nvimColorbuddyNvim nvimColorizerLua
+          nvimMonochrome nvimVimColorsPencil nvimPhoton nvimVistaVim nvimColorbuddyNvim nvimColorizerLua nvimMinimapVim
           nvimCompletionNvim nvimVimLoclistFollow awesomeSharedtags awesomeLain awesomeFreedesktop;
       };
     };

@@ -25,6 +25,8 @@ let
       shfmt
       # Preview for nvim telescope
       bat
+      # Necessary for minimap.vim
+      code-minimap
     ];
   };
   neovim = (master.neovim.override {
@@ -63,6 +65,8 @@ let
           plugins.vim-loclist-follow
           # Colorscheme framework.
           plugins.colorbuddy
+          # Minimap.
+          plugins.minimap-vim
         ];
         opt = [
           # LSP.

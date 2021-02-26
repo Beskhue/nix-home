@@ -247,3 +247,13 @@ require('telescope').setup{
   }
 }
 EOF
+
+" minimap.vim
+highlight Minimap gui=None
+highlight MinimapBase gui=None
+let g:minimap_auto_start = 1
+let g:minimap_auto_start_win_enter = 1
+let g:minimap_left = 0
+let g:minimap_width = 8
+let g:minimap_highlight = "Minimap"
+let g:minimap_base_highlight = "MinimapBase"

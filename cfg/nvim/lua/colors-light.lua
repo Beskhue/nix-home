@@ -116,5 +116,8 @@ Group.new("EasyMotionTarget", colors.red, nil, styles.bold)
 Group.new("EasyMotionIncSearch", colors.blue, nil, styles.bold)
 Group.new("EasyMotionShade", colors.verylightgrey)
 
+Group.new("MinimapBase",      colors.verylightgrey)
+Group.new("Minimap", colors.foreground)
+
 -- Group.new('Tag',            colors.nord_4,       colors.none,    styles.NONE)
 -- Group.new('Todo',           colors.nord_13,      colors.none,    styles.NONE)
