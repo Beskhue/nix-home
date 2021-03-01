@@ -2,33 +2,166 @@ local Color, colors, Group, groups, styles = require('colorbuddy').setup()
 
 vim.api.nvim_command("hi! clear")
 
-Color.new('background',          '#e8e8e8')
-Color.new('darkbackground',      '#d8d8d8')
-Color.new('verydarkbackground',  '#c8c8c8')
-Color.new('highlightbackground', '#bcc1d1')
+local background =         '#e8e8e8'
+local darkbackground =     '#d8d8d8'
+local verydarkbackground = '#c8c8c8'
+local highlightbackground ='#bcc1d1'
 
-Color.new('foreground',    '#2a2a2a')
-Color.new('black',         '#111111')
-Color.new('grey',          '#606060')
-Color.new('lightgrey',     '#808080')
-Color.new('verylightgrey', '#a0a0a0')
-Color.new('white',         '#e8e8e8')
+local foreground =   '#2a2a2a'
+local black =        '#111111'
+local grey =         '#606060'
+local lightgrey =    '#808080'
+local verylightgrey ='#a0a0a0'
+local white =        '#e8e8e8'
 
-Color.new('darkred',       '#660000')
-Color.new('red',           '#cd3131')
-Color.new('orange',        '#c76040')
-Color.new('verylightblue', '#a3c0cc')
-Color.new('lightblue',     '#4a67c5')
-Color.new('blue',          '#1e7094')
-Color.new('darkblue',      '#2e5e73')
-Color.new('paledarkblue',  '#62737a')
-Color.new('pink',          '#b3247e')
-Color.new('darkpink',      '#941e69')
-Color.new('purple',        '#7a409c')
-Color.new('lightpurple',   '#9248bd')
-Color.new('yellow',        '#786a00')
-Color.new('lightgreen',    '#38cf27')
-Color.new('green',         '#26701e')
+local darkred =      '#660000'
+local red =          '#cd3131'
+local orange =       '#c76040'
+local verylightblue ='#a3c0cc'
+local lightblue =    '#4a67c5'
+local blue =         '#1e7094'
+local darkblue =     '#2e5e73'
+local paledarkblue = '#62737a'
+local pink =         '#b3247e'
+local darkpink =     '#941e69'
+local purple =       '#7a409c'
+local lightpurple =  '#9248bd'
+local yellow =       '#786a00'
+local lightgreen =   '#38cf27'
+local green =        '#26701e'
+
+local function rgbFromString(str)
+    local r = tonumber(string.sub(str, 2, 3), 16) / 255
+    local g = tonumber(string.sub(str, 4, 5), 16) / 255
+    local b = tonumber(string.sub(str, 6, 7), 16) / 255
+    return r, g, b
+end
+
+local function rgbToString(r, g, b)
+    return string.format(
+        "#%02X%02X%02X",
+        math.floor(r * 255 + 0.5),
+        math.floor(g * 255 + 0.5),
+        math.floor(b * 255 + 0.5)
+    )
+end
+
+-- Adapted from https://github.com/EmmanuelOga/columns/blob/master/utils/color.lua
+function rgbToHsl(r, g, b)
+  local max, min = math.max(r, g, b), math.min(r, g, b)
+  local h, s, l
+
+  l = (max + min) / 2
+
+  if max == min then
+    h, s = 0, 0 -- achromatic
+  else
+    local d = max - min
+    if l > 0.5 then s = d / (2 - max - min) else s = d / (max + min) end
+    if max == r then
+      h = (g - b) / d
+      if g < b then h = h + 6 end
+    elseif max == g then h = (b - r) / d + 2
+    elseif max == b then h = (r - g) / d + 4
+    end
+    h = h / 6
+  end
+
+  return h, s, l
+end
+
+-- Adapted from https://github.com/EmmanuelOga/columns/blob/master/utils/color.lua
+function hslToRgb(h, s, l)
+  local r, g, b
+
+  if s == 0 then
+    r, g, b = l, l, l -- achromatic
+  else
+    function hue2rgb(p, q, t)
+      if t < 0   then t = t + 1 end
+      if t > 1   then t = t - 1 end
+      if t < 1/6 then return p + (q - p) * 6 * t end
+      if t < 1/2 then return q end
+      if t < 2/3 then return p + (q - p) * (2/3 - t) * 6 end
+      return p
+    end
+
+    local q
+    if l < 0.5 then q = l * (1 + s) else q = l + s - l * s end
+    local p = 2 * l - q
+
+    r = hue2rgb(p, q, h + 1/3)
+    g = hue2rgb(p, q, h)
+    b = hue2rgb(p, q, h - 1/3)
+  end
+
+  return r, g, b
+end
+
+local function invert(str)
+    local r, g, b = rgbFromString(str)
+    local h, s, l = rgbToHsl(r, g, b)
+    r, g, b = hslToRgb(h, s, 1.0 - l)
+    return rgbToString(r, g, b)
+end
+
+if vim.o.background == "dark" then
+    Color.new('background',          invert(background))
+    Color.new('darkbackground',      invert(darkbackground))
+    Color.new('verydarkbackground',  invert(verydarkbackground))
+    Color.new('highlightbackground', invert(highlightbackground))
+
+    Color.new('foreground',    invert(foreground))
+    Color.new('black',         invert(black))
+    Color.new('grey',          invert(grey))
+    Color.new('lightgrey',     invert(lightgrey))
+    Color.new('verylightgrey', invert(verylightgrey))
+    Color.new('white',         invert(white))
+
+    Color.new('darkred',       invert(darkred))
+    Color.new('red',           invert(red))
+    Color.new('orange',        invert(orange))
+    Color.new('verylightblue', invert(verylightblue))
+    Color.new('lightblue',     invert(lightblue))
+    Color.new('blue',          invert(blue))
+    Color.new('darkblue',      invert(darkblue))
+    Color.new('paledarkblue',  invert(paledarkblue))
+    Color.new('pink',          invert(pink))
+    Color.new('darkpink',      invert(darkpink))
+    Color.new('purple',        invert(purple))
+    Color.new('lightpurple',   invert(lightpurple))
+    Color.new('yellow',        invert(yellow))
+    Color.new('lightgreen',    invert(lightgreen))
+    Color.new('green',         invert(green))
+else
+    Color.new('background',          background)
+    Color.new('darkbackground',      darkbackground)
+    Color.new('verydarkbackground',  verydarkbackground)
+    Color.new('highlightbackground', highlightbackground)
+
+    Color.new('foreground',    foreground)
+    Color.new('black',         black)
+    Color.new('grey',          grey)
+    Color.new('lightgrey',     lightgrey)
+    Color.new('verylightgrey', verylightgrey)
+    Color.new('white',         white)
+
+    Color.new('darkred',       darkred)
+    Color.new('red',           red)
+    Color.new('orange',        orange)
+    Color.new('verylightblue', verylightblue)
+    Color.new('lightblue',     lightblue)
+    Color.new('blue',          blue)
+    Color.new('darkblue',      darkblue)
+    Color.new('paledarkblue',  paledarkblue)
+    Color.new('pink',          pink)
+    Color.new('darkpink',      darkpink)
+    Color.new('purple',        purple)
+    Color.new('lightpurple',   lightpurple)
+    Color.new('yellow',        yellow)
+    Color.new('lightgreen',    lightgreen)
+    Color.new('green',         green)
+end
 
 Group.new('Normal',      colors.foreground, colors.background)
 Group.new('Comment',     colors.lightgrey)
