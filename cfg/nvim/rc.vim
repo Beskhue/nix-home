@@ -23,10 +23,10 @@ function! s:ui_enter()
   " set background=light
   " let g:neosolarized_italic = 1
   " colorscheme NeoSolarized
+  colorscheme highlow
 
   " set background=light
   " colorscheme PaperColor
-  lua require("colors-light")
 
   " colorscheme sierra
   " colorscheme anderson

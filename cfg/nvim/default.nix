@@ -116,6 +116,7 @@ in
     in
     {
       ".config/nvim/lua".source = ./lua;
+      ".config/nvim/colors".source = ./colors;
       ".config/nvim/ftplugin/nix.vim".text = ''
         nmap <buffer><leader>mf :Neoformat nixpkgsfmt<cr>
       '';
