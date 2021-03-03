@@ -16,21 +16,26 @@ local function u(packed)
     return unpack(packed)
 end
 
+-- Pale
+local function pa(h, s, l)
+    return h, s, l + (0.91 - l) * 0.4
+end
+
 -- Accentuate
 local function a(h, s, l)
-    return h, s + (1 - s) * 0.1, l + (1 - l) * 0.1
+    return h, s + (1 - s) * 0.4, l
 end
 
 -- Dim
 local function d(h, s, l)
-    return h, s * 0.9, l * 0.9
+    return h, s * 0.6, l
 end
 
 
 -- Color system suffixes:
--- `p`: pale (less color saturation)
--- `a`: accentuated (more color saturation, more contrast with background)
--- `d`: dimmed (more color saturation, less contrast with background)
+-- `p`: pale (higher lightness)
+-- `a`: accentuated (more color saturation)
+-- `d`: dimmed (less color saturation)
 local background =          p(0, 0, 0.91)
 local darkbackground =      p(0, 0, 0.85)
 local verydarkbackground =  p(0, 0, 0.79)
@@ -38,37 +43,39 @@ local highlightbackground = p(0.886, 0.19, 0.79)
 
 local foreground =       p(0, 0, 0.165)
 local foreground_a =     p(0, 0, 0.070)
+local foreground_aa =    p(0, 0, 0.030)
 
 local grey =    p(0, 0, 0.380)
-local grey_d =  p(0, 0, 0.500)
-local grey_dd = p(0, 0, 0.620)
+local grey_d =  p(0, 0, 0.460)
+local grey_dd = p(0, 0, 0.540)
 
-local red =    p(0, 0.8, 0.15)
-local red_a =  p(0, 0.9, 0.25)
-local red_aa = p(0, 1.0, 0.35)
+local red =    p(0, 0.5, 0.354)
+local red_a =  p(a(u(red)))
+local red_aa = p(a(a(u(red))))
 
-local orange = p(14 / 360, 0.8, 0.15)
+local orange = p(14 / 360, 0.5, 0.313)
 
-local blue =    p(198 / 360, 0.8, 0.15)
+local blue =    p(198 / 360, 0.5, 0.267)
 local blue_a =  p(a(u(blue)))
 local blue_aa = p(a(a(u(blue))))
 local blue_d =  p(d(u(blue)))
-local blue_pa = p(198 / 360, 0.2, 0.50)
+local blue_pd = p(pa(d(u(blue))))
+-- local blue_pa = p(198 / 360, 0.2, 0.50)
 -- local blue_a =  p(198 / 360, 0.9, 0.25)
 -- local blue_aa = p(198 / 360, 1.0, 0.35)
 -- local blue_d =  p(198 / 360, 0.8, 0.05)
 -- local blue_pa = p(198 / 360, 0.2, 0.50)
 
-local pink =    p(322 / 360, 0.8, 0.15)
-local pink_d =  p(322 / 360, 0.9, 0.05)
+local pink =    p(322 / 360, 0.5, 0.342)
+local pink_d =  p(d(u(pink)))
 
-local purple =   p(278 / 370, 0.8, 0.15)
-local purple_a = p(278 / 370, 0.9, 0.25)
+local purple =   p(278 / 370, 0.5, 0.372)
+local purple_a = p(a(u(purple))) -- p(278 / 370, 0.9, 0.25)
 
-local yellow = p(53 / 360, 0.8, 0.15)
+local yellow = p(53 / 360, 0.5, 0.217)
 
-local green =   p(114 / 360, 0.8, 0.15)
-local green_a = p(114 / 360, 0.9, 0.25)
+local green =   p(114 / 360, 0.5, 0.227)
+local green_a = p(a(u(green))) -- p(114 / 360, 0.9, 0.25)
 
 local function rgbFromString(str)
     local r = tonumber(string.sub(str, 2, 3), 16) / 255
@@ -161,11 +168,12 @@ function M.setup()
         Color.new('verydarkbackground',  invertHslToString(u(verydarkbackground)))
         Color.new('highlightbackground', invertHslToString(u(highlightbackground)))
 
-        Color.new('foreground',   invertHslToString(u(foreground)))
-        Color.new('foreground_a', invertHslToString(u(foreground_a)))
-        Color.new('grey',         invertHslToString(u(grey)))
-        Color.new('grey_d',       invertHslToString(u(grey_d)))
-        Color.new('grey_dd',      invertHslToString(u(grey_dd)))
+        Color.new('foreground',    invertHslToString(u(foreground)))
+        Color.new('foreground_a',  invertHslToString(u(foreground_a)))
+        Color.new('foreground_aa', invertHslToString(u(foreground_aa)))
+        Color.new('grey',          invertHslToString(u(grey)))
+        Color.new('grey_d',        invertHslToString(u(grey_d)))
+        Color.new('grey_dd',       invertHslToString(u(grey_dd)))
 
         Color.new('red',      invertHslToString(u(red)))
         Color.new('red_a',    invertHslToString(u(red_a)))
@@ -175,7 +183,7 @@ function M.setup()
         Color.new('blue_a',   invertHslToString(u(blue_a)))
         Color.new('blue_aa',  invertHslToString(u(blue_aa)))
         Color.new('blue_d',   invertHslToString(u(blue_d)))
-        Color.new('blue_pa',  invertHslToString(u(blue_pa)))
+        Color.new('blue_pd',  invertHslToString(u(blue_pd)))
         Color.new('pink',     invertHslToString(u(pink)))
         Color.new('pink_d',   invertHslToString(u(pink_d)))
         Color.new('purple',   invertHslToString(u(purple)))
@@ -189,11 +197,12 @@ function M.setup()
         Color.new('verydarkbackground',  hslToString(u(verydarkbackground)))
         Color.new('highlightbackground', hslToString(u(highlightbackground)))
 
-        Color.new('foreground',   hslToString(u(foreground)))
-        Color.new('foreground_a', hslToString(u(foreground_a)))
-        Color.new('grey',         hslToString(u(grey)))
-        Color.new('grey_d',       hslToString(u(grey_d)))
-        Color.new('grey_dd',      hslToString(u(grey_dd)))
+        Color.new('foreground',    hslToString(u(foreground)))
+        Color.new('foreground_a',  hslToString(u(foreground_a)))
+        Color.new('foreground_aa', hslToString(u(foreground_aa)))
+        Color.new('grey',          hslToString(u(grey)))
+        Color.new('grey_d',        hslToString(u(grey_d)))
+        Color.new('grey_dd',       hslToString(u(grey_dd)))
 
         Color.new('red',      hslToString(u(red)))
         Color.new('red_a',    hslToString(u(red_a)))
@@ -203,7 +212,7 @@ function M.setup()
         Color.new('blue_a',   hslToString(u(blue_a)))
         Color.new('blue_aa',  hslToString(u(blue_aa)))
         Color.new('blue_d',   hslToString(u(blue_d)))
-        Color.new('blue_pa',  hslToString(u(blue_pa)))
+        Color.new('blue_pd',  hslToString(u(blue_pd)))
         Color.new('pink',     hslToString(u(pink)))
         Color.new('pink_d',   hslToString(u(pink_d)))
         Color.new('purple',   hslToString(u(purple)))
@@ -262,7 +271,7 @@ function M.setup()
     Group.new('CursorLine',  groups.CursorColumn)
     Group.new('Warnings', colors.orange, nil, styles.bold)
 
-    Group.new('SignColumn',   colors.grey_d,  colors.darkbackground)
+    Group.new('SignColumn',   colors.grey_d,     colors.darkbackground)
     Group.new('LineNr',       groups.SignColumn, groups.SignColumn)
     Group.new('CursorLineNr', colors.blue,       colors.background, styles.bold)
 
@@ -271,18 +280,19 @@ function M.setup()
     Group.new('Folded', colors.foreground, colors.verydarkbackground)
 
     Group.new('StatusLine',   colors.background,          colors.blue_d)
-    Group.new('StatusLineNC', colors.highlightbackground, colors.blue_pa)
+    Group.new('StatusLineNC', colors.highlightbackground, colors.blue_pd)
 
     Group.new('VertSplit', colors.highlightbackground, colors.background)
 
-    Group.new('Search',     colors.foreground_a, colors.blue_aa, styles.bold)
-    Group.new('Substitute', colors.foreground_a, colors.blue,          styles.bold)
+    Group.new('Search',     colors.foreground_aa, colors.blue_pd, styles.bold)
+    Group.new('Substitute', colors.foreground_aa, colors.blue,    styles.bold)
 
     Group.new('Directory', groups.Include)
 
     Group.new('Title', colors.purple)
     Group.new('Question', colors.green)
     Group.new('MoreMsg', groups.Question)
+    Group.new('NonText', colors.red_aa)
 
     Group.new('Pmenu', colors.foreground, colors.verydarkbackground)
     Group.new('NormalFloat', colors.foreground, colors.verydarkbackground)
