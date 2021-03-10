@@ -73,6 +73,9 @@ inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
+" Preview substitution
+set inccommand=nosplit
+
 " Easymotion
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_smartcase = 1
