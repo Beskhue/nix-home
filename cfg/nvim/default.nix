@@ -69,6 +69,8 @@ let
           plugins.colorbuddy
           # Minimap.
           plugins.minimap-vim
+          # Register preview.
+          vim-peekaboo
         ];
         opt = [
           # LSP.
