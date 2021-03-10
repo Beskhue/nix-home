@@ -311,9 +311,12 @@ function M.setup()
     Group.new("EasyMotionTarget", colors.red_a, nil, styles.bold)
     Group.new("EasyMotionIncSearch", colors.blue, nil, styles.bold)
     Group.new("EasyMotionShade", colors.grey_dd)
+    Group.new("EasyMotionMoveHL", groups.Search, groups.Search, groups.Search)
 
     Group.new("MinimapBase",      colors.grey_dd)
     Group.new("Minimap", colors.foreground)
+
+    Group.new("HighlightedyankRegion", nil, colors.highlightbackground)
 end
 
     -- Group.new('Tag',            colors.nord_4,       colors.none,    styles.NONE)
