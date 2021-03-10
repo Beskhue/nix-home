@@ -54,6 +54,8 @@ let
           plugins.vim-monochrome
           plugins.vim-colors-pencil
           plugins.vim-photon
+          # Highlight yank.
+          vim-highlightedyank
           # RGB string colorizer.
           plugins.nvim-colorizer-lua
           # Popup finder.
