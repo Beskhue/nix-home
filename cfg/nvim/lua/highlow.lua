@@ -18,7 +18,7 @@ end
 
 -- Pale
 local function pa(h, s, l)
-    return h, s, l + (0.91 - l) * 0.4
+    return h, s, l + (0.91 - l) * 0.6
 end
 
 -- Accentuate
@@ -36,45 +36,45 @@ end
 -- `p`: pale (higher lightness)
 -- `a`: accentuated (more color saturation)
 -- `d`: dimmed (less color saturation)
-local background =          p(0, 0, 0.91)
-local darkbackground =      p(0, 0, 0.85)
-local verydarkbackground =  p(0, 0, 0.79)
-local highlightbackground = p(0.886, 0.19, 0.79)
+local background =          p(51 / 360, 0.10, 0.88)
+local darkbackground =      p(51 / 360, 0.13, 0.82)
+local verydarkbackground =  p(51 / 360, 0.16, 0.76)
+local highlightbackground = p(37 / 360, 0.35, 0.74)
 
-local foreground =       p(0, 0, 0.165)
-local foreground_a =     p(0, 0, 0.070)
-local foreground_aa =    p(0, 0, 0.030)
+local foreground =       p(265 / 360, 0.07, 0.200)
+local foreground_a =     p(a(u(foreground)))
+local foreground_aa =    p(a(a(u(foreground))))
 
-local grey =    p(0, 0, 0.380)
-local grey_d =  p(0, 0, 0.460)
-local grey_dd = p(0, 0, 0.540)
+local grey =    p(51 / 360, 0.08, 0.310)
+local grey_d =  p(51 / 360, 0.10, 0.360)
+local grey_dd = p(51 / 360, 0.12, 0.410)
 
-local red =    p(0, 0.5, 0.354)
+local red =    p(0, 0.6, 0.354)
 local red_a =  p(a(u(red)))
 local red_aa = p(a(a(u(red))))
 
-local orange = p(14 / 360, 0.5, 0.313)
+local orange = p(14 / 360, 0.6, 0.313)
 
-local blue =    p(198 / 360, 0.5, 0.267)
-local blue_a =  p(a(u(blue)))
-local blue_aa = p(a(a(u(blue))))
-local blue_d =  p(d(u(blue)))
-local blue_pd = p(pa(d(u(blue))))
+local blue =     p(198 / 360, 0.6, 0.267)
+local blue_a =   p(a(u(blue)))
+local blue_aa =  p(a(a(u(blue))))
+local blue_d =   p(d(u(blue)))
+local blue_pdd = p(pa(d(d(u(blue)))))
 -- local blue_pa = p(198 / 360, 0.2, 0.50)
 -- local blue_a =  p(198 / 360, 0.9, 0.25)
 -- local blue_aa = p(198 / 360, 1.0, 0.35)
 -- local blue_d =  p(198 / 360, 0.8, 0.05)
 -- local blue_pa = p(198 / 360, 0.2, 0.50)
 
-local pink =    p(322 / 360, 0.5, 0.342)
+local pink =    p(322 / 360, 0.6, 0.342)
 local pink_d =  p(d(u(pink)))
 
-local purple =   p(278 / 370, 0.5, 0.372)
+local purple =   p(278 / 370, 0.6, 0.372)
 local purple_a = p(a(u(purple))) -- p(278 / 370, 0.9, 0.25)
 
-local yellow = p(53 / 360, 0.5, 0.217)
+local yellow = p(53 / 360, 0.6, 0.217)
 
-local green =   p(114 / 360, 0.5, 0.227)
+local green =   p(114 / 360, 0.6, 0.227)
 local green_a = p(a(u(green))) -- p(114 / 360, 0.9, 0.25)
 
 local function rgbFromString(str)
@@ -148,7 +148,7 @@ end
 local function invert(str)
     local r, g, b = rgbFromString(str)
     local h, s, l = rgbToHsl(r, g, b)
-    r, g, b = hslToRgb(h, s, 1.0 - l)
+    r, g, b = hslToRgb(h, s, (1.0 - l) * 0.8 + 0.1)
     return rgbToString(r, g, b)
 end
 
@@ -157,8 +157,10 @@ local function hslToString(h, s, l)
     return rgbToString(r, g, b)
 end
 
+-- Inverts colors for light-on-dark mode.
+-- Also somewhat reduces the global contrast.
 local function invertHslToString(h, s, l)
-    return hslToString(h, s * 0.5, 1.0 - l)
+    return hslToString(h, s * 0.68, (1.0 - l) * 0.92 + 0.04)
 end
 
 function M.setup()
@@ -175,22 +177,22 @@ function M.setup()
         Color.new('grey_d',        invertHslToString(u(grey_d)))
         Color.new('grey_dd',       invertHslToString(u(grey_dd)))
 
-        Color.new('red',      invertHslToString(u(red)))
-        Color.new('red_a',    invertHslToString(u(red_a)))
-        Color.new('red_aa',   invertHslToString(u(red_aa)))
-        Color.new('orange',   invertHslToString(u(orange)))
-        Color.new('blue',     invertHslToString(u(blue_a)))
-        Color.new('blue_a',   invertHslToString(u(blue_a)))
-        Color.new('blue_aa',  invertHslToString(u(blue_aa)))
-        Color.new('blue_d',   invertHslToString(u(blue_d)))
-        Color.new('blue_pd',  invertHslToString(u(blue_pd)))
-        Color.new('pink',     invertHslToString(u(pink)))
-        Color.new('pink_d',   invertHslToString(u(pink_d)))
-        Color.new('purple',   invertHslToString(u(purple)))
-        Color.new('purple_a', invertHslToString(u(purple_a)))
-        Color.new('yellow',   invertHslToString(u(yellow)))
-        Color.new('green',    invertHslToString(u(green)))
-        Color.new('green_a',  invertHslToString(u(green_a)))
+        Color.new('red',       invertHslToString(u(red)))
+        Color.new('red_a',     invertHslToString(u(red_a)))
+        Color.new('red_aa',    invertHslToString(u(red_aa)))
+        Color.new('orange',    invertHslToString(u(orange)))
+        Color.new('blue',      invertHslToString(u(blue_a)))
+        Color.new('blue_a',    invertHslToString(u(blue_a)))
+        Color.new('blue_aa',   invertHslToString(u(blue_aa)))
+        Color.new('blue_d',    invertHslToString(u(blue_d)))
+        Color.new('blue_pdd',  invertHslToString(u(blue_pdd)))
+        Color.new('pink',      invertHslToString(u(pink)))
+        Color.new('pink_d',    invertHslToString(u(pink_d)))
+        Color.new('purple',    invertHslToString(u(purple)))
+        Color.new('purple_a',  invertHslToString(u(purple_a)))
+        Color.new('yellow',    invertHslToString(u(yellow)))
+        Color.new('green',     invertHslToString(u(green)))
+        Color.new('green_a',   invertHslToString(u(green_a)))
     else
         Color.new('background',          hslToString(u(background)))
         Color.new('darkbackground',      hslToString(u(darkbackground)))
@@ -204,26 +206,26 @@ function M.setup()
         Color.new('grey_d',        hslToString(u(grey_d)))
         Color.new('grey_dd',       hslToString(u(grey_dd)))
 
-        Color.new('red',      hslToString(u(red)))
-        Color.new('red_a',    hslToString(u(red_a)))
-        Color.new('red_aa',   hslToString(u(red_aa)))
-        Color.new('orange',   hslToString(u(orange)))
-        Color.new('blue',     hslToString(u(blue)))
-        Color.new('blue_a',   hslToString(u(blue_a)))
-        Color.new('blue_aa',  hslToString(u(blue_aa)))
-        Color.new('blue_d',   hslToString(u(blue_d)))
-        Color.new('blue_pd',  hslToString(u(blue_pd)))
-        Color.new('pink',     hslToString(u(pink)))
-        Color.new('pink_d',   hslToString(u(pink_d)))
-        Color.new('purple',   hslToString(u(purple)))
-        Color.new('purple_a', hslToString(u(purple_a)))
-        Color.new('yellow',   hslToString(u(yellow)))
-        Color.new('green',    hslToString(u(green)))
-        Color.new('green_a',  hslToString(u(green_a)))
+        Color.new('red',       hslToString(u(red)))
+        Color.new('red_a',     hslToString(u(red_a)))
+        Color.new('red_aa',    hslToString(u(red_aa)))
+        Color.new('orange',    hslToString(u(orange)))
+        Color.new('blue',      hslToString(u(blue)))
+        Color.new('blue_a',    hslToString(u(blue_a)))
+        Color.new('blue_aa',   hslToString(u(blue_aa)))
+        Color.new('blue_d',    hslToString(u(blue_d)))
+        Color.new('blue_pdd',  hslToString(u(blue_pdd)))
+        Color.new('pink',      hslToString(u(pink)))
+        Color.new('pink_d',    hslToString(u(pink_d)))
+        Color.new('purple',    hslToString(u(purple)))
+        Color.new('purple_a',  hslToString(u(purple_a)))
+        Color.new('yellow',    hslToString(u(yellow)))
+        Color.new('green',     hslToString(u(green)))
+        Color.new('green_a',   hslToString(u(green_a)))
     end
 
     Group.new('Normal',      colors.foreground, colors.background)
-    Group.new('Comment',     colors.grey_d)
+    Group.new('Comment',     colors.grey_dd, nil, styles.italic)
     Group.new('Operator',    colors.grey)
     Group.new('Delimiter',   colors.grey)
     Group.new('MatchParen',  nil, colors.highlightbackground)
@@ -279,13 +281,14 @@ function M.setup()
 
     Group.new('Folded', colors.foreground, colors.verydarkbackground)
 
-    Group.new('StatusLine',   colors.background,          colors.blue_d)
-    Group.new('StatusLineNC', colors.highlightbackground, colors.blue_pd)
+    Group.new('StatusLine',   colors.background, colors.blue_d)
+    Group.new('StatusLineNC', colors.foreground, colors.blue_pdd)
 
     Group.new('VertSplit', colors.highlightbackground, colors.background)
 
-    Group.new('Search',     colors.foreground_aa, colors.blue_pd, styles.bold)
-    Group.new('Substitute', colors.foreground_aa, colors.blue,    styles.bold)
+    Group.new('Search',     colors.foreground, colors.highlightbackground, styles.bold)
+    Group.new('IncSearch',  colors.highlightbackground, colors.foreground)
+    Group.new('Substitute', colors.highlightbackground, colors.foreground)
 
     Group.new('Directory', groups.Include)
 
@@ -311,7 +314,7 @@ function M.setup()
 
     Group.new("MinimapBase",      colors.grey_dd)
     Group.new("Minimap", colors.foreground)
-    end
+end
 
     -- Group.new('Tag',            colors.nord_4,       colors.none,    styles.NONE)
     -- Group.new('Todo',           colors.nord_13,      colors.none,    styles.NONE)
