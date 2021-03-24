@@ -25,7 +25,7 @@ in
     jalv
     lilv
     # Synths
-    surge
+    master.surge
     helm
     qsynth
     # LV2
@@ -40,8 +40,9 @@ in
     supercollider
     ### DAW
     ardour
-    # Collection
+    # Collections
     lsp-plugins
+    master.distrho
   ]) ++ (with unstable; [
     # Plugin host
     (carla.override {
