@@ -65,7 +65,7 @@ in
     # Use latest renoise, with stable libjack2 version.
     (renoise.override {
       # libjack2 = pkgs.libjack2;
-      releasePath = ~/music-production/renoise/rns_330_linux_x86_64.tar.gz;
+      releasePath = ~/music-production/renoise/rns_331_linux_x86_64.tar.gz;
     })
     (zynaddsubfx.override {
       guiModule = "zest";
