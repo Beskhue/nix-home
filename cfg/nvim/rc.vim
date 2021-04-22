@@ -3,6 +3,7 @@ set mouse=a
 syntax on
 set number
 set signcolumn=yes
+set foldcolumn=auto
 set cmdheight=2
 highlight LineNr ctermfg=white
 set hidden
