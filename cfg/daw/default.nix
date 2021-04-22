@@ -48,6 +48,7 @@ in
     (callPackage ./harrison-ava.nix {})
   ]) ++ (with unstable; [
     # Plugin host
+    vcv-rack
     (carla.override {
       # python3Packages = pkgs.python3Packages;
       # qtbase = pkgs.qt5.qtbase;
