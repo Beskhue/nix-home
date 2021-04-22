@@ -32,6 +32,8 @@ in
     avldrums-lv2
     drumkv1
     fmsynth
+    # LADSPA
+    autotalent
     # DSSI
     xsynth_dssi
     # Collections
@@ -43,6 +45,7 @@ in
     # Collections
     lsp-plugins
     master.distrho
+    (callPackage ./harrison-ava.nix {})
   ]) ++ (with unstable; [
     # Plugin host
     (carla.override {
