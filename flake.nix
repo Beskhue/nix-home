@@ -44,10 +44,6 @@
       url = "github:elbeardmorez/vim-loclist-follow";
       flake = false;
     };
-    nvimVistaVim = {
-      url = "github:liuchengxu/vista.vim";
-      flake = false;
-    };
     nvimColorbuddyNvim = {
       url = "github:tjdevries/colorbuddy.nvim";
       flake = false;
@@ -87,7 +83,6 @@
     , nvimPhoton
     , nvimCompletionNvim
     , nvimVimLoclistFollow
-    , nvimVistaVim
     , nvimColorbuddyNvim
     , nvimColorizerLua
     , nvimMinimapVim
@@ -97,7 +92,7 @@
     }: {
       sources = {
         inherit nvimPlenary nvimPopup nvimLspExtensions nvimTelescope nvimTreesitter nvimTreesitterTextobjects
-          nvimMonochrome nvimVimColorsPencil nvimPhoton nvimVistaVim nvimColorbuddyNvim nvimColorizerLua nvimMinimapVim
+          nvimMonochrome nvimVimColorsPencil nvimPhoton nvimColorbuddyNvim nvimColorizerLua nvimMinimapVim
           nvimCompletionNvim nvimVimLoclistFollow awesomeSharedtags awesomeLain awesomeFreedesktop;
       };
     };

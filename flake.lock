@@ -286,22 +286,6 @@
         "type": "github"
       }
     },
-    "nvimVistaVim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1615170588,
-        "narHash": "sha256-4nzwV0qitLEyWtmPDsC9ixej4F/8FGLFAzHqOD9Mh7M=",
-        "owner": "liuchengxu",
-        "repo": "vista.vim",
-        "rev": "954754c830d2ca7da3157cdea029c8d50021d0bc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "liuchengxu",
-        "repo": "vista.vim",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "awesomeFreedesktop": "awesomeFreedesktop",
@@ -321,8 +305,7 @@
         "nvimTreesitter": "nvimTreesitter",
         "nvimTreesitterTextobjects": "nvimTreesitterTextobjects",
         "nvimVimColorsPencil": "nvimVimColorsPencil",
-        "nvimVimLoclistFollow": "nvimVimLoclistFollow",
-        "nvimVistaVim": "nvimVistaVim"
+        "nvimVimLoclistFollow": "nvimVimLoclistFollow"
       }
     }
   },
