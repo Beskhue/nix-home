@@ -57,6 +57,7 @@ in
       # gtk3 = pkgs.gtk3;
     })
   ]) ++ (with master; [
+    bitwig-studio
     # Wine VST bridge
     # # (master.airwave.override {
     # #   qt5 = pkgs.qt5;
