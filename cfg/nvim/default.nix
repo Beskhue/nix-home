@@ -70,7 +70,7 @@ let
           # Minimap.
           plugins.minimap-vim
           # Register preview.
-          vim-peekaboo
+          plugins.registers-nvim
         ];
         opt = [
           # LSP.

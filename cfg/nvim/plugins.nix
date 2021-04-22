@@ -90,4 +90,10 @@ in {
     src = flake.sources.nvimMinimapVim;
     meta.homepage = "https://github.com/wfxr/minimap.vim";
   };
+  registers-nvim = buildVimPluginFrom2Nix rec {
+    pname = "registers.nvim";
+    version = flake.sources.nvimRegistersNvim.lastModifiedDate;
+    src = flake.sources.nvimRegistersNvim;
+    meta.homepage = "https://github.com/tversteeg/registers.nvim";
+  };
 }

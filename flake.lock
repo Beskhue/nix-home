@@ -206,6 +206,22 @@
         "type": "github"
       }
     },
+    "nvimRegistersNvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1618323157,
+        "narHash": "sha256-Q+QA5x9Wzm5MsRWMlQVcdiT5rq2X9QkFJ2vlPHUN5Ms=",
+        "owner": "tversteeg",
+        "repo": "registers.nvim",
+        "rev": "b8ad2cd8a01dc3e4c2530820409d01b1bbd6fb95",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tversteeg",
+        "repo": "registers.nvim",
+        "type": "github"
+      }
+    },
     "nvimTelescope": {
       "flake": false,
       "locked": {
@@ -301,6 +317,7 @@
         "nvimPhoton": "nvimPhoton",
         "nvimPlenary": "nvimPlenary",
         "nvimPopup": "nvimPopup",
+        "nvimRegistersNvim": "nvimRegistersNvim",
         "nvimTelescope": "nvimTelescope",
         "nvimTreesitter": "nvimTreesitter",
         "nvimTreesitterTextobjects": "nvimTreesitterTextobjects",
