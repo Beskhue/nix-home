@@ -36,14 +36,17 @@ end
 -- `p`: pale (higher lightness)
 -- `a`: accentuated (more color saturation)
 -- `d`: dimmed (less color saturation)
-local background =          p(51 / 360, 0.10, 0.88)
+--
+-- Note that colorbuddy.lua sees "background" and "foreground" as special color names.
+-- As such, we cannot use those.
+local background_ =         p(51 / 360, 0.10, 0.88)
 local darkbackground =      p(51 / 360, 0.13, 0.82)
 local verydarkbackground =  p(51 / 360, 0.16, 0.76)
 local highlightbackground = p(37 / 360, 0.35, 0.74)
 
-local foreground =       p(265 / 360, 0.07, 0.200)
-local foreground_a =     p(a(u(foreground)))
-local foreground_aa =    p(a(a(u(foreground))))
+local foreground_ =      p(265 / 360, 0.07, 0.200)
+local foreground_a =     p(a(u(foreground_)))
+local foreground_aa =    p(a(a(u(foreground_))))
 
 local grey =    p(51 / 360, 0.08, 0.310)
 local grey_d =  p(51 / 360, 0.10, 0.360)
@@ -165,12 +168,12 @@ end
 
 function M.setup()
     if vim.o.background == "dark" then
-        Color.new('background',          invertHslToString(u(background)))
+        Color.new('background_',         invertHslToString(u(background_)))
         Color.new('darkbackground',      invertHslToString(u(darkbackground)))
         Color.new('verydarkbackground',  invertHslToString(u(verydarkbackground)))
         Color.new('highlightbackground', invertHslToString(u(highlightbackground)))
 
-        Color.new('foreground',    invertHslToString(u(foreground)))
+        Color.new('foreground_',   invertHslToString(u(foreground_)))
         Color.new('foreground_a',  invertHslToString(u(foreground_a)))
         Color.new('foreground_aa', invertHslToString(u(foreground_aa)))
         Color.new('grey',          invertHslToString(u(grey)))
@@ -194,12 +197,12 @@ function M.setup()
         Color.new('green',     invertHslToString(u(green)))
         Color.new('green_a',   invertHslToString(u(green_a)))
     else
-        Color.new('background',          hslToString(u(background)))
+        Color.new('background_',         hslToString(u(background_)))
         Color.new('darkbackground',      hslToString(u(darkbackground)))
         Color.new('verydarkbackground',  hslToString(u(verydarkbackground)))
         Color.new('highlightbackground', hslToString(u(highlightbackground)))
 
-        Color.new('foreground',    hslToString(u(foreground)))
+        Color.new('foreground_',   hslToString(u(foreground_)))
         Color.new('foreground_a',  hslToString(u(foreground_a)))
         Color.new('foreground_aa', hslToString(u(foreground_aa)))
         Color.new('grey',          hslToString(u(grey)))
@@ -224,7 +227,7 @@ function M.setup()
         Color.new('green_a',   hslToString(u(green_a)))
     end
 
-    Group.new('Normal',      colors.foreground, colors.background)
+    Group.new('Normal',      colors.foreground_, colors.background_)
     Group.new('Comment',     colors.grey_dd, nil, styles.italic)
     Group.new('Operator',    colors.grey)
     Group.new('Delimiter',   colors.grey)
@@ -257,15 +260,15 @@ function M.setup()
     Group.new('WarningMsg', groups.Warning)
 
     -- Vim coloring:
-    Group.new('Cursor',  colors.background, colors.blue_d)
-    Group.new('iCursor',                    groups.Cursor, groups.Cursor)
-    Group.new('vCursor',                    groups.Cursor, groups.Cursor)
-    Group.new('cCursor',                    groups.Cursor, groups.Cursor)
-    Group.new('iCursor',                    groups.Cursor, groups.Cursor)
-    Group.new('TermCursor',                 groups.Cursor, groups.Cursor)
-    Group.new('VitalOverCommandLineCursor', groups.Cursor, groups.Cursor)
+    Group.new('Cursor',  colors.background_, colors.blue_d)
+    Group.new('iCursor',                     groups.Cursor, groups.Cursor)
+    Group.new('vCursor',                     groups.Cursor, groups.Cursor)
+    Group.new('cCursor',                     groups.Cursor, groups.Cursor)
+    Group.new('iCursor',                     groups.Cursor, groups.Cursor)
+    Group.new('TermCursor',                  groups.Cursor, groups.Cursor)
+    Group.new('VitalOverCommandLineCursor',  groups.Cursor, groups.Cursor)
 
-    Group.new('Visual',  colors.background, colors.blue_d)
+    Group.new('Visual',  colors.background_, colors.blue_d)
 
     Group.new('SpecialKey', colors.blue_a, nil, styles.italic)
 
@@ -275,20 +278,20 @@ function M.setup()
 
     Group.new('SignColumn',   colors.grey_d,     colors.darkbackground)
     Group.new('LineNr',       groups.SignColumn, groups.SignColumn)
-    Group.new('CursorLineNr', colors.blue,       colors.background, styles.bold)
+    Group.new('CursorLineNr', colors.blue,       colors.background_, styles.bold)
 
-    Group.new('FoldColumn',   colors.foreground, groups.SignColumn)
+    Group.new('FoldColumn',   colors.foreground_, groups.SignColumn)
 
-    Group.new('Folded', colors.foreground, colors.verydarkbackground)
+    Group.new('Folded', colors.foreground_, colors.verydarkbackground)
 
-    Group.new('StatusLine',   colors.background, colors.blue_d)
-    Group.new('StatusLineNC', colors.foreground, colors.blue_pdd)
+    Group.new('StatusLine',   colors.background_, colors.blue_d)
+    Group.new('StatusLineNC', colors.foreground_, colors.blue_pdd)
 
-    Group.new('VertSplit', colors.highlightbackground, colors.background)
+    Group.new('VertSplit', colors.highlightbackground, colors.background_)
 
-    Group.new('Search',     colors.foreground, colors.highlightbackground, styles.bold)
-    Group.new('IncSearch',  colors.highlightbackground, colors.foreground)
-    Group.new('Substitute', colors.highlightbackground, colors.foreground)
+    Group.new('Search',     colors.foreground_, colors.highlightbackground, styles.bold)
+    Group.new('IncSearch',  colors.highlightbackground, colors.foreground_)
+    Group.new('Substitute', colors.highlightbackground, colors.foreground_)
 
     Group.new('Directory', groups.Include)
 
@@ -297,8 +300,8 @@ function M.setup()
     Group.new('MoreMsg', groups.Question)
     Group.new('NonText', colors.red_aa)
 
-    Group.new('Pmenu', colors.foreground, colors.verydarkbackground)
-    Group.new('NormalFloat', colors.foreground, colors.verydarkbackground)
+    Group.new('Pmenu', colors.foreground_, colors.verydarkbackground)
+    Group.new('NormalFloat', colors.foreground_, colors.verydarkbackground)
 
     -- Some plugin coloring:
     Group.new('TSVariableBuiltin', groups.Constant)
@@ -314,7 +317,7 @@ function M.setup()
     Group.new("EasyMotionMoveHL", groups.Search, groups.Search, groups.Search)
 
     Group.new("MinimapBase",      colors.grey_dd)
-    Group.new("Minimap", colors.foreground)
+    Group.new("Minimap", colors.foreground_)
 
     Group.new("HighlightedyankRegion", nil, colors.highlightbackground)
 end
