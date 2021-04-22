@@ -1,4 +1,4 @@
--- A high foreground-b8ckground low between-keyword contrast colorscheme.
+-- A high foreground-background contrast, low between-keyword contrast colorscheme.
 
 local Color, colors, Group, groups, styles = require('colorbuddy').setup()
 
