@@ -1,5 +1,6 @@
 {
   inputs = {
+    neovim.url = "github:neovim/neovim?dir=contrib";
     nvimPlenary = {
       url = "github:nvim-lua/plenary.nvim";
       flake = false;
@@ -76,6 +77,7 @@
   outputs =
     { self
     , nixpkgs
+    , neovim
     , nvimPlenary
     , nvimPopup
     , nvimLspExtensions
@@ -95,6 +97,7 @@
     , awesomeLain
     , awesomeFreedesktop
     }: {
+      builtPackages = { inherit neovim; };
       sources = {
         inherit nvimPlenary nvimPopup nvimLspExtensions nvimTelescope nvimTreesitter nvimTreesitterTextobjects
           nvimMonochrome nvimVimColorsPencil nvimPhoton nvimColorbuddyNvim nvimColorizerLua nvimMinimapVim nvimRegistersNvim

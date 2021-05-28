@@ -8,9 +8,23 @@ let
         ;
     }).buildVimPluginFrom2Nix;
   };
-  runtime = pkgs.buildEnv {
-    name = "neovim-env";
-    paths = with unstable; [
+  neovim = pkgs.callPackage ./neovim.nix { };
+  # wrappedNeovimQt = pkgs.symlinkJoin {
+  #   name = "neovim-qt";
+  #   paths = [ (unstable.neovim-qt.override { neovim = neovim; }) ];
+  #   buildInputs = [ pkgs.makeWrapper ];
+  #   postBuild = ''
+  #     wrapProgram $out/bin/nvim-qt \
+  #       --prefix PATH : "${runtime}/bin"
+  #   '';
+  # };
+in
+{
+  programs.neovim = {
+    enable = true;
+    package = neovim.package;
+    extraConfig = builtins.readFile ./rc.vim;
+    extraPackages = with unstable; [
       # rustfmt
       # rls
       rust-analyzer
@@ -28,88 +42,68 @@ let
       # Necessary for minimap.vim
       code-minimap
     ];
-  };
-  neovim = (master.neovim.override {
-    configure = {
-      packages.myPackages = with master.pkgs.vimPlugins; {
-        start = [
-          # Impure manager.
-          # vim-plug
-          # Fuzzy finding.
-          fzf-vim
-          # Movement.
-          vim-easymotion
-          # Languages.
-          vim-nix
-          vim-javascript
-          ### Currently not in repo:
-          # vim-jsx-typescript
-          vim-tsx
-          typescript-vim
-          # Buffer formatting.
-          neoformat
-          NeoSolarized
-          # Themes.
-          awesome-vim-colorschemes
-          plugins.vim-monochrome
-          plugins.vim-colors-pencil
-          plugins.vim-photon
-          # Highlight yank.
-          vim-highlightedyank
-          # RGB string colorizer.
-          plugins.nvim-colorizer-lua
-          # Popup finder.
-          plugins.popup
-          plugins.plenary
-          plugins.lsp-extensions
-          plugins.telescope
-          # Update location list position.
-          plugins.vim-loclist-follow
-          # Colorscheme framework.
-          plugins.colorbuddy
-          # Minimap.
-          plugins.minimap-vim
-          # Register preview.
-          plugins.registers-nvim
-        ];
-        opt = [
-          # LSP.
-          nvim-lspconfig
-          # Aid completion
-          plugins.completion-nvim
-          # Treesitter.
-          plugins.nvim-treesitter
-          plugins.nvim-treesitter-textobjects
-        ];
+    plugins = with master.pkgs.vimPlugins; [
+      # Impure manager.
+      # vim-plug
+      # Fuzzy finding.
+      fzf-vim
+      # Movement.
+      vim-easymotion
+      # Languages.
+      vim-nix
+      vim-javascript
+      purescript-vim
+      ### Currently not in repo:
+      # vim-jsx-typescript
+      vim-tsx
+      typescript-vim
+      # Buffer formatting.
+      neoformat
+      NeoSolarized
+      # Themes.
+      awesome-vim-colorschemes
+      plugins.vim-monochrome
+      plugins.vim-colors-pencil
+      plugins.vim-photon
+      # Highlight yank.
+      vim-highlightedyank
+      # RGB string colorizer.
+      plugins.nvim-colorizer-lua
+      # Popup finder.
+      plugins.popup
+      plugins.plenary
+      plugins.lsp-extensions
+      plugins.telescope
+      # Update location list position.
+      plugins.vim-loclist-follow
+      # Colorscheme framework.
+      plugins.colorbuddy
+      # Minimap.
+      plugins.minimap-vim
+      # Register preview.
+      plugins.registers-nvim
 
-      };
-      customRC = builtins.readFile ./rc.vim;
-    };
-  });
-  wrappedNeovim = pkgs.symlinkJoin {
-    name = "neovim";
-    paths = [ neovim ];
-    buildInputs = [ pkgs.makeWrapper ];
-    postBuild = ''
-      wrapProgram $out/bin/nvim \
-        --prefix PATH : "${runtime}/bin"
-    '';
+      # LSP.
+      {
+        plugin = nvim-lspconfig;
+	# optional = true;
+      }
+      # Aid completion
+      {
+        plugin = plugins.completion-nvim;
+	# optional = true;
+      }
+      # Treesitter.
+      {
+        plugin = plugins.nvim-treesitter;
+	# optional = true;
+      }
+      {
+        plugin = plugins.nvim-treesitter-textobjects;
+	# optional = true;
+      }
+    ];
   };
-  wrappedNeovimQt = pkgs.symlinkJoin {
-    name = "neovim-qt";
-    paths = [ (unstable.neovim-qt.override { neovim = neovim; }) ];
-    buildInputs = [ pkgs.makeWrapper ];
-    postBuild = ''
-      wrapProgram $out/bin/nvim-qt \
-        --prefix PATH : "${runtime}/bin"
-    '';
-  };
-in
-{
-  home.packages = [
-    wrappedNeovim
-    wrappedNeovimQt
-  ];
 
   home.file =
     let
