@@ -16,12 +16,15 @@ in
     deluge
     # Games.
     lutris
-    # E-book management.
-    calibre
     # Disassembly.
     ghidra-bin
     radare2-cutter
+    # E-book management.
+    # calibre
   ]) ++ (with unstable.pkgs; [
+    # E-book management.
+    calibre
+
     wineWowPackages.staging
     winetricks
 
